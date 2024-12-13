@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="h-full">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}">
+    
+    {{!-- Favicon --}}
+    <link rel="icon" href="{{@site.icon}}" type="image/png">
+    
+    {{!-- Styles --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    {{!-- Ghost outputs important style and meta data with this tag --}}
+    {{ghost_head}}
+</head>
+<body class="font-mono text-xs h-full flex flex-col">
+    {{!-- All the main content gets inserted here --}}
+    {{{body}}}
+    
+    {{!-- Ghost outputs important scripts and data with this tag --}}
+    {{ghost_foot}}
+</body>
+</html>

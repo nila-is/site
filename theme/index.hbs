@@ -1,0 +1,38 @@
+{{!< default}}
+
+<main class="flex-grow flex p-8">
+    <div class="text-left w-full max-w-3xl">
+        <div class="mb-8">
+            <div class="flex items-center mb-8">
+                <a href="{{@site.url}}" class="flex items-center">
+                    <img src="{{@site.icon}}" alt="{{@site.title}} Logo" class="w-6 h-6 mr-2" />
+                    <h1 class="font-bold uppercase text-2xl">{{@site.title}}</h1>
+                </a>
+            </div>
+            {{#get "pages" filter="slug:home"}}
+                {{#foreach pages}}
+                    {{content}}
+                {{/foreach}}
+            {{/get}}
+        </div>
+
+        {{! Rest of your static content can be managed as pages in Ghost }}
+        {{! Or you can keep it static in the template if you prefer }}
+        <div class="mb-8">
+            <h2 class="font-bold text-lg mb-4">Focus Areas</h2>
+            <ul class="list-disc pl-6">
+                <li class="mb-2">
+                    <strong>Automation:</strong> Implementing LLM-powered workflows to
+                    replace slow, costly, or unscalable processes.
+                </li>
+                <li class="mb-2">
+                    <strong>Exploration:</strong> Turning "what ifs" into prototypes
+                    and production-ready products. I help teams figure out what's
+                    possible with AI and make it a reality.
+                </li>
+            </ul>
+        </div>
+
+        {{! Continue with Experience and Testimonials sections... }}
+    </div>
+</main>
