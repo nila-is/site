@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const posts = await Astro.glob('./blog/*.md');
+const recentPosts = posts.slice(0, 3);
+---
+
+<Layout title="Home">
+  <div>
+    <p class="leading-relaxed mb-2">
+      I'm
+      <a
+        href="https://vig.xyz"
+        class="text-blue-500 underline"
+        target="_blank"
+        >Vignesh Mohankumar</a
+      >, an independent consultant who works with founders and leaders across
+      engineering, product, and business teams to solve meaningful problems with AI.
+    </p>
+    <p class="text-blue-500 underline">
+      <a href="mailto:vignesh@nila.gg">Have an idea? Reach out.</a>
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-lg mb-4">Focus Areas</h2>
+    <ul class="list-disc pl-6">
+      <li class="mb-2">
+        <strong>Automation:</strong> Implementing LLM-powered workflows to replace
+        slow, costly, or unscalable processes.
+      </li>
+      <li>
+        <strong>Exploration:</strong> Turning "what ifs" into prototypes and
+        production-ready products. I help teams figure out what's possible with AI
+        and make it a reality.
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-lg mb-4">Experience</h2>
+    <p class="leading-relaxed mb-2">
+      I've partnered with clients in industries including enterprise SaaS,
+      consumer social, healthcare, fintech, and crypto.
+    </p>
+    <p class="leading-relaxed mb-2">
+      Prior to consulting, I was an early engineer at two AI-driven companies
+      that were acquired:
+    </p>
+    <ul class="list-disc pl-6">
+      <li class="mb-2">
+        <strong>Drift:</strong> Conversational AI for marketing and sales
+        (acquired by Vista Equity Partners for $1.2B)
+      </li>
+      <li>
+        <strong>Kensho:</strong> AI for financial services (acquired by S&P
+        Global for $550M)
+      </li>
+    </ul>
+  </div>
+  
+  <div>
+    <h2 class="font-bold text-lg mb-4">Recent Posts</h2>
+    <div class="space-y-4">
+      {recentPosts.map((post) => (
+        <div>
+          <a href={post.url} class="text-blue-500 hover:underline">
+            {post.frontmatter.title}
+          </a>
+          <p class="text-gray-600 text-xs">
+            {new Date(post.frontmatter.pubDate).toLocaleDateString()}
+          </p>
+        </div>
+      ))}
+    </div>
+    {posts.length > 3 && (
+      <div class="mt-4">
+        <a href="/blog" class="text-blue-500 underline">View all posts →</a>
+      </div>
+    )}
+  </div>
+
+  <div>
+    <h2 class="font-bold text-lg mb-4">Testimonials</h2>
+    <div class="mb-6">
+      <p class="italic mb-2">
+        "Our onboarding flow needed to capture user preferences in a natural and
+        effective way. Vignesh experimented with generative AI approaches and
+        developed a system that turned chatbot conversations into structured
+        insights. His work was essential to delivering the experience we
+        envisioned."
+      </p>
+      <p class="font-bold">- Charles, CEO Sitch</p>
+    </div>
+    <div>
+      <p class="italic mb-2">
+        "Our team needed to build a frontend interface for a conversational AI
+        application for a large prospective customer on a tight timeline. Vignesh
+        stepped in and integrated our chat SDK and NLX platform into a solution
+        that could easily be productized. The solution worked to specification
+        and was a key part of how we showcased our capabilities to the client.
+        His ability to deliver under pressure made all the difference."
+      </p>
+      <p class="font-bold">- Andrei, CEO NLX</p>
+    </div>
+  </div>
+</Layout>
