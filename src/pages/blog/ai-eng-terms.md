@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
 title: "AI Engineering Terms, Simplified"
-pubDate: "2024-12-16"
+pubDate: "2024-12-16T14:00:00-05:00"
 description: "A simplified guide to common AI engineering terms and concepts, explained in plain language."
 ---
 
