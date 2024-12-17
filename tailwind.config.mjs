@@ -17,10 +17,10 @@ export default {
           "@apply leading-relaxed mb-2": {},
         },
         "ul": {
-          "@apply list-disc pl-6": {},
+          "@apply list-disc pl-6 space-y-1": {},
         },
         "li": {
-          "@apply mb-1": {},
+          "@apply leading-relaxed": {},
         },
         "blockquote": {
           "@apply pl-4 border-l-2 border-gray-300": {},
