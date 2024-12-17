@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogPost.astro
 title: "How I Use LLMs to Build Software"
 pubDate: "2024-12-17T14:00:00-05:00"
-description: "How I use AI tools to streamline software development, from research through implementation."
+description: "My step-by-step process for using AI to write better software, faster."
 ---
 
 LLMs have completely changed my process for building software. It's part of why I've been able to complete consulting projects independently. Here's my general flow.
