@@ -7,32 +7,27 @@ export default {
   plugins: [
     function ({ addComponents }) {
       addComponents({
-        ".markdown": {
-          h1: {
-            "@apply text-xl font-bold mb-4": {},
-          },
-          h2: {
-            "@apply text-lg font-bold mt-8 mb-4": {},
-          },
-          p: {
-            "@apply mb-4": {},
-          },
-          ul: {
-            "@apply list-disc pl-6 mb-4": {},
-          },
-          li: {
-            "@apply mb-2": {},
-          },
-          pre: {
-            "@apply bg-gray-50 p-4 mb-4 overflow-auto rounded-md": {},
-          },
-          code: {
-            "@apply text-xs": {},
-          },
-          a: {
-            "@apply text-blue-500 underline hover:text-blue-600": {},
-          },
+        "h1": {
+          "@apply font-bold text-lg mb-3 mt-8": {},
         },
+        "h2": {
+          "@apply text-base font-bold mb-1 mt-6": {},
+        },
+        "p": {
+          "@apply leading-relaxed mb-2": {},
+        },
+        "ul": {
+          "@apply list-disc pl-6": {},
+        },
+        "li": {
+          "@apply mb-1": {},
+        },
+        "blockquote": {
+          "@apply pl-4 border-l-2 border-gray-300": {},
+        },
+        "a": {
+          "@apply text-blue-500 hover:text-blue-700 transition-colors duration-200": {},
+        }
       });
     },
   ],

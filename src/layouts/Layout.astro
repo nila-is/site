@@ -24,6 +24,7 @@ const {
     
     <title>{title} | Nila</title>
     <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/svg+xml" href="../assets/logo.svg" />
     
     <!-- Open Graph / Social -->
     <meta property="og:type" content={article ? 'article' : 'website'} />
@@ -36,15 +37,18 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
   </head>
-  <body class="font-mono text-xs min-h-full flex flex-col bg-white">
-    <div class="flex-grow flex px-6 py-12 sm:p-12">
-      <div class="text-left w-full max-w-2xl">
-        <div class="space-y-12">
+  <body class="font-['Arial',sans-serif] text-sm h-full flex flex-col">
+    <main class="flex-grow flex justify-center px-8 pt-8 pb-16">
+      <div class="text-left w-full max-w-3xl space-y-6">
+        <div>
           <Header />
           <slot />
         </div>
       </div>
-    </div>
+    </main>
+    <footer class="text-center text-gray-500 text-xs pb-8">
+      © 2024 Nila Labs LLC
+    </footer>
 
     <script>
       !function () {

@@ -19,20 +19,18 @@ const { frontmatter } = Astro.props;
 >
   <div>
     <h1 class="text-xl font-bold mb-2">{frontmatter.title}</h1>
-    <time class="text-gray-600 text-xs block mb-8">
-      {new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })}
-    </time>
+    <p class="text-xs text-gray-500 mb-8">
+      <time datetime={frontmatter.pubDate}>
+        {new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </time>
+    </p>
     
-    <div class="space-y-4 text-xs leading-relaxed">
+    <div class="space-y-4">
       <slot />
     </div>
-  </div>
-
-  <div class="mt-12 pt-8 border-t">
-    <a href="/blog" class="text-blue-500 hover:underline text-xs">← Back to all posts</a>
   </div>
 </Layout>

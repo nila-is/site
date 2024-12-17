@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Testimonial from '../components/Testimonial.astro';
 
 const posts = await Astro.glob('./blog/*.md');
 const recentPosts = posts.slice(0, 3);
@@ -8,39 +9,32 @@ const recentPosts = posts.slice(0, 3);
 <Layout title="Home">
   <div>
     <p class="leading-relaxed mb-2">
-      I'm
-      <a
-        href="https://vig.xyz"
-        class="text-blue-500 underline"
-        target="_blank"
-        >Vignesh Mohankumar</a
-      >, an independent consultant who works with founders and leaders across
-      engineering, product, and business teams to solve meaningful problems with AI.
+      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I partner with founders and leaders to ship AI solutions to production.
     </p>
-    <p class="text-blue-500 underline">
-      <a href="mailto:vignesh@nila.gg">Have an idea? Reach out.</a>
+    <p>
+      <a class="text-blue-500 hover:text-blue-700" href="mailto:vignesh@nila.is">Have an idea? Reach out.</a>
     </p>
   </div>
 
   <div>
-    <h2 class="font-bold text-lg mb-4">Focus Areas</h2>
+    <h1 class="font-bold text-lg mb-3">Expertise</h1>
     <ul class="list-disc pl-6">
-      <li class="mb-2">
-        <strong>Automation:</strong> Implementing LLM-powered workflows to replace
-        slow, costly, or unscalable processes.
+      <li class="mb-1">
+        <strong>Exploration:</strong> Helping teams discover what's possible with AI and turning those ideas into reality.
       </li>
-      <li>
-        <strong>Exploration:</strong> Turning "what ifs" into prototypes and
-        production-ready products. I help teams figure out what's possible with AI
-        and make it a reality.
+      <li class="mb-1">
+        <strong>Automation:</strong> Building intelligent workflows to replace inefficient and expensive processes.
+      </li>
+      <li class="mb-1">
+        <strong>Enablement:</strong> Setting your team up for success to build and improve AI systems.
       </li>
     </ul>
   </div>
 
   <div>
-    <h2 class="font-bold text-lg mb-4">Experience</h2>
+    <h1 class="font-bold text-lg mb-3">Background</h1>
     <p class="leading-relaxed mb-2">
-      I've partnered with clients in industries including enterprise SaaS,
+      I've partnered with companies in industries including enterprise SaaS,
       consumer social, healthcare, fintech, and crypto.
     </p>
     <p class="leading-relaxed mb-2">
@@ -58,13 +52,13 @@ const recentPosts = posts.slice(0, 3);
       </li>
     </ul>
   </div>
-  
+ 
   <div>
     <h2 class="font-bold text-lg mb-4">Recent Posts</h2>
     <div class="space-y-4">
       {recentPosts.map((post) => (
         <div>
-          <a href={post.url} class="text-blue-500 hover:underline">
+          <a href={post.url}>
             {post.frontmatter.title}
           </a>
           <p class="text-gray-600 text-xs">
@@ -75,33 +69,36 @@ const recentPosts = posts.slice(0, 3);
     </div>
     {posts.length > 3 && (
       <div class="mt-4">
-        <a href="/blog" class="text-blue-500 underline">View all posts →</a>
+        <a href="/blog">View all posts →</a>
       </div>
     )}
   </div>
 
   <div>
     <h2 class="font-bold text-lg mb-4">Testimonials</h2>
-    <div class="mb-6">
-      <p class="italic mb-2">
-        "Our onboarding flow needed to capture user preferences in a natural and
-        effective way. Vignesh experimented with generative AI approaches and
-        developed a system that turned chatbot conversations into structured
-        insights. His work was essential to delivering the experience we
-        envisioned."
-      </p>
-      <p class="font-bold">- Charles, CEO Sitch</p>
-    </div>
-    <div>
-      <p class="italic mb-2">
-        "Our team needed to build a frontend interface for a conversational AI
-        application for a large prospective customer on a tight timeline. Vignesh
-        stepped in and integrated our chat SDK and NLX platform into a solution
-        that could easily be productized. The solution worked to specification
-        and was a key part of how we showcased our capabilities to the client.
-        His ability to deliver under pressure made all the difference."
-      </p>
-      <p class="font-bold">- Andrei, CEO NLX</p>
-    </div>
+    <Testimonial 
+      quote="Our onboarding flow needed to capture user preferences in a natural and effective way. Vignesh experimented with generative AI approaches and developed a system that turned chatbot conversations into structured insights. His work was essential to delivering the experience we envisioned."
+      author="Charles"
+      company="CEO Sitch"
+    />
+    
+    <Testimonial 
+      quote="Our team needed to build a frontend interface for a conversational AI application for a large prospective customer on a tight timeline. Vignesh stepped in and integrated our chat SDK and NLX platform into a solution that could easily be productized. The solution worked to specification and was a key part of how we showcased our capabilities to the client. His ability to deliver under pressure made all the difference."
+      author="Andrei"
+      company="CEO NLX"
+    />
+  </div>
+
+  <div>
+    <h1 class="font-bold text-lg mb-3">About</h1>
+    <p class="leading-relaxed mb-2">
+      I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name).
+    </p>
+    <p class="leading-relaxed mb-2">
+      Find me on 
+      <a href="https://linkedin.com/in/vigxyz" class="text-blue-500 hover:text-blue-700" target="_blank">LinkedIn</a>, 
+      <a href="https://x.com/vig_xyz" class="text-blue-500 hover:text-blue-700" target="_blank">X</a>
+      and my <a href="https://vig.xyz" class="text-blue-500 hover:text-blue-700" target="_blank">personal blog</a>.
+    </p>
   </div>
 </Layout>
