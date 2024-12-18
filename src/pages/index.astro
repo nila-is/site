@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
 
 const posts = await Astro.glob('./blog/*.md');
-const recentPosts = posts.slice(0, 3);
+const recentPosts = posts
+  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
+  .slice(0, 3);
 ---
 
 <Layout title="Home">
