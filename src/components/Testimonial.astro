@@ -3,14 +3,23 @@ interface Props {
   quote: string;
   author: string;
   company: string;
+  url?: string;
 }
 
-const { quote, author, company } = Astro.props;
+const { quote, author, company, url } = Astro.props;
 ---
 
-<blockquote class="mb-8">
+<blockquote class="pl-4 border-l-2 border-gray-300 mb-8">
   <p class="italic mb-2">
     &ldquo;{quote}&rdquo;
   </p>
-  <p class="font-bold">— {author}, {company}</p>
+  <p class="font-bold">
+    — {author}, {
+      url ? (
+        <a href={url} class="text-blue-500 hover:text-blue-700" target="_blank">{company}</a>
+      ) : (
+        company
+      )
+    }
+  </p>
 </blockquote>
