@@ -1,17 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
-
-const posts = await Astro.glob('./blog/*.md');
-const recentPosts = posts
-  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
-  .slice(0, 3);
 ---
 
 <Layout title="Home">
   <div>
     <p class="leading-relaxed mb-2">
-      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I partner with technical leaders to ship production AI systems. I don't just give advice — I do the work too.
+      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I partner with technical leaders to ship production AI systems.
     </p>
     <p>
       <a href="https://nila.fillout.com/t/mZZ8cxD4tNus" target="_blank" rel="noopener noreferrer">Have an idea? Reach out.</a>
@@ -96,27 +91,6 @@ const recentPosts = posts
         Global for $550M)
       </li>
     </ul>
-  </div>
- 
-  <div>
-    <h2 class="font-bold text-lg mb-4">Recent Posts</h2>
-    <div class="space-y-4">
-      {recentPosts.map((post) => (
-        <div>
-          <a href={post.url}>
-            {post.frontmatter.title}
-          </a>
-          <p class="text-gray-600 text-xs">
-            {new Date(post.frontmatter.pubDate).toLocaleDateString()}
-          </p>
-        </div>
-      ))}
-    </div>
-    {posts.length > 3 && (
-      <div class="mt-4">
-        <a href="/blog">View all posts →</a>
-      </div>
-    )}
   </div>
 
   <div>
