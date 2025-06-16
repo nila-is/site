@@ -37,10 +37,10 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
   </head>
-  <body class="font-['Arial',sans-serif] text-sm h-full flex flex-col">
+  <body class="min-h-full flex flex-col font-['Arial',sans-serif] text-sm">
     <Header />
-    <main class="flex-grow flex justify-center px-8 pt-8 pb-16">
-      <div class="text-left w-full max-w-3xl">
+    <main class="flex-grow flex justify-center pt-24 pb-16">
+      <div class="text-left w-full max-w-3xl px-4 sm:px-8">
         <div class="space-y-8">
           <slot />
         </div>

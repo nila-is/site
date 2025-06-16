@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 ---
-<header class="sticky top-0 bg-white z-50 border-b">
-  <div class="max-w-3xl mx-auto px-8 py-4 flex items-center justify-between">
+<header class="fixed top-0 left-0 right-0 bg-white z-50 border-b">
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
     <a href="/" class="flex items-center text-inherit hover:text-inherit">
       <Image src={logo} alt="Nila Logo" class="w-6 h-6 mr-2" />
       <h1 class="font-bold font-mono uppercase text-xl m-0">Nila</h1>
