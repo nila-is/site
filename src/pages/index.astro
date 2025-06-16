@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Layout title="Home">
@@ -14,65 +15,52 @@ import Testimonial from '../components/Testimonial.astro';
   </div>
 
   <div>
-    <h1 class="font-bold text-lg mb-3">Expertise</h1>
-    <ul>
-      <li>
-        <strong>Architecture:</strong> Designing production-ready AI systems with a focus on scalable infrastructure and data privacy.
-      </li>
-      <li>
-        <strong>Strategy:</strong> Evaluating where AI can create the most value in your product and helping drive the roadmap to get there.
-      </li>
-      <li>
-        <strong>Enablement:</strong> Upskilling your engineering teams to build with LLMs through hands-on guidance.
-      </li>
-    </ul>
-  </div>
-
-  <div>
     <h2 class="font-bold text-lg mb-4">Testimonials</h2>
-    <Testimonial 
-      quote="Vignesh played a crucial role in advancing our AI capabilities, architecting a system that enabled us to run LLM features on our own infrastructure while maintaining strict data privacy. His expertise in educating our engineering team on LLM best practices and strategic guidance materially accelerated our AI roadmap. He helped us navigate the complexities of AI deployment and set us up for long-term success."
-      author="Paul Klicnik"
-      role="CTO"
-      company="Relay"
-      url="https://relayfi.com"
-    />
-    
-    <Testimonial 
-      quote="Vignesh helped us get our AI system to production within a month with an architecture designed to support future product goals we had in mind. He set us up to improve our systems over time by building an evaluation system and upleveling our team on best practices in applied AI engineering."
-      author="Patrick Vatterott"
-      role="CTO"
-      company="Vitally"
-      url="https://vitally.io"
-    />
-    
-    <Testimonial 
-      quote="Our onboarding flow needed to capture user preferences in a natural and effective way. Vignesh experimented with generative AI approaches and developed a system that turned chatbot conversations into structured insights. His work was essential to delivering the experience we envisioned."
-      author="Charles DePue"
-      role="CEO"
-      company="Sitch"
-      url="https://joinsitch.com"
-    />
-    
-    <Testimonial 
-      quote="Our team needed to build a frontend interface for a conversational AI application for a large prospective customer on a tight timeline. Vignesh stepped in and integrated our chat SDK and NLX platform into a solution that could easily be productized. The solution worked to specification and was a key part of how we showcased our capabilities to the client. His ability to deliver under pressure made all the difference."
-      author="Andrei Papancea"
-      role="CEO"
-      company="NLX"
-      url="https://nlx.ai"
-    />
-    
-    <Testimonial 
-      quote="Vignesh helped us architect multiple complex features, explaining how to set up AI systems that could be measured and improved over time. His ability to consider the full range of options helped us find the right solution for problems we had, including running local, open-source and multi-modal models as needed."
-      author="Kiran Cherukuri"
-      role="Founder"
-      company="Perdiem"
-      url="https://perdiem.xyz"
-    />
+    <div class="space-y-8">
+      <Testimonial 
+        quote="Vignesh played a crucial role in advancing our AI capabilities, architecting a system that enabled us to run LLM features on our own infrastructure while maintaining strict data privacy. His expertise in educating our engineering team on LLM best practices and strategic guidance materially accelerated our AI roadmap. He helped us navigate the complexities of AI deployment and set us up for long-term success."
+        author="Paul Klicnik"
+        role="CTO"
+        company="Relay"
+        url="https://relayfi.com"
+      />
+      
+      <Testimonial 
+        quote="Vignesh helped us get our AI system to production within a month with an architecture designed to support future product goals we had in mind. He set us up to improve our systems over time by building an evaluation system and upleveling our team on best practices in applied AI engineering."
+        author="Patrick Vatterott"
+        role="CTO"
+        company="Vitally"
+        url="https://vitally.io"
+      />
+      
+      <Testimonial 
+        quote="Our onboarding flow needed to capture user preferences in a natural and effective way. Vignesh experimented with generative AI approaches and developed a system that turned chatbot conversations into structured insights. His work was essential to delivering the experience we envisioned."
+        author="Charles DePue"
+        role="CEO"
+        company="Sitch"
+        url="https://joinsitch.com"
+      />
+      
+      <Testimonial 
+        quote="Our team needed to build a frontend interface for a conversational AI application for a large prospective customer on a tight timeline. Vignesh stepped in and integrated our chat SDK and NLX platform into a solution that could easily be productized. The solution worked to specification and was a key part of how we showcased our capabilities to the client. His ability to deliver under pressure made all the difference."
+        author="Andrei Papancea"
+        role="CEO"
+        company="NLX"
+        url="https://nlx.ai"
+      />
+      
+      <Testimonial 
+        quote="Vignesh helped us architect multiple complex features, explaining how to set up AI systems that could be measured and improved over time. His ability to consider the full range of options helped us find the right solution for problems we had, including running local, open-source and multi-modal models as needed."
+        author="Kiran Cherukuri"
+        role="Founder"
+        company="Perdiem"
+        url="https://perdiem.xyz"
+      />
+    </div>
   </div>
 
   <div>
-    <h1 class="font-bold text-lg mb-3">Background</h1>
+    <h2 class="font-bold text-lg mb-3">Background</h2>
     <p class="leading-relaxed mb-2">
       I've partnered with companies in industries including enterprise SaaS,
       consumer social, healthcare, fintech, and crypto.
@@ -94,7 +82,30 @@ import Testimonial from '../components/Testimonial.astro';
   </div>
 
   <div>
-    <h1 class="font-bold text-lg mb-3">Recent Content</h1>
+    <h2 class="font-bold text-lg mb-3">Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Card 
+        title="Advisory"
+        items={[
+          "Share insights from experience across dozens of companies shipping AI products",
+          "Partner with your team to identify and architect the right problems",
+          "Provide guidance via Slack and scheduled meetings as needed"
+        ]}
+      />
+
+      <Card 
+        title="Implementation"
+        items={[
+          "Own end-to-end implementation from architecture to production deployment",
+          "Set your team up for success with clear documentation and hands-on support",
+          "Results guaranteed—shipped to production, not just a proof of concept"
+        ]}
+      />
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-lg mb-3">Recent Content</h2>
     <ul>
       <li>
         <a href="https://medium.com/relay-financial/how-we-built-ai-powered-expense-categorization-with-rag-23a640fa3e78" target="_blank" rel="noopener noreferrer">How We Built AI-Powered Expense Categorization with RAG</a>
@@ -109,7 +120,7 @@ import Testimonial from '../components/Testimonial.astro';
   </div>
 
   <div>
-    <h1 class="font-bold text-lg mb-3">About</h1>
+    <h2 class="font-bold text-lg mb-3">About</h2>
     <p class="leading-relaxed mb-2">
       I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name).
     </p>

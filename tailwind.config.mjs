@@ -8,10 +8,13 @@ export default {
     function ({ addComponents }) {
       addComponents({
         "h1": {
-          "@apply font-bold text-lg mb-3 mt-8": {},
+          "@apply font-bold text-lg": {},
         },
         "h2": {
-          "@apply text-base font-bold mb-1 mt-6": {},
+          "@apply font-bold text-lg": {},
+        },
+        "h3": {
+          "@apply font-semibold text-sm": {},
         },
         "p": {
           "@apply leading-relaxed mb-2": {},
