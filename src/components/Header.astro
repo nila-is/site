@@ -2,9 +2,14 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 ---
-<header class="flex items-center mb-8 pb-4 border-b">
-  <a href="/" class="flex items-center text-inherit hover:text-inherit">
-    <Image src={logo} alt="Nila Logo" class="w-6 h-6 mr-2" />
-    <h1 class="font-bold font-mono uppercase text-xl m-0">Nila</h1>
-  </a>
+<header class="sticky top-0 bg-white z-50 border-b">
+  <div class="max-w-3xl mx-auto py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center text-inherit hover:text-inherit">
+      <Image src={logo} alt="Nila Logo" class="w-6 h-6 mr-2" />
+      <h1 class="font-bold font-mono uppercase text-xl m-0">Nila</h1>
+    </a>
+    <a href="https://nila.fillout.com/t/mZZ8cxD4tNus" target="_blank" rel="noopener noreferrer" class="btn">
+      Reach Out
+    </a>
+  </div>
 </header>

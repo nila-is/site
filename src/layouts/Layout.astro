@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import '../styles/components.css';
 
 interface Props {
   title: string;
@@ -37,9 +38,9 @@ const {
     <meta name="twitter:description" content={description} />
   </head>
   <body class="font-['Arial',sans-serif] text-sm h-full flex flex-col">
+    <Header />
     <main class="flex-grow flex justify-center px-8 pt-8 pb-16">
       <div class="text-left w-full max-w-3xl">
-        <Header />
         <div class="space-y-8">
           <slot />
         </div>
