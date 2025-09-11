@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
 import Card from '../components/Card.astro';
+import headshot from '../assets/headshot.jpg';
 ---
 
 <Layout title="Home">
@@ -28,6 +29,14 @@ import Card from '../components/Card.astro';
         role="CTO"
         company="Vitally"
         url="https://vitally.io"
+      />
+
+      <Testimonial 
+        quote="Vignesh helped our team understand where best to leverage AI in our platform and how to go about building and evaluating solutions. His guidance helped us separate the noise online from practical skills that matter."
+        author="Jim ONeill"
+        role="CTO"
+        company="FinQore"
+        url="https://finqore.com"
       />
       
       <Testimonial 
@@ -118,14 +127,24 @@ import Card from '../components/Card.astro';
 
   <div>
     <h2 class="font-bold text-lg mb-3">About</h2>
-    <p class="leading-relaxed mb-2">
-      I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name).
-    </p>
-    <p class="leading-relaxed mb-2">
-      Find me on 
-      <a href="https://linkedin.com/in/vigxyz" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-      <a href="https://x.com/vig_xyz" target="_blank" rel="noopener noreferrer">X</a>
-      and my <a href="https://vig.xyz" target="_blank" rel="noopener noreferrer">personal blog</a>.
-    </p>
+    <div class="flex flex-col">
+      <img 
+        src={headshot.src} 
+        alt="Vignesh Mohankumar" 
+        class="w-40 mb-4"
+        loading="lazy"
+      />
+      <div>
+        <p class="leading-relaxed mb-2">
+          I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name).
+        </p>
+        <p class="leading-relaxed">
+          Find me on 
+          <a href="https://linkedin.com/in/vigxyz" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+          <a href="https://x.com/vig_xyz" target="_blank" rel="noopener noreferrer">X</a>
+          and my <a href="https://vig.xyz" target="_blank" rel="noopener noreferrer">personal blog</a>.
+        </p>
+      </div>
+    </div>
   </div>
 </Layout>
