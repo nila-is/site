@@ -61,10 +61,12 @@ const structuredData = {
     <meta name="theme-color" content="#2563eb" />
     
     <script is:inline>
-      // Initialize theme based on system preference to prevent flash
+      // Initialize theme before page renders to prevent flash
       (function() {
+        const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.classList.toggle('dark', prefersDark);
+        const theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
       })();
     </script>
     
