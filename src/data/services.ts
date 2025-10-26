@@ -24,13 +24,13 @@ export const engagementModels: ServiceItem[] = [
   },
   {
     label: "Advisory Engagements",
-    description: "Your team writes the code while I provide hands-on guidance throughout. I help with architecture decisions, evaluating results and data, and unblocking technical challenges as you ship AI features. When needed, I can connect you with specialists from my network.",
+    description: "Your team writes the code while I provide hands-on guidance throughout. I help with architecture decisions, evaluating results and data, and unblocking technical challenges as you ship AI features. When needed, I can connect you with trusted vendors in my network.",
     pricing: "Starting at $50k",
     duration: "Typically 3 months"
   },
   {
     label: "Team Trainings",
-    description: "Hands-on, 3-day cohort for engineers and tech leads covering the full agentic development workflow: explore → plan → build. Live coding on real codebases, guest sessions from developer-tool teams, and a hack day to put it into practice."
+    description: "I run the <a href='https://maven.com/nila/ai-coding-accelerator' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>AI Coding Accelerator</a>, a hands-on 3-day cohort where your engineers learn practical AI coding workflows. Live coding sessions, guest speakers from Linear, OpenAI, and Cursor, and a hackathon on your own codebase. Teams leave with working systems they can deploy immediately. I offer a generous discount when you send a team."
   }
 ];
 
