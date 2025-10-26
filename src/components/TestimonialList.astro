@@ -1,6 +1,5 @@
 ---
 import Testimonial from './Testimonial.astro';
-import Button from './Button.astro';
 import type { Testimonial as TestimonialType } from '../types/testimonial';
 
 interface Props {
@@ -9,12 +8,12 @@ interface Props {
   id: string;
 }
 
-const { testimonials, initialCount = 2, id } = Astro.props;
+const { testimonials, id } = Astro.props;
 ---
 
 <div class="testimonial-list space-y-6" data-testimonial-list={id}>
   {testimonials.map((testimonial, index) => (
-    <div class:list={["testimonial-item", { "hidden": index >= initialCount }]} data-index={index}>
+    <div class="testimonial-item" data-index={index}>
       <Testimonial 
         quote={testimonial.quote}
         author={testimonial.author}
@@ -27,39 +26,5 @@ const { testimonials, initialCount = 2, id } = Astro.props;
       />
     </div>
   ))}
-  
-  {testimonials.length > initialCount && (
-    <Button 
-      variant="ghost"
-      size="small"
-      class="show-more-btn"
-      data-list-id={id}
-    >
-      <span>Show more ({testimonials.length - initialCount})</span>
-      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </Button>
-  )}
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.show-more-btn');
-    
-    buttons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const btn = e.currentTarget as HTMLButtonElement;
-        const listId = btn.dataset.listId;
-        const list = document.querySelector(`[data-testimonial-list="${listId}"]`);
-        
-        if (list) {
-          const hiddenItems = list.querySelectorAll('.testimonial-item.hidden');
-          hiddenItems.forEach(item => item.classList.remove('hidden'));
-          btn.style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
 
