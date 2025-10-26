@@ -1,18 +1,12 @@
 ---
-import Button from './Button.astro';
-
 interface Props {
   label: string;
   description: string;
   pricing?: string;
   duration?: string;
-  link?: {
-    href: string;
-    label: string;
-  };
 }
 
-const { label, description, pricing, duration, link } = Astro.props;
+const { label, description, pricing, duration } = Astro.props;
 ---
 
 <div class="mb-6">
@@ -31,15 +25,6 @@ const { label, description, pricing, duration, link } = Astro.props;
             <strong>Duration:</strong> {duration}
           </div>
         )}
-      </dd>
-    )
-  }
-  {
-    link && (
-      <dd class="mt-4">
-        <Button href={link.href} variant="secondary" size="small" external>
-          {link.label}
-        </Button>
       </dd>
     )
   }
