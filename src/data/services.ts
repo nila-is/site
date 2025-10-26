@@ -2,15 +2,15 @@ import type { ServiceItem } from '../types/service';
 
 export const services: ServiceItem[] = [
   {
-    label: "Automation",
+    label: "Workflow Automation",
     description: "Implementing AI-powered workflows to replace slow, costly, or unscalable processes."
   },
   {
-    label: "Exploration",
-    description: "Integrating AI capabilities into your platform. I help teams figure out what's possible with AI and integrate it into their product."
+    label: "Product Integration",
+    description: "Integrating AI capabilities into your platform."
   },
   {
-    label: "Enablement",
+    label: "AI Fluency",
     description: "Pick the right tools, set up practical guardrails, and adopt applied-AI best practices so AI works reliably. I help your team choose IDE agents and workflows, configure linters/type-checking/tests with pre-commit hooks, and document conventions (AGENTS.md, commands). We also establish proven applied-AI approaches—evaluation harnesses, prompting standards, context management, and lightweight monitoring—so engineers ship faster with fewer mistakes."
   }
 ];
