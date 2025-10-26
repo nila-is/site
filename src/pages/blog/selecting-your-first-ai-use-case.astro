@@ -1,0 +1,523 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../../components/Prose.astro';
+
+const title = 'Selecting Your First AI Use Case: A Framework for Success';
+const description =
+  'How to pick AI projects that ship in 30 days and create real value, not six-month science experiments that never reach production.';
+const publishedTime = '2025-10-26';
+---
+
+<Layout
+  title={title}
+  description={description}
+  article={true}
+  publishedTime={publishedTime}
+>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{title}</h1>
+      <time datetime={publishedTime} class="text-muted-foreground">
+        October 26, 2025
+      </time>
+    </header>
+
+    <Prose>
+      <p>
+        Most AI projects fail not because of technical challenges, but because
+        teams pick the wrong use case to start with.
+      </p>
+
+      <p>
+        I've watched companies spend 6 months building AI systems that never
+        ship. I've seen teams get stuck in "research mode" indefinitely. And
+        I've seen brilliant engineers burn out trying to solve problems that
+        weren't ready for AI.
+      </p>
+
+      <p>
+        But I've also helped dozens of companies ship production AI in 30 days
+        by following a simple selection framework.
+      </p>
+
+      <h2>The 30-Day Rule</h2>
+
+      <p>
+        Your first AI project should be shippable in 30 days, end-to-end. Not
+        "research complete in 30 days." Not "prototype ready in 30 days." <strong
+          >Production-deployed with real users in 30 days.</strong
+        >
+      </p>
+
+      <h3>Why 30 Days?</h3>
+
+      <ul>
+        <li>
+          <strong>Forces scope discipline</strong> — Can't build everything, must
+          prioritize
+        </li>
+        <li>
+          <strong>Maintains momentum</strong> — Team stays engaged, stakeholders
+          stay excited
+        </li>
+        <li>
+          <strong>Enables fast learning</strong> — Real user feedback > theoretical
+          planning
+        </li>
+        <li>
+          <strong>Builds confidence</strong> — Shipping something builds team capability
+        </li>
+        <li>
+          <strong>Prevents scope creep</strong> — Hard deadline limits gold-plating
+        </li>
+      </ul>
+
+      <p>
+        Every extra month you spend planning is a month you're not learning from
+        real users.
+      </p>
+
+      <h2>The Selection Framework</h2>
+
+      <h3>Good First AI Projects</h3>
+
+      <p>
+        <strong>1. Significant manual effort (10+ hours/month)</strong>
+      </p>
+
+      <p>
+        Look for workflows where humans spend substantial time on repetitive
+        tasks:
+      </p>
+
+      <ul>
+        <li>Categorizing hundreds of transactions monthly</li>
+        <li>Triaging customer support tickets</li>
+        <li>Extracting data from invoices or receipts</li>
+        <li>Writing repetitive documentation</li>
+        <li>Qualifying sales leads</li>
+      </ul>
+
+      <p>
+        <strong>Why this matters:</strong> Clear ROI. Easy to measure success. Users
+        are motivated to adopt because they feel the pain.
+      </p>
+
+      <p>
+        <strong
+          >2. Partial automation is valuable (70-80% accuracy acceptable)</strong
+        >
+      </p>
+
+      <p>You don't need perfection. You need to save time.</p>
+
+      <p>
+        <strong>Good example:</strong> Auto-categorize 70% of transactions accurately
+        → Finance team reviews 30% instead of 100% → Saves 15 hours/month.
+      </p>
+
+      <p>
+        <strong>Bad example:</strong> Auto-file taxes with 70% accuracy → Requires
+        full review anyway → Saves zero time.
+      </p>
+
+      <p>
+        <strong>3. Rich historical data exists</strong>
+      </p>
+
+      <p>The best AI use cases have examples to learn from:</p>
+
+      <ul>
+        <li>Past transactions with categories</li>
+        <li>Historical support tickets with resolutions</li>
+        <li>Approved documents with annotations</li>
+        <li>Prior customer conversations with outcomes</li>
+      </ul>
+
+      <p>
+        This historical data becomes the foundation for RAG systems or
+        fine-tuning.
+      </p>
+
+      <p>
+        <strong>4. Fast feedback loops</strong>
+      </p>
+
+      <p>
+        Can users easily correct the AI when it's wrong? Are those corrections
+        captured?
+      </p>
+
+      <p>
+        <strong>Example:</strong> Transaction categorization
+      </p>
+      <ul>
+        <li>AI suggests category: "Meals & Entertainment"</li>
+        <li>User sees it immediately</li>
+        <li>Can change it with one click if wrong</li>
+        <li>Correction feeds back into training data</li>
+      </ul>
+
+      <p>Fast feedback = fast improvement.</p>
+
+      <p>
+        <strong>5. Clear success metric</strong>
+      </p>
+
+      <p>You need one primary metric that tells you if it's working:</p>
+
+      <ul>
+        <li>Acceptance rate (% of suggestions users keep)</li>
+        <li>Time saved (hours/month reduction)</li>
+        <li>Reduction in manual review (% decrease)</li>
+        <li>Accuracy on human-validated test set</li>
+      </ul>
+
+      <p>
+        Avoid: 17 different metrics where you can't tell if the system is
+        actually improving.
+      </p>
+
+      <h3>Bad First AI Projects</h3>
+
+      <p>
+        <strong>1. Requires 95%+ accuracy to be useful</strong>
+      </p>
+
+      <p>Examples:</p>
+      <ul>
+        <li>Fully autonomous tax filing</li>
+        <li>Medical diagnosis without doctor review</li>
+        <li>Automated legal contract drafting</li>
+        <li>Code deployment without human approval</li>
+      </ul>
+
+      <p>
+        <strong>Why it fails:</strong> You'll spend months trying to get from 85%
+        → 95% accuracy. Even then, one mistake can cause serious problems. Start
+        with assisted workflows, not autonomous ones.
+      </p>
+
+      <p>
+        <strong>2. Open-ended chatbot as first project</strong>
+      </p>
+
+      <p>"Let's add ChatGPT to our dashboard!"</p>
+
+      <p>
+        <strong>Problems:</strong>
+      </p>
+      <ul>
+        <li>Users don't know what to ask</li>
+        <li>Scope is unbounded (can ask anything)</li>
+        <li>Handling edge cases is nightmare</li>
+        <li>Prompt injection / security concerns</li>
+        <li>Hard to measure success</li>
+      </ul>
+
+      <p>
+        <strong>Better approach:</strong> Start with specific structured workflows
+        (e.g., "generate performance review questions" button) before free-form chat.
+      </p>
+
+      <p>
+        <strong>3. No historical data or examples</strong>
+      </p>
+
+      <p>"We want AI to do X, but we've never done it before."</p>
+
+      <p>
+        Without examples, you're building in the dark. You can't validate
+        accuracy. You can't learn patterns. You can't build RAG systems.
+      </p>
+
+      <p>
+        <strong>Exception:</strong> If the task itself is genuinely new (e.g., using
+        AI to generate marketing copy in a new voice), but even then you need humans
+        to validate output quality.
+      </p>
+
+      <p>
+        <strong>4. Requires perfect understanding of edge cases</strong>
+      </p>
+
+      <p>"We need to handle every possible scenario correctly."</p>
+
+      <p>
+        AI systems improve over time. Your v1 won't handle every edge case—and
+        that's okay.
+      </p>
+
+      <p>
+        <strong>Better approach:</strong> Handle the 80% common cases well. Have
+        humans review the 20% edge cases. Learn from those corrections.
+      </p>
+
+      <p>
+        <strong>5. Six-month timeline or longer</strong>
+      </p>
+
+      <p>
+        If your scoping leads to 6+ month timelines, the project is too complex
+        for a first AI initiative.
+      </p>
+
+      <p>
+        <strong>What to do:</strong> Break it down. What's the smallest valuable
+        piece you can ship in 30 days? Start there.
+      </p>
+
+      <h2>Real Examples: Good vs. Bad</h2>
+
+      <h3>Example 1: Transaction Categorization</h3>
+
+      <p>
+        <strong>Good first project</strong>
+      </p>
+
+      <ul>
+        <li><strong>Manual effort:</strong> 10-20 hours/month per customer</li>
+        <li>
+          <strong>Partial automation valuable:</strong> 70% accuracy still saves
+          15+ hours/month
+        </li>
+        <li><strong>Rich data:</strong> Years of categorized transactions</li>
+        <li>
+          <strong>Fast feedback:</strong> Users immediately see and can correct suggestions
+        </li>
+        <li>
+          <strong>Clear metric:</strong> Acceptance rate (% users keep the suggestion)
+        </li>
+        <li><strong>Timeline:</strong> 30 days to production</li>
+      </ul>
+
+      <p>
+        <strong>Result:</strong> Shipped in 30 days, 80%+ acceptance rate, customers
+        love it.
+      </p>
+
+      <h3>Example 2: Fully Autonomous Accounting</h3>
+
+      <p>
+        <strong>Bad first project</strong>
+      </p>
+
+      <ul>
+        <li>
+          <strong>Accuracy requirement:</strong> Needs to be perfect (filing taxes,
+          legal compliance)
+        </li>
+        <li>
+          <strong>No partial value:</strong> Accountants still need to review everything
+        </li>
+        <li>
+          <strong>Complex edge cases:</strong> Tax law is intricate and changes frequently
+        </li>
+        <li><strong>High risk:</strong> Mistakes have serious consequences</li>
+        <li>
+          <strong>Slow feedback:</strong> Only know if it worked at tax filing time
+        </li>
+      </ul>
+
+      <p>
+        <strong>Better approach:</strong> Start with transaction categorization (above),
+        then add expense report generation, then receipt matching, gradually building
+        toward full automation.
+      </p>
+
+      <h3>Example 3: Customer Support Ticket Triaging</h3>
+
+      <p>
+        <strong>Good first project</strong>
+      </p>
+
+      <ul>
+        <li>
+          <strong>Manual effort:</strong> Support team manually routes 100+ tickets/day
+        </li>
+        <li>
+          <strong>Partial automation valuable:</strong> Auto-route 75% → Support
+          team only reviews 25%
+        </li>
+        <li>
+          <strong>Rich data:</strong> Thousands of historical tickets with routing
+          decisions
+        </li>
+        <li>
+          <strong>Fast feedback:</strong> Support agents see routing and can correct
+          immediately
+        </li>
+        <li>
+          <strong>Clear metric:</strong> Routing accuracy + time to first response
+        </li>
+      </ul>
+
+      <h3>Example 4: "Add ChatGPT to Dashboard"</h3>
+
+      <p>
+        <strong>Bad first project</strong>
+      </p>
+
+      <ul>
+        <li><strong>Unbounded scope:</strong> Users can ask anything</li>
+        <li><strong>No clear value:</strong> What problem does this solve?</li>
+        <li><strong>Hard to measure:</strong> What does success look like?</li>
+        <li>
+          <strong>Security concerns:</strong> Prompt injection, data leakage
+        </li>
+        <li><strong>User confusion:</strong> "What can I ask?"</li>
+      </ul>
+
+      <p>
+        <strong>Better approach:</strong> Identify 3-5 specific workflows users need
+        help with. Build structured AI features for those (e.g., "Generate report
+        summary" button). Chat can come later.
+      </p>
+
+      <h2>The Harvey AI Example</h2>
+
+      <p>
+        Harvey AI is building AI for lawyers. They didn't start with "AI lawyer
+        that files lawsuits autonomously."
+      </p>
+
+      <p>
+        They started with <strong>paralegal features</strong>:
+      </p>
+      <ul>
+        <li>Research case law</li>
+        <li>Draft initial document versions</li>
+        <li>Summarize long documents</li>
+        <li>Find relevant precedents</li>
+      </ul>
+
+      <p>These features:</p>
+      <ul>
+        <li>Save lawyers significant time (hours/day)</li>
+        <li>Don't need to be perfect (lawyer reviews everything)</li>
+        <li>Have clear value even at 70-80% quality</li>
+        <li>Build toward full automation over time</li>
+      </ul>
+
+      <p>
+        Start with assistance, not automation. Build trust, gather data, improve
+        over time.
+      </p>
+
+      <h2>The Validation Checklist</h2>
+
+      <p>Before committing to an AI project, run through this checklist:</p>
+
+      <h3>Must-Haves</h3>
+      <ul>
+        <li>Saves 10+ hours/month for users or company</li>
+        <li>Can ship working version in 30 days</li>
+        <li>Partial automation (70-80% accuracy) creates value</li>
+        <li>One clear success metric exists</li>
+        <li>Users can provide fast feedback on results</li>
+      </ul>
+
+      <h3>Nice-to-Haves</h3>
+      <ul>
+        <li>Rich historical data available</li>
+        <li>Clear patterns in existing manual process</li>
+        <li>Low risk if AI makes mistakes</li>
+        <li>Users are motivated to adopt (they feel the pain)</li>
+        <li>Feedback can improve system over time</li>
+      </ul>
+
+      <h3>Red Flags</h3>
+      <ul>
+        <li>Requires 95%+ accuracy to be useful</li>
+        <li>No historical data or examples</li>
+        <li>Open-ended scope (chatbot without clear use case)</li>
+        <li>Timeline exceeds 60 days</li>
+        <li>Success metrics unclear or conflicting</li>
+        <li>High risk if mistakes occur</li>
+      </ul>
+
+      <h2>What to Do Next</h2>
+
+      <p>
+        <strong>Step 1: Map current manual processes</strong>
+      </p>
+      <p>
+        Talk to your team. What repetitive tasks take hours each week? Where do
+        people say "I wish this was automated"?
+      </p>
+
+      <p>
+        <strong>Step 2: Quantify the pain</strong>
+      </p>
+      <p>
+        How many hours per month does each process take? How many people are
+        affected? What's the cost of that time?
+      </p>
+
+      <p>
+        <strong>Step 3: Check against the framework</strong>
+      </p>
+      <p>
+        Run your top 3-5 ideas through the checklist above. Pick the one with
+        the most checkmarks and fewest red flags.
+      </p>
+
+      <p>
+        <strong>Step 4: Scope to 30 days</strong>
+      </p>
+      <p>
+        If your chosen use case feels too big, trim scope aggressively. What's
+        the smallest valuable piece you can ship in 30 days?
+      </p>
+
+      <p>
+        <strong>Step 5: Start exploring</strong>
+      </p>
+      <p>Spend one week on:</p>
+      <ul>
+        <li>Understanding the problem deeply</li>
+        <li>Looking at the data</li>
+        <li>Running quick experiments ("vibe checks")</li>
+      </ul>
+
+      <p>
+        If after one week you don't see a clear path forward, the use case might
+        not be ready. Pick a different one.
+      </p>
+
+      <h2>The Compound Effect</h2>
+
+      <p>
+        Your first AI project isn't just about the feature you ship. It's about:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Building team capability</strong> — Engineers learn AI development
+          workflows
+        </li>
+        <li>
+          <strong>Establishing infrastructure</strong> — Vector DBs, LLM pipelines,
+          eval systems
+        </li>
+        <li>
+          <strong>Creating AI DRIs</strong> — Team members who can lead future projects
+        </li>
+        <li>
+          <strong>Proving value</strong> — Stakeholders see AI can actually ship
+        </li>
+        <li>
+          <strong>Learning your patterns</strong> — What works for your specific
+          domain
+        </li>
+      </ul>
+
+      <p>
+        A successful first project makes the second one 10x easier. A failed
+        first project (6 months, never ships) poisons the well for years.
+      </p>
+
+      <p>Choose wisely. Ship fast. Learn quickly.</p>
+    </Prose>
+  </article>
+</Layout>

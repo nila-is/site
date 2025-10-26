@@ -1,0 +1,511 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../../components/Prose.astro';
+
+const title = 'RAG System Architecture Decisions: What Actually Matters';
+const description =
+  'The critical architectural choices that make or break RAG systems in production, from database selection to embedding strategies.';
+const publishedTime = '2025-10-26';
+---
+
+<Layout
+  title={title}
+  description={description}
+  article={true}
+  publishedTime={publishedTime}
+>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{title}</h1>
+      <time datetime={publishedTime} class="text-muted-foreground">
+        October 26, 2025
+      </time>
+    </header>
+
+    <Prose>
+      <p>
+        RAG (Retrieval-Augmented Generation) systems have become the default
+        architecture for production AI applications. But there's a gap between
+        the theory and what actually works in production.
+      </p>
+
+      <p>
+        After building dozens of RAG systems across industries, I've learned
+        that the same few architectural decisions determine success or failure.
+        Here's what actually matters.
+      </p>
+
+      <h2>Decision 1: What Should You Embed?</h2>
+
+      <p>
+        The most common mistake: embedding everything. More data feels safer,
+        but it often degrades performance.
+      </p>
+
+      <h3>The Problem with "Embed Everything"</h3>
+
+      <p>
+        Let's say you're building transaction categorization. Each transaction
+        has:
+      </p>
+
+      <ul>
+        <li>Vendor name: "Uber Eats"</li>
+        <li>Memo: "Team lunch order"</li>
+        <li>Location: "San Francisco"</li>
+        <li>Amount: $85.47</li>
+        <li>Date: 2025-01-15</li>
+        <li>Card: **** 4242</li>
+        <li>User: john@company.com</li>
+        <li>Department: Engineering</li>
+      </ul>
+
+      <p>Should you embed all of this? No.</p>
+
+      <h3>What to Actually Embed</h3>
+
+      <p>
+        <strong>Focus on predictive fields:</strong>
+      </p>
+
+      <ul>
+        <li>
+          <strong>Vendor name</strong> — Highly predictive (Uber Eats always → Meals)
+        </li>
+        <li>
+          <strong>Memo</strong> — Adds context ("client dinner" vs "team lunch")
+        </li>
+        <li>
+          <strong>Location</strong> — Sometimes relevant (travel vs local)
+        </li>
+        <li><strong>Amount</strong> — Too specific, not predictive</li>
+        <li><strong>Date</strong> — Rarely predictive for categorization</li>
+        <li><strong>Card details</strong> — Not predictive, just noise</li>
+        <li><strong>User email</strong> — Too specific, creates overfitting</li>
+      </ul>
+
+      <h3>The Principle: Signal vs. Noise</h3>
+
+      <p>Every field you add can either:</p>
+      <ul>
+        <li>
+          <strong>Increase signal</strong> — helps find truly similar examples
+        </li>
+        <li>
+          <strong>Increase noise</strong> — makes similar things seem different
+        </li>
+      </ul>
+
+      <p>
+        Amount and date create noise. Two identical Uber Eats orders with
+        different amounts ($45 vs $85) should still be considered similar, but
+        embedding the amount makes them seem more different.
+      </p>
+
+      <h3>For Document RAG</h3>
+
+      <p>
+        The same principle applies to documents. If you're building a RAG system
+        over meeting transcripts:
+      </p>
+
+      <ul>
+        <li><strong>Content</strong> — What was actually discussed</li>
+        <li><strong>Topic/title</strong> — High-level context</li>
+        <li><strong>Key decisions</strong> — Important for retrieval</li>
+        <li><strong>Timestamps</strong> — Usually not predictive</li>
+        <li><strong>Participant emails</strong> — Too specific</li>
+      </ul>
+
+      <p>
+        <strong>Pro tip:</strong> Start with what you think is predictive, measure
+        retrieval quality, then iterate. Don't guess—validate with real queries.
+      </p>
+
+      <h2>Decision 2: Database Architecture</h2>
+
+      <p>
+        In 2023, everyone rushed to adopt specialized vector databases. In 2025,
+        I'm seeing teams question whether they need them at all.
+      </p>
+
+      <h3>Option 1: Postgres with pgvector (Recommended for Most)</h3>
+
+      <p>
+        <strong>How it works:</strong> Add a vector column to your existing Postgres
+        tables.
+      </p>
+
+      <pre><code>ALTER TABLE transactions 
+ADD COLUMN embedding vector(1536);</code></pre>
+
+      <p>
+        <strong>Pros:</strong>
+      </p>
+      <ul>
+        <li>No new infrastructure to manage</li>
+        <li>Single source of truth (no sync issues)</li>
+        <li>No complex joins between vector DB and relational data</li>
+        <li>Fast enough for most use cases (millions of vectors)</li>
+      </ul>
+
+      <p>
+        <strong>Cons:</strong>
+      </p>
+      <ul>
+        <li>Less optimized than specialized vector DBs at massive scale</li>
+        <li>Limited to Postgres ecosystem</li>
+      </ul>
+
+      <p>
+        <strong>When to use:</strong> You're already on Postgres and have < 10M vectors.
+        This is 90% of teams.
+      </p>
+
+      <h3>
+        Option 2: Specialized Vector Databases (Chroma, Pinecone, Turbopuffer)
+      </h3>
+
+      <p>
+        <strong>How it works:</strong> Separate database optimized for vector operations.
+      </p>
+
+      <p>
+        <strong>Pros:</strong>
+      </p>
+      <ul>
+        <li>Highly optimized for vector search</li>
+        <li>Better multi-tenant isolation (separate indices per customer)</li>
+        <li>Purpose-built features (hybrid search, filtering)</li>
+      </ul>
+
+      <p>
+        <strong>Cons:</strong>
+      </p>
+      <ul>
+        <li>New infrastructure to manage</li>
+        <li>Sync complexity between vector DB and relational DB</li>
+        <li>Joins become expensive (need to fetch from two systems)</li>
+      </ul>
+
+      <p>
+        <strong>When to use:</strong> You need extreme performance at scale (50M+
+        vectors) or have complex multi-tenant requirements.
+      </p>
+
+      <h3>Option 3: Hybrid Search (OpenSearch, Elasticsearch)</h3>
+
+      <p>
+        <strong>How it works:</strong> Combine traditional text search with vector
+        search.
+      </p>
+
+      <p>
+        <strong>Pros:</strong>
+      </p>
+      <ul>
+        <li>Best of both worlds: keyword + semantic search</li>
+        <li>
+          Excellent for complex queries that need both exact and fuzzy matching
+        </li>
+        <li>Already optimized for search workloads</li>
+      </ul>
+
+      <p>
+        <strong>Cons:</strong>
+      </p>
+      <ul>
+        <li>Significant infrastructure if you don't already use it</li>
+        <li>More complex to set up and tune</li>
+        <li>Higher operational overhead</li>
+      </ul>
+
+      <p>
+        <strong>When to use:</strong> You already have Elasticsearch/OpenSearch in
+        your stack, or your use case specifically needs hybrid search.
+      </p>
+
+      <h3>My Recommendation</h3>
+
+      <p>
+        Start with Postgres + pgvector. Don't over-engineer v1. You can always
+        migrate later if you hit real performance limits (which most teams never
+        do).
+      </p>
+
+      <h2>Decision 3: Retrieval Strategy</h2>
+
+      <p>
+        Getting similar documents isn't enough. The quality and diversity of
+        your retrieved examples dramatically impacts output quality.
+      </p>
+
+      <h3>Naive Approach (Don't Do This)</h3>
+
+      <pre><code>SELECT * FROM transactions
+ORDER BY embedding <=> query_embedding
+LIMIT 10;</code></pre>
+
+      <p>
+        <strong>Problem:</strong> All 10 results might be nearly identical (e.g.,
+        10 Uber Eats transactions).
+      </p>
+
+      <h3>Better Approach: Diversity + Relevance</h3>
+
+      <p>You want examples that are:</p>
+      <ul>
+        <li>Similar enough to be relevant</li>
+        <li>Diverse enough to show different patterns</li>
+      </ul>
+
+      <p>
+        <strong>Strategy 1: De-duplicate similar vendors</strong>
+      </p>
+
+      <pre><code>-- Get top result per vendor
+SELECT DISTINCT ON (vendor_name) *
+FROM (
+  SELECT * FROM transactions
+  ORDER BY embedding <=> query_embedding
+  LIMIT 50
+) 
+ORDER BY vendor_name, similarity DESC
+LIMIT 10;</code></pre>
+
+      <p>
+        <strong>Strategy 2: Ensure category diversity</strong>
+      </p>
+
+      <p>
+        Include examples from multiple GL codes, not just the most common one.
+        This helps the model understand the classification space better.
+      </p>
+
+      <p>
+        <strong>Strategy 3: Time-based filtering</strong>
+      </p>
+
+      <p>
+        For cases where patterns change over time (e.g., a company changes their
+        chart of accounts), prioritize recent examples:
+      </p>
+
+      <pre><code>-- Boost recent transactions
+ORDER BY (embedding <=> query_embedding) * 
+         (1 + age_penalty(created_at))
+LIMIT 10;</code></pre>
+
+      <h3>Measuring Retrieval Quality</h3>
+
+      <p>Track these metrics:</p>
+
+      <ul>
+        <li>
+          <strong>Precision:</strong> Of 10 retrieved examples, how many are actually
+          relevant?
+        </li>
+        <li>
+          <strong>Recall:</strong> Of all relevant examples, how many did you retrieve?
+        </li>
+        <li>
+          <strong>Diversity:</strong> How many unique patterns are represented?
+        </li>
+      </ul>
+
+      <p>
+        Build simple evals: create a set of test queries with known good
+        results, measure whether your retrieval finds them.
+      </p>
+
+      <h2>Decision 4: Chunking Strategy (For Documents)</h2>
+
+      <p>
+        If you're working with long documents, chunking is critical. Bad
+        chunking ruins retrieval quality.
+      </p>
+
+      <h3>Common Approaches</h3>
+
+      <p>
+        <strong>1. Fixed-size chunks (simplest)</strong>
+      </p>
+      <pre><code>chunk_size = 500 tokens
+overlap = 50 tokens</code></pre>
+
+      <p>
+        <strong>Pros:</strong> Simple, consistent, easy to implement<br />
+        <strong>Cons:</strong> Breaks in arbitrary places, loses context
+      </p>
+
+      <p>
+        <strong>2. Semantic chunking (better)</strong>
+      </p>
+      <p>Split on natural boundaries:</p>
+      <ul>
+        <li>Paragraphs</li>
+        <li>Section headers</li>
+        <li>Sentence boundaries</li>
+      </ul>
+
+      <p>
+        <strong>Pros:</strong> Preserves semantic units<br />
+        <strong>Cons:</strong> More complex, chunk sizes vary
+      </p>
+
+      <p>
+        <strong>3. Overlapping windows (recommended)</strong>
+      </p>
+      <p>
+        Combine fixed-size with overlap to preserve context across boundaries:
+      </p>
+      <pre><code>Chunk 1: Tokens 0-500
+Chunk 2: Tokens 450-950  (50 token overlap)
+Chunk 3: Tokens 900-1400 (50 token overlap)</code></pre>
+
+      <p>
+        <strong>4. Hierarchical chunking (advanced)</strong>
+      </p>
+      <p>Create multiple chunk levels:</p>
+      <ul>
+        <li>Document summary (high level)</li>
+        <li>Section summaries (medium level)</li>
+        <li>Paragraph chunks (detailed level)</li>
+      </ul>
+
+      <h3>Special Case: Documents with Images/Diagrams</h3>
+
+      <p>Text-only embeddings miss visual information. New approaches:</p>
+
+      <ul>
+        <li>
+          <strong>Screenshot each page</strong> and use vision-language models (e.g.,
+          Cohere's visual embeddings)
+        </li>
+        <li>
+          <strong>Extract structured data</strong> from charts/diagrams using tools
+          like Reducto
+        </li>
+        <li>
+          <strong>Describe images</strong> with vision models, then embed the descriptions
+        </li>
+      </ul>
+
+      <h2>Decision 5: Prompt Design</h2>
+
+      <p>Even with perfect retrieval, bad prompts produce bad results.</p>
+
+      <h3>Effective RAG Prompt Structure</h3>
+
+      <pre><code>System: You are a [domain expert role].
+
+Context: Here are similar examples from our database:
+[Retrieved examples formatted clearly]
+
+Reference: Here are all possible options:
+[Complete list of valid outputs]
+
+Task: [Clear instruction]
+Input: [The new data to process]
+
+Output format: [Structured format, ideally JSON]</code></pre>
+
+      <h3>Key Principles</h3>
+
+      <ul>
+        <li>
+          <strong>Clear role:</strong> Tell the model what expertise to apply
+        </li>
+        <li><strong>Formatted examples:</strong> Make patterns obvious</li>
+        <li>
+          <strong>Complete context:</strong> Include all options, not just similar
+          ones
+        </li>
+        <li>
+          <strong>Structured output:</strong> Use JSON schemas with retries
+        </li>
+        <li>
+          <strong>Reasoning:</strong> Ask for explanation to improve accuracy
+        </li>
+      </ul>
+
+      <h2>Common RAG Mistakes</h2>
+
+      <ol>
+        <li>
+          <strong>Over-engineering v1</strong> — Start simple, iterate based on data
+        </li>
+        <li>
+          <strong>Embedding everything</strong> — More fields ≠ better results
+        </li>
+        <li>
+          <strong>Ignoring diversity</strong> — 10 identical examples teach nothing
+        </li>
+        <li>
+          <strong>No retrieval evals</strong> — Can't improve what you don't measure
+        </li>
+        <li>
+          <strong>Forgetting edge cases</strong> — What happens when no similar examples
+          exist?
+        </li>
+        <li>
+          <strong>Not testing with real data</strong> — Synthetic tests hide problems
+        </li>
+      </ol>
+
+      <h2>The 80/20 of RAG Architecture</h2>
+
+      <p>If I had to pick the 20% of decisions that drive 80% of results:</p>
+
+      <ol>
+        <li>
+          <strong>What you embed</strong> (be selective, not comprehensive)
+        </li>
+        <li>
+          <strong>Retrieval diversity</strong> (don't just optimize for similarity)
+        </li>
+        <li>
+          <strong>Prompt structure</strong> (clear examples + complete context)
+        </li>
+      </ol>
+
+      <p>
+        Everything else—database choice, embedding model, chunking
+        strategy—matters less than these three.
+      </p>
+
+      <h2>Validation Framework</h2>
+
+      <p>How do you know if your architectural decisions are working?</p>
+
+      <ol>
+        <li>
+          <strong>Build retrieval evals first</strong> — Test whether you're finding
+          the right examples
+        </li>
+        <li>
+          <strong>Measure end-to-end accuracy</strong> — Track user acceptance rates
+        </li>
+        <li><strong>Isolate variables</strong> — Change one thing at a time</li>
+        <li><strong>Use real data</strong> — Synthetic tests lie</li>
+      </ol>
+
+      <h2>Start Simple, Iterate Based on Data</h2>
+
+      <p>
+        The best RAG architecture is the simplest one that works for your use
+        case.
+      </p>
+
+      <p>
+        Don't build for scale you don't have. Don't optimize for edge cases you
+        haven't seen. Ship something simple, measure it, and improve based on
+        real user feedback.
+      </p>
+
+      <p>
+        That's how you build RAG systems that actually make it to production.
+      </p>
+    </Prose>
+  </article>
+</Layout>

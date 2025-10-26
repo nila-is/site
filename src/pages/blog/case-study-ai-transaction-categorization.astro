@@ -1,0 +1,359 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../../components/Prose.astro';
+
+const title = "Case Study: Building AI Transaction Categorization with RAG at Relay";
+const description = "How we built and shipped an AI system that automatically classifies bank transactions in 30 days, saving finance teams hundreds of hours monthly.";
+const publishedTime = "2025-10-26";
+---
+
+<Layout title={title} description={description} article={true} publishedTime={publishedTime}>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{title}</h1>
+      <time datetime={publishedTime} class="text-muted-foreground">
+        October 26, 2025
+      </time>
+    </header>
+
+    <Prose>
+      <p>
+        Relay is an expense management platform. Their customers—finance teams at growing companies—were
+        spending hours each week manually classifying hundreds of transactions. Each transaction needed
+        a GL code assigned from 30-50 possible options.
+      </p>
+
+      <p>
+        This is the story of how we built an AI system to automate this process in 30 days, achieving
+        over 80% acceptance rate and saving customers tens to hundreds of hours monthly.
+      </p>
+
+      <h2>The Problem</h2>
+
+      <p>
+        Finance teams would log into Relay and face screens full of uncategorized transactions:
+      </p>
+
+      <ul>
+        <li><code>Uber Eats | "EATS ORDER *CHIPOTLE" | SF | $85</code></li>
+        <li><code>AWS | "AWS Services" | - | $347</code></li>
+        <li><code>Staples | "Receipt #892341" | Boston | $124</code></li>
+      </ul>
+
+      <p>
+        Each one needed to be classified manually. For companies with hundreds of monthly transactions,
+        this was taking 10-20+ hours per month. It was repetitive, error-prone (especially when tired),
+        and added zero strategic value.
+      </p>
+
+      <h3>Why This Was a Good AI Use Case</h3>
+
+      <ul>
+        <li><strong>Clear patterns:</strong> Similar vendors typically get classified the same way</li>
+        <li><strong>Rich historical data:</strong> Companies had months or years of classified transactions</li>
+        <li><strong>Partial automation valuable:</strong> Even 70% accuracy saves massive time</li>
+        <li><strong>Fast feedback loop:</strong> Users would immediately correct wrong classifications</li>
+      </ul>
+
+      <h2>Understanding the Data</h2>
+
+      <p>
+        Before writing any code, we examined the transaction data structure. Each transaction included:
+      </p>
+
+      <ul>
+        <li>Vendor name (e.g., "Uber Eats")</li>
+        <li>Memo field (e.g., "Team lunch")</li>
+        <li>Location (e.g., "San Francisco")</li>
+        <li>Amount</li>
+        <li>Date</li>
+        <li>Card used</li>
+        <li>User who made the transaction</li>
+        <li>Historical GL code (if previously classified)</li>
+      </ul>
+
+      <p>
+        <strong>Key discovery:</strong> The data was spread across multiple databases and external
+        systems (QuickBooks, Xero). We'd need to sync and cache this data.
+      </p>
+
+      <p>
+        The pattern we observed: Similar vendors nearly always map to the same GL codes. If we've seen
+        10 Uber Eats transactions classified as "Meals & Entertainment," a new Uber Eats transaction
+        should probably be classified the same way.
+      </p>
+
+      <p>
+        This insight pointed us toward a RAG (Retrieval-Augmented Generation) approach: find similar
+        historical transactions and use them as context for classification.
+      </p>
+
+      <h2>The Vibe Check Phase</h2>
+
+      <p>
+        We started with the simplest possible approach:
+      </p>
+
+      <ol>
+        <li>Take one company's transactions (Relay's own, for privacy)</li>
+        <li>Pass a transaction + list of GL codes to Claude</li>
+        <li>Ask it to classify</li>
+      </ol>
+
+      <p>
+        <strong>Result:</strong> About 50% accuracy. Not bad for zero examples, but not good enough.
+      </p>
+
+      <p>
+        Next iteration: Include a few similar historical transactions as examples in the prompt.
+      </p>
+
+      <p>
+        <strong>Result:</strong> Jumped to ~70% accuracy. This confirmed our RAG hypothesis.
+      </p>
+
+      <h2>Building the RAG System</h2>
+
+      <p>
+        Now we could properly scope the engineering work. We needed:
+      </p>
+
+      <ol>
+        <li>A way to embed and store transactions</li>
+        <li>A retrieval mechanism to find similar transactions</li>
+        <li>A prompt that used those examples for classification</li>
+        <li>Infrastructure to sync data from external systems</li>
+      </ol>
+
+      <h3>Architecture Decisions</h3>
+
+      <p>
+        <strong>Database: Postgres with pgvector</strong>
+      </p>
+      <p>
+        We chose Postgres with the pgvector extension instead of a specialized vector database. Why?
+      </p>
+      <ul>
+        <li>Relay already used Postgres—no new infrastructure needed</li>
+        <li>No complex joins between vector DB and relational data</li>
+        <li>Good enough performance for the scale</li>
+        <li>One source of truth</li>
+      </ul>
+
+      <p>
+        <strong>What to embed: Selective fields only</strong>
+      </p>
+      <p>
+        We embedded only the predictive fields:
+      </p>
+      <ul>
+        <li>✅ Vendor name</li>
+        <li>✅ Memo</li>
+        <li>✅ Location</li>
+        <li>❌ Amount (too specific, not predictive)</li>
+        <li>❌ Date (not predictive)</li>
+        <li>❌ Card details (not predictive)</li>
+      </ul>
+
+      <p>
+        <strong>Retrieval strategy: Diversity matters</strong>
+      </p>
+      <p>
+        Naive approach: Get top 10 most similar transactions.
+      </p>
+      <p>
+        <strong>Problem:</strong> Sometimes all 10 would be "Uber Eats" → no diversity in examples.
+      </p>
+      <p>
+        <strong>Solution:</strong> Ensure diversity in retrieved examples:
+      </p>
+      <ul>
+        <li>De-duplicate similar vendors</li>
+        <li>Include examples from different GL codes</li>
+        <li>Balance similarity with variance</li>
+      </ul>
+      <p>
+        This improvement alone boosted accuracy by several percentage points.
+      </p>
+
+      <h3>The Classification Prompt</h3>
+
+      <p>
+        Our final prompt structure:
+      </p>
+
+      <pre><code>You are a financial analyst expert.
+
+Historical examples:
+[10 similar transactions with their GL codes]
+
+Company's chart of accounts:
+[All possible GL codes with descriptions]
+
+New transaction:
+Vendor: Uber Eats
+Memo: Team lunch
+Location: San Francisco
+Amount: $85.00
+
+Return JSON:
+{
+  "gl_code": "5001",
+  "confidence": 0.92,
+  "reasoning": "Food delivery for team meal, similar to past transactions"
+}</code></pre>
+
+      <p>
+        We used structured output libraries (Vercel AI SDK) to ensure valid JSON responses with retries.
+      </p>
+
+      <h2>Deployment Strategy</h2>
+
+      <h3>Phase 1: Internal Testing</h3>
+      <p>
+        We first rolled it out to Relay's own finance team. This let us:
+      </p>
+      <ul>
+        <li>Test with real data in a safe environment</li>
+        <li>Get fast feedback from domain experts</li>
+        <li>Fix obvious bugs before customer exposure</li>
+      </ul>
+
+      <p>
+        <strong>Success metric:</strong> Acceptance rate—the percentage of AI classifications users
+        didn't manually change.
+      </p>
+
+      <p>
+        We targeted 80%+ acceptance rate before broader rollout.
+      </p>
+
+      <h3>Phase 2: Customer Rollout</h3>
+      <p>
+        After hitting our internal threshold, we gradually rolled out to customers:
+      </p>
+      <ul>
+        <li>Started with a few friendly customers</li>
+        <li>Monitored acceptance rates closely</li>
+        <li>Collected feedback and corrections</li>
+      </ul>
+
+      <h3>Building Feedback Loops</h3>
+      <p>
+        <strong>Critical insight:</strong> User corrections are valuable training data.
+      </p>
+
+      <p>
+        Every time a user manually changed a classification, we captured:
+      </p>
+      <ul>
+        <li>The original transaction</li>
+        <li>Our AI's classification</li>
+        <li>The user's correction</li>
+      </ul>
+
+      <p>
+        These corrections fed back into our RAG system, continuously improving accuracy over time.
+      </p>
+
+      <h2>Error Analysis & Iteration</h2>
+
+      <p>
+        We had Relay's finance team review batches of 100 classifications weekly:
+      </p>
+      <ul>
+        <li>Simple Pass/Fail + short note on failures</li>
+        <li>Example: "Fail - Uber Eats should be 'Meals' not 'Travel'"</li>
+      </ul>
+
+      <p>
+        We clustered this feedback into themes:
+      </p>
+      <ul>
+        <li>"Food delivery services misclassified as Travel"</li>
+        <li>"Gas station purchases ambiguous (snacks vs. fuel)"</li>
+        <li>"First-time vendors harder to classify accurately"</li>
+      </ul>
+
+      <p>
+        Each cluster became an experiment:
+      </p>
+      <ul>
+        <li>Added more diverse food delivery examples to embeddings</li>
+        <li>Improved prompt to distinguish expense types better</li>
+        <li>Added confidence penalties for unknown vendors</li>
+      </ul>
+
+      <h2>Results</h2>
+
+      <ul>
+        <li><strong>70% → 85% accuracy</strong> over 3 months of iteration</li>
+        <li><strong>Saved 10-20+ hours per month</strong> per customer</li>
+        <li><strong>High user satisfaction</strong> - even imperfect classifications saved time</li>
+        <li><strong>Continuous improvement</strong> as more corrections fed back into the system</li>
+      </ul>
+
+      <h2>Key Takeaways</h2>
+
+      <ol>
+        <li><strong>Partial automation is valuable:</strong> 70% accuracy still saved hundreds of hours</li>
+        <li><strong>Start simple:</strong> Postgres + pgvector before specialized vector databases</li>
+        <li><strong>Test internally first:</strong> Validate with your own team before customer rollout</li>
+        <li><strong>Measure what matters:</strong> Acceptance rate > complex metrics</li>
+        <li><strong>Build feedback loops:</strong> User corrections are training data</li>
+        <li><strong>Domain experts drive improvements:</strong> Engineers can't validate financial classifications</li>
+      </ol>
+
+      <h2>Technical Stack</h2>
+
+      <ul>
+        <li><strong>Language:</strong> TypeScript</li>
+        <li><strong>Database:</strong> Postgres with pgvector extension</li>
+        <li><strong>LLM:</strong> Claude 3.5 Sonnet (via AWS Bedrock for data privacy)</li>
+        <li><strong>Structured output:</strong> Vercel AI SDK</li>
+        <li><strong>Data sync:</strong> Custom integration with QuickBooks/Xero</li>
+      </ul>
+
+      <p>
+        <strong>Note on deployment:</strong> For data privacy reasons, Relay deployed open-source models
+        on their own infrastructure so customer data never left their VPCs. This added complexity but
+        was worth it for their security requirements.
+      </p>
+
+      <h2>Timeline</h2>
+
+      <ul>
+        <li><strong>Week 1:</strong> Problem understanding + data exploration + vibe checks</li>
+        <li><strong>Week 2:</strong> RAG system architecture + data sync infrastructure</li>
+        <li><strong>Week 3:</strong> Implementation + internal testing</li>
+        <li><strong>Week 4:</strong> Iteration based on feedback + initial customer rollout</li>
+      </ul>
+
+      <p>
+        30 days from kickoff to production deployment with paying customers.
+      </p>
+
+      <h2>What's Next</h2>
+
+      <p>
+        The system continues to improve as more corrections feed back into the training data. Relay's
+        team now maintains and extends the system independently—exactly the outcome we aim for.
+      </p>
+
+      <p>
+        This approach works for any workflow with:
+      </p>
+      <ul>
+        <li>Clear patterns in historical data</li>
+        <li>Manual processes taking significant time</li>
+        <li>Domain where 70-80% accuracy provides value</li>
+        <li>Fast feedback loops from users</li>
+      </ul>
+
+      <p>
+        If that sounds like problems at your company, you might be sitting on a great AI use case.
+      </p>
+    </Prose>
+  </article>
+</Layout>
+

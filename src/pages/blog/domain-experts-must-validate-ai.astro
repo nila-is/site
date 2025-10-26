@@ -1,0 +1,594 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../../components/Prose.astro';
+
+const title = "Why Domain Experts Must Validate Your AI System (Not Engineers)";
+const description = "The most commonly skipped step in AI development—and why it determines whether your system improves or stagnates.";
+const publishedTime = "2025-10-26";
+---
+
+<Layout title={title} description={description} article={true} publishedTime={publishedTime}>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{title}</h1>
+      <time datetime={publishedTime} class="text-muted-foreground">
+        October 26, 2025
+      </time>
+    </header>
+
+    <Prose>
+      <p>
+        You've built your AI system. It's in production. Users are getting results. Now what?
+      </p>
+
+      <p>
+        Most teams make one of two mistakes:
+      </p>
+
+      <ol>
+        <li>They assume it's working fine and move on</li>
+        <li>They have engineers review the outputs to see if they're "correct"</li>
+      </ol>
+
+      <p>
+        Both approaches doom your system to mediocrity. Here's why, and what to do instead.
+      </p>
+
+      <h2>The Problem with Engineer Validation</h2>
+
+      <p>
+        I've seen this pattern repeatedly: A team ships an AI feature. The PM asks an engineer
+        to "check if it's working." The engineer looks at 20 examples, says "looks good to me,"
+        and the team moves on.
+      </p>
+
+      <p>
+        <strong>What's wrong with this?</strong>
+      </p>
+
+      <h3>Engineers Don't Understand the Domain Nuances</h3>
+
+      <p>
+        Let's take transaction categorization as an example. An engineer sees:
+      </p>
+
+      <ul>
+        <li>Transaction: "Shell Gas Station, Boston, $47.23"</li>
+        <li>AI Classification: "Fuel Expenses"</li>
+        <li>Engineer: "Looks correct to me! ✓"</li>
+      </ul>
+
+      <p>
+        But a finance expert would ask: "What did they actually buy?"
+      </p>
+
+      <ul>
+        <li>If they bought gas → "Fuel Expenses" (correct)</li>
+        <li>If they bought snacks/coffee → "Meals & Entertainment" (incorrect)</li>
+      </ul>
+
+      <p>
+        The transaction memo doesn't specify. The engineer can't tell. But the finance expert
+        knows to check the receipt or ask for clarification.
+      </p>
+
+      <h3>Engineers Lack Context on Business Rules</h3>
+
+      <p>
+        Another real example from a project:
+      </p>
+
+      <ul>
+        <li>Transaction: "Uber, $32"</li>
+        <li>AI Classification: "Travel"</li>
+        <li>Engineer: "Makes sense! ✓"</li>
+      </ul>
+
+      <p>
+        Finance expert: "Was this commuting to the office or traveling for client meetings?
+        Our policy is that commuting is never 'Travel', only client/conference trips are."
+      </p>
+
+      <p>
+        The engineer had no way of knowing this internal policy. The AI's classification was
+        technically reasonable but violated company rules.
+      </p>
+
+      <h3>Engineers Optimize for "Looks Reasonable" Not "Correct"</h3>
+
+      <p>
+        Engineers aren't trying to be careless. But when you don't deeply understand the domain,
+        you default to "does this seem plausible?" instead of "is this definitively correct?"
+      </p>
+
+      <p>
+        That's not good enough for production AI systems.
+      </p>
+
+      <h2>Who Should Validate AI Outputs?</h2>
+
+      <p>
+        <strong>Simple rule: The person who would normally do the task manually should validate
+        the AI's output.</strong>
+      </p>
+
+      <h3>Examples</h3>
+
+      <ul>
+        <li><strong>Transaction categorization</strong> → Finance/accounting team member</li>
+        <li><strong>Customer support ticket routing</strong> → Senior support agent</li>
+        <li><strong>Legal document summarization</strong> → Paralegal or lawyer</li>
+        <li><strong>Medical diagnosis assistance</strong> → Doctor (obviously)</li>
+        <li><strong>Code review suggestions</strong> → Senior engineer in that codebase</li>
+      </ul>
+
+      <p>
+        The pattern: Whoever has ground truth should be doing validation.
+      </p>
+
+      <h2>How to Structure Domain Expert Validation</h2>
+
+      <h3>Keep It Dead Simple</h3>
+
+      <p>
+        Domain experts are busy. They're not going to fill out complex forms or write detailed
+        reports. Make it as easy as possible.
+      </p>
+
+      <p>
+        <strong>The format I use:</strong>
+      </p>
+
+      <p>
+        Excel or Google Sheet with these columns:
+      </p>
+
+      <ol>
+        <li><strong>Input</strong> — What the AI was given</li>
+        <li><strong>AI Output</strong> — What the AI produced</li>
+        <li><strong>Pass/Fail</strong> — Simple binary choice</li>
+        <li><strong>Brief Explanation</strong> — One sentence on why it failed (if it failed)</li>
+      </ol>
+
+      <p>
+        That's it. No complexity.
+      </p>
+
+      <h3>Real Example: Transaction Categorization</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction</th>
+            <th>AI Category</th>
+            <th>Pass/Fail</th>
+            <th>Why Failed?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uber Eats, $42</td>
+            <td>Meals & Entertainment</td>
+            <td>Pass</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Shell, $47</td>
+            <td>Fuel</td>
+            <td>Fail</td>
+            <td>Was snacks, not fuel</td>
+          </tr>
+          <tr>
+            <td>AWS, $347</td>
+            <td>Cloud Infrastructure</td>
+            <td>Pass</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Uber, $32</td>
+            <td>Travel</td>
+            <td>Fail</td>
+            <td>Daily commute not reimbursable travel</td>
+          </tr>
+          <tr>
+            <td>Staples, $124</td>
+            <td>Office Supplies</td>
+            <td>Pass</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>How Many to Review?</h3>
+
+      <p>
+        <strong>Start with 100-200 examples.</strong>
+      </p>
+
+      <p>
+        That's enough to identify patterns but not so many that it's overwhelming.
+      </p>
+
+      <p>
+        <strong>Frequency:</strong>
+      </p>
+      <ul>
+        <li><strong>Weekly</strong> in the first month after launch</li>
+        <li><strong>Bi-weekly</strong> once accuracy stabilizes</li>
+        <li><strong>Monthly</strong> for mature systems</li>
+      </ul>
+
+      <p>
+        Never stop completely. Systems drift over time as data changes.
+      </p>
+
+      <h2>What to Do with the Feedback</h2>
+
+      <h3>Step 1: Cluster the Failures</h3>
+
+      <p>
+        Take all the "Why Failed?" explanations and group them into themes.
+      </p>
+
+      <p>
+        <strong>You can do this manually or use an LLM:</strong>
+      </p>
+
+      <pre><code>Prompt: "Here are 47 failure explanations from our AI system.
+Cluster them into 5-7 common themes with examples."
+
+[Paste all failure explanations]
+
+Output:
+Theme 1: Gas station purchases (snacks vs fuel ambiguity)
+- "Was snacks, not fuel"
+- "Coffee purchase not fuel"
+- "Convenience store items"
+Count: 12 instances
+
+Theme 2: Commute vs travel classification
+- "Daily commute not reimbursable"
+- "Office commute incorrectly marked travel"
+Count: 8 instances
+
+Theme 3: Office supplies vs equipment threshold
+- "Expensive monitor should be equipment not supplies"
+- "Desk chair is equipment not supplies"
+Count: 7 instances
+
+...</code></pre>
+
+      <h3>Step 2: Prioritize by Impact</h3>
+
+      <p>
+        Which themes affect the most transactions? Which cause the biggest problems for users?
+      </p>
+
+      <p>
+        Focus on the top 2-3 themes first.
+      </p>
+
+      <h3>Step 3: Turn Themes into Experiments</h3>
+
+      <p>
+        Each theme becomes an engineering task to improve the system.
+      </p>
+
+      <p>
+        <strong>Example experiments:</strong>
+      </p>
+
+      <p>
+        <strong>Theme: Gas station ambiguity</strong>
+      </p>
+      <ul>
+        <li><strong>Experiment 1:</strong> Add more diverse gas station examples to embeddings</li>
+        <li><strong>Experiment 2:</strong> Modify prompt to ask "What was likely purchased?" before classification</li>
+        <li><strong>Experiment 3:</strong> Lower confidence for gas stations, always ask for human review</li>
+      </ul>
+
+      <p>
+        <strong>Theme: Commute vs travel</strong>
+      </p>
+      <ul>
+        <li><strong>Experiment 1:</strong> Add company policy to prompt: "Daily office commutes are never 'Travel'"</li>
+        <li><strong>Experiment 2:</strong> Check transaction time/frequency (daily at same time = likely commute)</li>
+        <li><strong>Experiment 3:</strong> Add user confirmation: "Was this for commuting or business travel?"</li>
+      </ul>
+
+      <h3>Step 4: Measure Impact</h3>
+
+      <p>
+        After each experiment:
+      </p>
+
+      <ol>
+        <li>Have domain expert review another batch</li>
+        <li>Compare pass rate before vs after</li>
+        <li>Keep changes that improve, revert changes that don't</li>
+      </ol>
+
+      <p>
+        This is how you systematically improve accuracy over time.
+      </p>
+
+      <h2>Building LLM-as-Judge Evals (After Human Validation)</h2>
+
+      <p>
+        Once you've done human validation for a while, you can start automating some of it.
+      </p>
+
+      <h3>The Process</h3>
+
+      <p>
+        <strong>1. Collect 200+ human-validated examples</strong>
+      </p>
+      <p>
+        These are your "ground truth" examples with expert judgments.
+      </p>
+
+      <p>
+        <strong>2. Build an LLM prompt that mimics the expert</strong>
+      </p>
+
+      <pre><code>You are a senior accountant evaluating AI transaction categorizations.
+
+Rules to check:
+- Daily office commutes are never "Travel"
+- Gas stations are ambiguous (could be fuel or snacks)
+- Equipment purchases >$500 are "Equipment" not "Office Supplies"
+[... include all patterns you learned ...]
+
+Transaction: {transaction_details}
+AI Categorization: {ai_category}
+
+Evaluate:
+{
+  "pass_fail": "pass" or "fail",
+  "confidence": 0.0-1.0,
+  "reason": "brief explanation"
+}</code></pre>
+
+      <p>
+        <strong>3. Test the LLM-as-judge against human judgments</strong>
+      </p>
+
+      <p>
+        Does it agree with your domain expert 90%+ of the time? If yes, you can start using
+        it for automated eval. If no, refine the prompt.
+      </p>
+
+      <p>
+        <strong>4. Use it to catch regressions</strong>
+      </p>
+
+      <p>
+        Now you can run automated evals before each deployment:
+      </p>
+
+      <ul>
+        <li>Did accuracy go up or down?</li>
+        <li>Are we introducing new failure modes?</li>
+        <li>Is the new model better than the old one?</li>
+      </ul>
+
+      <h3>Important: Never Fully Replace Human Review</h3>
+
+      <p>
+        LLM-as-judge is great for:
+      </p>
+      <ul>
+        <li>Catching obvious regressions</li>
+        <li>Testing changes before production</li>
+        <li>Monitoring at scale</li>
+      </ul>
+
+      <p>
+        But you should still have domain experts review samples regularly. Why?
+      </p>
+
+      <ul>
+        <li>Data distribution changes over time</li>
+        <li>New edge cases emerge</li>
+        <li>Your LLM-judge might have blind spots</li>
+        <li>Company policies change</li>
+      </ul>
+
+      <p>
+        Keep the human review loop. Just reduce frequency (monthly instead of weekly).
+      </p>
+
+      <h2>Common Objections (And Responses)</h2>
+
+      <h3>"Our domain experts are too busy"</h3>
+
+      <p>
+        Then your AI system will stay mediocre forever. This is non-negotiable.
+      </p>
+
+      <p>
+        <strong>Make it easier:</strong>
+      </p>
+      <ul>
+        <li>Limit to 100 examples (20-30 minutes of their time)</li>
+        <li>Do it during a scheduled 30-minute meeting</li>
+        <li>Emphasize that their feedback directly improves the tool that saves them hours</li>
+      </ul>
+
+      <p>
+        30 minutes monthly to review → saves them 10+ hours monthly. It's worth it.
+      </p>
+
+      <h3>"Can't we just use metrics like accuracy?"</h3>
+
+      <p>
+        Accuracy against what? You need ground truth labels. Domain experts provide those labels.
+      </p>
+
+      <p>
+        Without expert validation, you're measuring "do outputs look plausible?" not "are outputs
+        correct?"
+      </p>
+
+      <h3>"We'll just collect user feedback"</h3>
+
+      <p>
+        User feedback is valuable but incomplete:
+      </p>
+
+      <ul>
+        <li>Users might not correct subtle errors</li>
+        <li>You only get feedback on obvious failures</li>
+        <li>Silent failures go unnoticed</li>
+        <li>No systematic understanding of failure patterns</li>
+      </ul>
+
+      <p>
+        Use both: Expert review for systematic improvement + user corrections for real-world
+        feedback.
+      </p>
+
+      <h3>"Our engineers know the domain well"</h3>
+
+      <p>
+        Maybe. But do they know:
+      </p>
+      <ul>
+        <li>All the edge cases that come up in practice?</li>
+        <li>The unwritten rules and policies?</li>
+        <li>The subtle distinctions that matter to end users?</li>
+        <li>How requirements change over time?</li>
+      </ul>
+
+      <p>
+        Even domain-savvy engineers miss things that full-time practitioners catch immediately.
+      </p>
+
+      <h2>Real Results from Domain Expert Validation</h2>
+
+      <h3>Case Study: Transaction Categorization</h3>
+
+      <p>
+        <strong>Before domain expert validation:</strong>
+      </p>
+      <ul>
+        <li>Accuracy: ~70% (engineer estimate: "looks pretty good")</li>
+        <li>User acceptance rate: 65%</li>
+        <li>Users: "It's okay but makes weird mistakes"</li>
+      </ul>
+
+      <p>
+        <strong>After 3 months of weekly finance team reviews + improvements:</strong>
+      </p>
+      <ul>
+        <li>Accuracy: 87% (measured by domain experts)</li>
+        <li>User acceptance rate: 85%</li>
+        <li>Users: "This saves me so much time"</li>
+      </ul>
+
+      <p>
+        <strong>Key improvements identified by domain experts (not engineers):</strong>
+      </p>
+      <ul>
+        <li>Gas station purchase ambiguity</li>
+        <li>Commute vs travel distinction</li>
+        <li>Office supplies vs equipment threshold ($500 cutoff)</li>
+        <li>Food delivery vs restaurant dining classification</li>
+        <li>Recurring subscriptions should be "Software" not "Services"</li>
+      </ul>
+
+      <p>
+        Engineers wouldn't have caught most of these. They required accounting domain knowledge.
+      </p>
+
+      <h2>The Process: Week by Week</h2>
+
+      <p>
+        <strong>Week 1 (After Launch):</strong>
+      </p>
+      <ul>
+        <li>Domain expert reviews 100 examples</li>
+        <li>Identifies 23 failures across 5 themes</li>
+        <li>Engineers create 5 experiments to address themes</li>
+      </ul>
+
+      <p>
+        <strong>Week 2:</strong>
+      </p>
+      <ul>
+        <li>Deploy first 2 experiments</li>
+        <li>Domain expert reviews 100 new examples</li>
+        <li>Pass rate: 72% → 77%</li>
+        <li>Identify 2 new themes that emerged</li>
+      </ul>
+
+      <p>
+        <strong>Week 3:</strong>
+      </p>
+      <ul>
+        <li>Deploy next 2 experiments</li>
+        <li>Domain expert reviews 100 new examples</li>
+        <li>Pass rate: 77% → 81%</li>
+        <li>Original themes mostly resolved</li>
+      </ul>
+
+      <p>
+        <strong>Week 4:</strong>
+      </p>
+      <ul>
+        <li>Final experiment deployed</li>
+        <li>Domain expert reviews 100 examples</li>
+        <li>Pass rate: 81% → 85%</li>
+        <li>Satisfaction with accuracy high enough to reduce review frequency</li>
+      </ul>
+
+      <p>
+        <strong>Month 2+:</strong>
+      </p>
+      <ul>
+        <li>Bi-weekly reviews</li>
+        <li>Pass rate continues climbing: 85% → 87% → 89%</li>
+        <li>System gets better with more user corrections feeding back</li>
+      </ul>
+
+      <h2>The Bottom Line</h2>
+
+      <p>
+        AI systems don't magically improve over time. They improve because:
+      </p>
+
+      <ol>
+        <li><strong>Domain experts</strong> identify what's wrong</li>
+        <li><strong>Engineers</strong> fix those specific problems</li>
+        <li><strong>Measurement</strong> confirms improvements worked</li>
+        <li><strong>Repeat</strong></li>
+      </ol>
+
+      <p>
+        Skip the domain expert review, and you're flying blind. You might make changes, but
+        you won't know if they help or hurt. You'll stagnate at mediocre accuracy.
+      </p>
+
+      <p>
+        Embrace domain expert validation, and you get:
+      </p>
+      <ul>
+        <li>Clear understanding of failure modes</li>
+        <li>Prioritized roadmap for improvements</li>
+        <li>Measurable progress month over month</li>
+        <li>User trust (they see the system improving)</li>
+        <li>Path to 85%+ accuracy</li>
+      </ul>
+
+      <p>
+        It's the difference between AI systems that ship and stagnate vs. systems that ship
+        and compound.
+      </p>
+
+      <p>
+        Don't skip this step. Your AI's success depends on it.
+      </p>
+    </Prose>
+  </article>
+</Layout>
+

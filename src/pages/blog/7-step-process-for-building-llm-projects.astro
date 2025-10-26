@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../../components/Prose.astro';
+
+const title = "The 7-Step Process for Building LLM Projects";
+const description = "A proven methodology for shipping production AI systems in 30 days, from problem discovery to continuous improvement.";
+const publishedTime = "2025-10-26";
+---
+
+<Layout title={title} description={description} article={true} publishedTime={publishedTime}>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{title}</h1>
+      <time datetime={publishedTime} class="text-muted-foreground">
+        October 26, 2025
+      </time>
+    </header>
+
+    <Prose>
+      <p>
+        After shipping dozens of AI systems to production, I've developed a reliable 7-step process
+        that consistently gets projects from idea to production in 30 days. This isn't theory—this
+        is exactly what I do with every client.
+      </p>
+
+      <p>
+        The key insight: you can't skip steps, and the order matters. Too many teams jump straight
+        to building infrastructure or fine-tuning models without understanding their data or validating
+        their approach first.
+      </p>
+
+      <h2>The 7 Steps</h2>
+
+      <h3>1. Understand the Problem</h3>
+      <p>
+        Start with the <strong>Jobs to Be Done</strong> framework. What problem are you actually solving?
+        Too many companies say "we need AI" or "let's add a chatbot" without thinking about why.
+      </p>
+      <p>
+        Ask yourself: What expensive, time-consuming process are we trying to automate? What value
+        are we creating for customers? If you can't answer these clearly, don't move forward yet.
+      </p>
+
+      <h3>2. Look at the Data</h3>
+      <p>
+        Before writing a single line of code, understand your data landscape:
+      </p>
+      <ul>
+        <li>What data do you actually have access to?</li>
+        <li>How is it separated across systems?</li>
+        <li>Is it in external platforms you need to sync?</li>
+        <li>How consistent is the data quality?</li>
+      </ul>
+      <p>
+        This requires a staff-level engineer who can evaluate data quality and understand what's
+        feasible. You can't delegate this to a junior engineer or skip it entirely.
+      </p>
+
+      <h3>3. Do "Vibe Checks"</h3>
+      <p>
+        Now experiment—but keep it simple. No infrastructure, no evals, no complex architecture yet.
+      </p>
+      <p>
+        Just call Claude or GPT-4 with basic prompts and see what happens:
+      </p>
+      <ul>
+        <li>Does it work with zero examples?</li>
+        <li>Do you need to provide context?</li>
+        <li>What data actually improves accuracy?</li>
+      </ul>
+      <p>
+        Often you'll discover that simple prompt engineering is good enough. If it works 50-70% of the
+        time with no examples, you might not need RAG or fine-tuning at all.
+      </p>
+
+      <h3>4. Confirm Scoping</h3>
+      <p>
+        Based on your vibe checks, now you can properly scope the engineering work:
+      </p>
+      <ul>
+        <li>Do you need RAG (retrieval-augmented generation)?</li>
+        <li>What infrastructure is actually required?</li>
+        <li>Can you ship something in 1-2 weeks?</li>
+      </ul>
+      <p>
+        Build the minimum viable version. Gate it to your own team or a select few customers.
+        The goal is to get real feedback, not to build the perfect system.
+      </p>
+
+      <h3>5. Error Analysis</h3>
+      <p>
+        This is the most commonly skipped step, and it's critical: <strong>Have a domain expert review
+        the results.</strong>
+      </p>
+      <p>
+        Not an engineer. Not a PM. A domain expert who actually understands the problem space.
+      </p>
+      <p>
+        Create a simple Excel sheet with:
+      </p>
+      <ul>
+        <li>The AI's output</li>
+        <li>Pass/Fail column</li>
+        <li>Brief explanation of failures</li>
+      </ul>
+      <p>
+        Review 100-200 examples. Then cluster the feedback (manually or using an LLM) into themes.
+        These themes become your improvement roadmap.
+      </p>
+
+      <h3>6. Set Up Evals</h3>
+      <p>
+        Only after you've done human validation can you automate evaluation. Build "LLM-as-judge"
+        systems that mimic your domain expert's feedback.
+      </p>
+      <p>
+        Start simple:
+      </p>
+      <ul>
+        <li>Export results to JSON files</li>
+        <li>Track your key metric (e.g., acceptance rate)</li>
+        <li>Don't over-engineer early—a spreadsheet is fine</li>
+      </ul>
+      <p>
+        The goal is to measure whether changes improve or degrade performance. One clear metric
+        beats 17 complex ones.
+      </p>
+
+      <h3>7. Continue Iterating</h3>
+      <p>
+        Now you're equipped to improve systematically:
+      </p>
+      <ul>
+        <li>Run experiments based on error clusters</li>
+        <li>Test different approaches (embedding strategies, retrieval methods, prompts)</li>
+        <li>Measure everything against your evals</li>
+        <li>Incorporate user corrections as training data</li>
+      </ul>
+      <p>
+        Watch your accuracy climb from 70% → 75% → 80% → 85% over weeks and months. Each improvement
+        is validated by data, not hunches.
+      </p>
+
+      <h2>Why This Process Works</h2>
+
+      <p>
+        This process forces you to validate assumptions before committing resources. You learn what
+        actually works with real data before building complex infrastructure.
+      </p>
+
+      <p>
+        Most importantly: it's fast. Following this process, I've shipped production AI systems in
+        30 days across industries—from financial services to healthcare to e-commerce.
+      </p>
+
+      <p>
+        The teams that succeed are small (1-2 engineers + CTO), focused, and willing to ship imperfect
+        systems that improve over time rather than waiting for perfection.
+      </p>
+
+      <h2>Common Mistakes to Avoid</h2>
+
+      <ul>
+        <li><strong>Skipping the vibe check</strong> and jumping straight to RAG or fine-tuning</li>
+        <li><strong>Building infrastructure before validating the approach</strong></li>
+        <li><strong>Having engineers validate results instead of domain experts</strong></li>
+        <li><strong>Trying to build the perfect system before shipping</strong></li>
+        <li><strong>Scoping projects longer than 30 days</strong></li>
+      </ul>
+
+      <h2>Getting Started</h2>
+
+      <p>
+        If you're starting a new AI project, try this: spend one week on steps 1-3. If you can't
+        get promising results in a week of exploration, the use case might not be ready yet.
+      </p>
+
+      <p>
+        But if your vibe checks show promise? That's your signal to commit engineering resources
+        and follow the full process.
+      </p>
+
+      <p>
+        The best part: this process compounds. After your first project, your team knows how to
+        approach the next one. They become your AI DRIs who can lead future initiatives independently.
+      </p>
+    </Prose>
+  </article>
+</Layout>
+
