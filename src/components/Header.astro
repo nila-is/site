@@ -4,22 +4,24 @@ import logo from '../assets/logo.svg';
 ---
 <header class="bg-background border-b border-border transition-colors duration-300" role="banner">
   <nav class="max-w-2xl mx-auto px-6 py-8" aria-label="Main navigation">
-    <button 
-      id="theme-toggle"
-      type="button"
-      class="flex items-center justify-center text-foreground hover:text-foreground no-underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded transition-all cursor-pointer w-full"
-      aria-label="Toggle dark mode"
-    >
-      <Image 
-        id="logo-image"
-        src={logo} 
-        alt="" 
-        role="presentation" 
-        class="w-8 h-8 mr-3 dark:invert hover:drop-shadow-[0_0_12px_hsl(var(--primary)/0.6)]" 
-      />
+    <div class="flex items-center justify-center text-foreground">
+      <button 
+        id="theme-toggle"
+        type="button"
+        class="focus:outline-none cursor-pointer"
+        aria-label="Toggle dark mode"
+      >
+        <Image 
+          id="logo-image"
+          src={logo} 
+          alt="" 
+          role="presentation" 
+          class="w-8 h-8 mr-3 dark:invert hover:drop-shadow-[0_0_12px_hsl(var(--primary)/0.6)]" 
+        />
+      </button>
       <span class="font-sans font-bold text-2xl m-0 uppercase tracking-wider">Nila</span>
       <span class="ml-3 text-sm normal-case tracking-normal font-normal text-muted-foreground transition-colors">by Vignesh Mohankumar</span>
-    </button>
+    </div>
   </nav>
 </header>
 
