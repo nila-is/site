@@ -26,6 +26,24 @@ export default {
           DEFAULT: '#2563eb',  // primary-600
           hover: '#1e40af',    // primary-800
         },
+        // Semantic content colors using neutral gray
+        content: {
+          DEFAULT: '#111827',  // gray-900
+          secondary: '#374151', // gray-700
+          tertiary: '#6b7280',  // gray-500
+          muted: '#9ca3af',     // gray-400
+          subtle: '#4b5563',     // gray-600
+        },
+        // Border colors
+        border: {
+          DEFAULT: '#e5e7eb',  // gray-200
+          hover: '#d1d5db',    // gray-300
+        },
+        // Surface/background colors
+        surface: {
+          DEFAULT: '#f9fafb',  // gray-50
+          secondary: '#f3f4f6', // gray-100
+        },
       },
     },
   },
@@ -51,7 +69,7 @@ export default {
           "@apply leading-relaxed": {},
         },
         "blockquote": {
-          "@apply italic text-slate-600": {},
+          "@apply italic text-content-subtle": {},
         },
         "a": {
           "@apply text-link no-underline hover:underline hover:text-link-hover": {},

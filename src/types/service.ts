@@ -3,5 +3,9 @@ export interface ServiceItem {
   description: string;
   pricing?: string;
   duration?: string;
+  link?: {
+    href: string;
+    label: string;
+  };
 }
 

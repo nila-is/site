@@ -19,7 +19,10 @@ import { services, engagementModels } from '../data/services';
 
   <Prose>
     <p>
-      Nila is my independent consulting practice, and I partner with technical leaders to design, build, and ship reliable AI systems to production. My goal is to establish AI capability within your team that scales beyond our engagement.
+      Most AI projects fail to reach production. I help CTOs and technical leaders ship AI systems that actually work—in 30 days, not 6 months. My goal is to establish AI capability within your team that scales beyond our engagement.
+    </p>
+    <p>
+      Prior to consulting, I was an early engineer at two AI-driven companies that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
     </p>
     <p>
       I'm a staff-level engineer who still writes code and ships to production myself. I'm able to stay hands-on because I'm ultra-effective with AI coding tools and work as a generalist across the stack.
@@ -69,6 +72,7 @@ import { services, engagementModels } from '../data/services';
           description={engagementModels[2].description}
           pricing={engagementModels[2].pricing}
           duration={engagementModels[2].duration}
+          link={engagementModels[2].link}
         />
         <div class="mt-6">
           <TestimonialList testimonials={trainingTestimonials} initialCount={2} id="training" />
@@ -91,9 +95,6 @@ import { services, engagementModels } from '../data/services';
       <Prose>
         <p>
           I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name). Nila is just two people: me and my EA Maria.
-        </p>
-        <p>
-          Prior to consulting, I was an early engineer at two AI-driven companies that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
         </p>
         <p>
           Find me on <ExternalLink href={SITE_CONFIG.social.linkedin}>LinkedIn</ExternalLink>, <ExternalLink href={SITE_CONFIG.social.twitter}>X</ExternalLink> and my <ExternalLink href={SITE_CONFIG.social.personalBlog}>personal blog</ExternalLink>.

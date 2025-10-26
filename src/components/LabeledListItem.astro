@@ -1,21 +1,34 @@
 ---
+import Button from './Button.astro';
+
 interface Props {
   label: string;
   description: string;
   pricing?: string;
   duration?: string;
+  link?: {
+    href: string;
+    label: string;
+  };
 }
 
-const { label, description, pricing, duration } = Astro.props;
+const { label, description, pricing, duration, link } = Astro.props;
 ---
 
 <div class="mb-6">
   <dt class="text-lg font-bold mb-2">{label}</dt>
-  <dd class="leading-relaxed text-slate-700" set:html={description}></dd>
+  <dd class="leading-relaxed text-content-secondary">{description}</dd>
   {(pricing || duration) && (
-    <dd class="mt-2 text-sm text-slate-500 space-y-1">
+    <dd class="mt-2 text-sm text-content-tertiary space-y-1">
       {pricing && <div><strong>Pricing:</strong> {pricing}</div>}
       {duration && <div><strong>Duration:</strong> {duration}</div>}
+    </dd>
+  )}
+  {link && (
+    <dd class="mt-4">
+      <Button href={link.href} variant="secondary" size="small" external>
+        {link.label}
+      </Button>
     </dd>
   )}
 </div>

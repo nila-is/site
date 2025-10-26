@@ -11,7 +11,7 @@ export const services: ServiceItem[] = [
   },
   {
     label: "AI Fluency",
-    description: "Pick the right tools, set up practical guardrails, and adopt applied-AI best practices so AI works reliably. I help your team choose IDE agents and workflows, configure linters/type-checking/tests with pre-commit hooks, and document conventions (AGENTS.md, commands). We also establish proven applied-AI approaches—evaluation harnesses, prompting standards, context management, and lightweight monitoring—so engineers ship faster with fewer mistakes."
+    description: "Building up your team's capability to ship AI independently through hands-on training and establishing practical workflows."
   }
 ];
 
@@ -30,7 +30,11 @@ export const engagementModels: ServiceItem[] = [
   },
   {
     label: "Team Trainings",
-    description: "I run the <a href='https://maven.com/nila/ai-coding-accelerator' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:text-blue-800 underline'>AI Coding Accelerator</a>, a hands-on 3-day cohort where your engineers learn practical AI coding workflows. Live coding sessions, guest speakers from Linear, OpenAI, and Cursor, and a hackathon on your own codebase. Teams leave with working systems they can deploy immediately. I offer a generous discount when you send a team."
+    description: "I run the AI Coding Accelerator, a hands-on 3-day cohort where your engineers learn practical AI coding workflows. Live coding sessions, guest speakers from Linear, OpenAI, and Cursor, and a hackathon on your own codebase. Teams leave with working systems they can deploy immediately.",
+    link: {
+      href: "https://maven.com/nila/ai-coding-accelerator",
+      label: "Learn more about the course"
+    }
   }
 ];
 
