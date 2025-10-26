@@ -1,0 +1,23 @@
+---
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+  title: string;
+  url: string;
+  pubDate: string;
+  description: string;
+}
+
+const { title, url, pubDate, description } = Astro.props;
+---
+
+<article>
+  <h2 class="text-lg mb-2">
+    <a href={url} class="text-blue-500 hover:underline">
+      {title}
+    </a>
+  </h2>
+  <FormattedDate date={pubDate} class="text-gray-600 block mb-2 text-xs" />
+  <p class="text-xs text-gray-800">{description}</p>
+</article>
+

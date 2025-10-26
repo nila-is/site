@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
 
 const posts = Object.values(await import.meta.glob('./*.md', { eager: true }))
   .sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
@@ -15,21 +16,12 @@ const posts = Object.values(await import.meta.glob('./*.md', { eager: true }))
     </div>
     <div class="space-y-8">
       {posts.map((post) => (
-        <div>
-          <h2 class="text-lg mb-2">
-            <a href={post.url} class="text-blue-500 hover:underline">
-              {post.frontmatter.title}
-            </a>
-          </h2>
-          <time class="text-gray-600 block mb-2 text-xs">
-            {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </time>
-          <p class="text-xs text-gray-800">{post.frontmatter.description}</p>
-        </div>
+        <BlogPostCard 
+          title={post.frontmatter.title}
+          url={post.url}
+          pubDate={post.frontmatter.pubDate}
+          description={post.frontmatter.description}
+        />
       ))}
     </div>
   </div>
