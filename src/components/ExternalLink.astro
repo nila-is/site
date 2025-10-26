@@ -14,7 +14,7 @@ const plainTextLabel = slotContent.replace(/<[^>]*>/g, '').trim();
   href={href} 
   target="_blank" 
   rel="noopener noreferrer" 
-  class={className}
+  class={`no-underline hover:underline ${className || ''}`}
   aria-label={`${plainTextLabel} (opens in new window)`}
 ><slot /><span class="sr-only"> (opens in new window)</span></a>
 
