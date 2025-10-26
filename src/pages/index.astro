@@ -11,12 +11,15 @@ import headshot from '../assets/headshot.jpg';
 <Layout title="Home">
   <Prose>
     <p>
-      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I partner with technical leaders to ship production AI systems. <a href="https://nila.fillout.com/t/mZZ8cxD4tNus" target="_blank" rel="noopener noreferrer">Have an idea? Reach out</a>
+      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I partner with technical leaders to ship production AI systems.
+    </p>
+    <p>
+      <a href="https://nila.fillout.com/t/mZZ8cxD4tNus" target="_blank" rel="noopener noreferrer">Have an idea? Reach out →</a>
     </p>
   </Prose>
 
   <Section title="Services">
-    <ul class="space-y-2">
+    <ul class="space-y-4 list-none pl-0">
       <LabeledListItem 
         label="Automation" 
         description="Implementing AI-powered workflows to replace slow, costly, or unscalable processes." 
@@ -30,7 +33,7 @@ import headshot from '../assets/headshot.jpg';
   </Section>
 
   <Section title="Engagement Models">
-    <ul class="space-y-2">
+    <ul class="space-y-4 list-none pl-0">
       <LabeledListItem 
         label="Implementation" 
         description="I partner directly with your team (typically a CTO plus 1-2 staff engineers) to ship AI that works with your existing system and architecture. I write the code and we deploy it in your environment to production within 30 days." 
@@ -43,7 +46,7 @@ import headshot from '../assets/headshot.jpg';
 
       <LabeledListItem 
         label="Enablement" 
-        description='3-day intensive <a href="https://maven.com/nila/ai-coding-accelerator" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline">AI Coding Accelerator</a>. Features guest speakers from Linear, Sourcegraph, Cursor, and OpenAI.' 
+        description='3-day intensive <a href="https://maven.com/nila/ai-coding-accelerator" target="_blank" rel="noopener noreferrer">AI Coding Accelerator</a>. Features guest speakers from Linear, Sourcegraph, Cursor, and OpenAI.' 
       />
     </ul>
   </Section>
@@ -56,19 +59,10 @@ import headshot from '../assets/headshot.jpg';
       </p>
       <p>
         Prior to consulting, I was an early engineer at two AI-driven companies
-        that were acquired:
+        that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) 
+        and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
       </p>
     </Prose>
-    <ul>
-      <li>
-        <strong>Drift:</strong> Conversational AI for marketing and sales
-        (acquired by Vista Equity Partners for $1.2B)
-      </li>
-      <li>
-        <strong>Kensho:</strong> AI for financial services (acquired by S&P
-        Global for $550M)
-      </li>
-    </ul>
   </Section>
 
   <Section title="Testimonials">
@@ -126,7 +120,7 @@ import headshot from '../assets/headshot.jpg';
       <Image 
         src={headshot} 
         alt="Professional headshot of Vignesh Mohankumar" 
-        class="w-full sm:w-2/3 md:w-1/3 mb-4 rounded-lg"
+        class="w-full sm:w-2/3 md:w-1/2 mb-6 rounded-lg"
         width={400}
         height={400}
       />

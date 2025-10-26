@@ -2,34 +2,38 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+      },
+    },
   },
   plugins: [
     function ({ addComponents }) {
       addComponents({
         "h1": {
-          "@apply font-bold text-lg": {},
+          "@apply font-serif font-normal text-3xl": {},
         },
         "h2": {
-          "@apply font-bold text-lg": {},
+          "@apply font-serif font-normal text-xl mb-4": {},
         },
         "h3": {
-          "@apply font-semibold text-sm": {},
+          "@apply font-medium text-base": {},
         },
         "p": {
-          "@apply leading-relaxed mb-2": {},
+          "@apply leading-relaxed mb-4": {},
         },
         "ul": {
-          "@apply list-disc pl-6 space-y-1": {},
+          "@apply list-disc pl-6 space-y-2": {},
         },
         "li": {
           "@apply leading-relaxed": {},
         },
         "blockquote": {
-          "@apply pl-4 border-l-2 border-gray-300": {},
+          "@apply italic text-gray-600": {},
         },
         "a": {
-          "@apply text-blue-500 hover:text-blue-700 transition-colors duration-200": {},
+          "@apply text-blue-600 no-underline hover:underline": {},
         }
       });
     },
