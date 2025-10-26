@@ -21,7 +21,7 @@ const { quote, author, role, company, url, projectUrl, projectLabel, favicon } =
   </blockquote>
   <figcaption class="text-xs text-muted-foreground">
     <div>
-      <span class="font-medium">{author}</span>, {role} at <ExternalLink href={url}>{favicon && <span class="inline-flex items-center justify-center w-4 h-4 rounded bg-white dark:bg-gray-100 p-0.5 align-text-bottom ml-0.5 mr-1"><img src={favicon} alt="" role="presentation" loading="lazy" decoding="async" class="w-full h-full object-contain" /></span>}{company}</ExternalLink>
+      <span class="font-medium">{author}</span>, {role} at <ExternalLink href={url}>{company}{favicon && <span class="inline-flex items-center justify-center w-4 h-4 rounded bg-white dark:bg-gray-100 p-0.5 align-text-bottom ml-1"><img src={favicon} alt="" role="presentation" loading="lazy" decoding="async" class="w-full h-full object-contain" /></span>}</ExternalLink>
     </div>
     {projectUrl && projectLabel && (
       <span class="block mt-1">
