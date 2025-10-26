@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        serif: ['Newsreader', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
       },
       colors: {
         // Primary brand color - slate for cooler neutral tones
