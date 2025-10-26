@@ -70,6 +70,16 @@ const structuredData = {
         const theme = stored || (prefersDark ? 'dark' : 'light');
         document.documentElement.classList.toggle('dark', theme === 'dark');
       })();
+
+      // Hide text until fonts load (max 500ms wait)
+      document.documentElement.style.visibility = 'hidden';
+      
+      Promise.race([
+        document.fonts.ready,
+        new Promise(resolve => setTimeout(resolve, 500))
+      ]).then(() => {
+        document.documentElement.style.visibility = 'visible';
+      });
     </script>
 
     <title>{title} | {siteConfig.name}</title>
@@ -89,9 +99,9 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Load fonts with all variants (regular, italic, bold, bold-italic) -->
-    <!-- display=optional prevents FOUT by not swapping if fonts load slowly -->
+    <!-- display=swap for immediate font swap once loaded -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=optional"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
 
