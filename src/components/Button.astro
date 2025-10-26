@@ -10,7 +10,7 @@ interface Props {
 
 const { href, variant = 'primary', size = 'default', class: className = '', external = false, type = 'button' } = Astro.props;
 
-const baseStyles = "inline-flex items-center gap-1.5 rounded-lg transition-all duration-200 font-medium !no-underline";
+const baseStyles = "inline-flex items-center gap-1.5 rounded-lg transition-all duration-200 font-medium !no-underline focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2";
 
 const sizeStyles = {
   default: "px-5 py-2.5 text-base shadow-sm hover:shadow-lg hover:-translate-y-0.5",
@@ -24,6 +24,9 @@ const variantStyles = {
 };
 
 const combinedClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+
+const slotContent = external ? await Astro.slots.render('default') : '';
+const plainTextLabel = slotContent.replace(/<[^>]*>/g, '').trim();
 ---
 
 {href ? (
@@ -33,6 +36,7 @@ const combinedClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant
       target="_blank" 
       rel="noopener noreferrer"
       class={combinedClass}
+      aria-label={plainTextLabel ? `${plainTextLabel} (opens in new window)` : undefined}
     >
       <slot />
     </a>

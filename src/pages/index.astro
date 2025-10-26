@@ -25,7 +25,7 @@ import { services, engagementModels } from '../data/services';
       Prior to consulting, I was an early engineer at two AI-driven companies that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
     </p>
     <p>I help with:</p>
-    <ul>
+    <ul role="list">
       <li><strong>Workflow Automation</strong> — Replacing slow or costly processes with AI</li>
       <li><strong>Product Integration</strong> — Integrating AI capabilities into your platform</li>
       <li><strong>Team Enablement</strong> — Building up your team's capability to ship AI independently</li>
@@ -38,7 +38,7 @@ import { services, engagementModels } from '../data/services';
   </Prose>
 
   <Section id="how-i-work" title="What I Offer">
-    <dl class="space-y-8">
+    <dl class="space-y-8" role="list">
       <div>
         <LabeledListItem 
           label={engagementModels[0].label}
@@ -88,6 +88,7 @@ import { services, engagementModels } from '../data/services';
         class="w-2/3 sm:w-1/2 md:w-1/3 mb-6 rounded-lg"
         width={400}
         height={400}
+        loading="eager"
       />
       <Prose>
         <p>

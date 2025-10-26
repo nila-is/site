@@ -5,6 +5,9 @@ interface Props {
 }
 
 const { href, class: className } = Astro.props;
+
+const slotContent = await Astro.slots.render('default');
+const plainTextLabel = slotContent.replace(/<[^>]*>/g, '').trim();
 ---
 
 <a 
@@ -12,5 +15,6 @@ const { href, class: className } = Astro.props;
   target="_blank" 
   rel="noopener noreferrer" 
   class={className}
-><slot /></a>
+  aria-label={`${plainTextLabel} (opens in new window)`}
+><slot /><span class="sr-only"> (opens in new window)</span></a>
 

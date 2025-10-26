@@ -7,14 +7,14 @@ const posts = Object.values(await import.meta.glob('./*.md', { eager: true }))
 ---
 
 <Layout title="Blog">
-  <div>
-    <div class="flex justify-between items-center mb-8">
-      <h1 class="text-xl font-bold">Blog Posts</h1>
-      <a href="/rss.xml" class="text-xs hover:underline" target="_blank" rel="noopener noreferrer">
-        RSS Feed
+  <div role="region" aria-labelledby="blog-heading">
+    <header class="flex justify-between items-center mb-8">
+      <h1 id="blog-heading" class="text-xl font-bold">Blog Posts</h1>
+      <a href="/rss.xml" class="text-xs hover:underline focus:underline focus:outline-none" target="_blank" rel="noopener noreferrer" aria-label="RSS Feed (opens in new window)">
+        RSS Feed<span class="sr-only"> (opens in new window)</span>
       </a>
-    </div>
-    <div class="space-y-8">
+    </header>
+    <div class="space-y-8" role="list">
       {posts.map((post) => (
         <BlogPostCard 
           title={post.frontmatter.title}

@@ -21,14 +21,18 @@ const { frontmatter } = Astro.props;
   publishedTime={frontmatter.pubDate}
   image={frontmatter.image}
 >
-  <div>
-    <h1 class="text-xl font-bold mb-2">{frontmatter.title}</h1>
-    <p class="text-xs text-content-tertiary mb-8">
-      <FormattedDate date={frontmatter.pubDate} />
-    </p>
+  <article role="article" aria-labelledby="article-title">
+    <header>
+      <h1 id="article-title" class="text-xl font-bold mb-2">{frontmatter.title}</h1>
+      <p class="text-xs text-content-secondary mb-8">
+        <time datetime={frontmatter.pubDate}>
+          <FormattedDate date={frontmatter.pubDate} />
+        </time>
+      </p>
+    </header>
     
     <div class="space-y-4">
       <slot />
     </div>
-  </div>
+  </article>
 </Layout>

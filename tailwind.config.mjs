@@ -8,7 +8,6 @@ export default {
         serif: ['Newsreader', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
       },
       colors: {
-        // Primary brand color - blue for professional, trustworthy feel
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -21,28 +20,24 @@ export default {
           800: '#1e40af',
           900: '#1e3a8a',
         },
-        // Link color - uses primary blue
         link: {
-          DEFAULT: '#2563eb',  // primary-600
-          hover: '#1e40af',    // primary-800
+          DEFAULT: '#2563eb',
+          hover: '#1e40af',
         },
-        // Semantic content colors using neutral gray
         content: {
-          DEFAULT: '#111827',  // gray-900
-          secondary: '#374151', // gray-700
-          tertiary: '#6b7280',  // gray-500
-          muted: '#9ca3af',     // gray-400
-          subtle: '#4b5563',     // gray-600
+          DEFAULT: '#111827',
+          secondary: '#374151',
+          tertiary: '#4b5563',
+          muted: '#6b7280',
+          subtle: '#4b5563',
         },
-        // Border colors
         border: {
-          DEFAULT: '#e5e7eb',  // gray-200
-          hover: '#d1d5db',    // gray-300
+          DEFAULT: '#e5e7eb',
+          hover: '#d1d5db',
         },
-        // Surface/background colors
         surface: {
-          DEFAULT: '#f9fafb',  // gray-50
-          secondary: '#f3f4f6', // gray-100
+          DEFAULT: '#f9fafb',
+          secondary: '#f3f4f6',
         },
       },
     },
