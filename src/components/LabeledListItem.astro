@@ -2,14 +2,21 @@
 interface Props {
   label: string;
   description: string;
+  pricing?: string;
+  duration?: string;
 }
 
-const { label, description } = Astro.props;
+const { label, description, pricing, duration } = Astro.props;
 ---
 
 <div class="mb-6">
   <dt class="text-lg font-bold mb-2">{label}</dt>
   <dd class="leading-relaxed text-slate-600" set:html={description}></dd>
-  
+  {(pricing || duration) && (
+    <dd class="mt-2 text-sm text-slate-500 space-y-1">
+      {pricing && <div><strong>Pricing:</strong> {pricing}</div>}
+      {duration && <div><strong>Duration:</strong> {duration}</div>}
+    </dd>
+  )}
 </div>
 
