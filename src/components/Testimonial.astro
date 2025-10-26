@@ -7,9 +7,10 @@ interface Props {
   url: string;
   projectUrl?: string;
   projectLabel?: string;
+  favicon?: string;
 }
 
-const { quote, author, role, company, url, projectUrl, projectLabel } = Astro.props;
+const { quote, author, role, company, url, projectUrl, projectLabel, favicon } = Astro.props;
 ---
 
 <figure class="space-y-2">
@@ -17,7 +18,10 @@ const { quote, author, role, company, url, projectUrl, projectLabel } = Astro.pr
     <p class="italic text-gray-600 leading-relaxed text-sm">&ldquo;{quote}&rdquo;</p>
   </blockquote>
   <figcaption class="text-xs text-gray-600">
-    <span class="font-medium">{author}</span>, {role} at <a href={url} target="_blank" rel="noopener noreferrer">{company}</a>
+    <span class="font-medium">{author}</span>, {role} at <a href={url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 align-middle">
+      {favicon && <img src={favicon} alt={`${company} logo`} class="w-3.5 h-3.5 flex-shrink-0" />}
+      <span>{company}</span>
+    </a>
     {projectUrl && projectLabel && (
       <span class="block mt-1">
         <a href={projectUrl} target="_blank" rel="noopener noreferrer">{projectLabel} →</a>
