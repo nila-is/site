@@ -38,6 +38,7 @@ export default {
     },
   },
   plugins: [
+    // Typography components
     function ({ addComponents }) {
       addComponents({
         "h1": {
@@ -64,6 +65,56 @@ export default {
         "a": {
           "@apply text-primary no-underline hover:underline": {},
         }
+      });
+    },
+    // Base styles and CSS variables
+    function ({ addBase }) {
+      addBase({
+        ':root': {
+          '--background': '0 0% 100%',
+          '--foreground': '222.2 84% 4.9%',
+          '--muted': '210 40% 96.1%',
+          '--muted-foreground': '215.4 16.3% 46.9%',
+          '--border': '214.3 31.8% 91.4%',
+          '--accent': '210 40% 96.1%',
+          '--accent-foreground': '222.2 47.4% 11.2%',
+          '--primary': '221.2 83.2% 53.3%',
+          '--primary-foreground': '210 40% 98%',
+        },
+        '.dark': {
+          '--background': '222.2 84% 4.9%',
+          '--foreground': '210 40% 98%',
+          '--muted': '217.2 32.6% 17.5%',
+          '--muted-foreground': '215 20.2% 65.1%',
+          '--border': '217.2 32.6% 17.5%',
+          '--accent': '217.2 32.6% 17.5%',
+          '--accent-foreground': '210 40% 98%',
+          '--primary': '217.2 91.2% 59.8%',
+          '--primary-foreground': '222.2 47.4% 11.2%',
+        },
+        'html': {
+          'scroll-behavior': 'smooth',
+        },
+        'body': {
+          '-webkit-overflow-scrolling': 'touch',
+        },
+        '*': {
+          'outline': 'none',
+        },
+        'button': {
+          '-webkit-tap-highlight-color': 'transparent',
+        },
+        '@media (prefers-reduced-motion: reduce)': {
+          'html': {
+            'scroll-behavior': 'auto',
+          },
+          '*, *::before, *::after': {
+            'animation-duration': '0.01ms !important',
+            'animation-iteration-count': '1 !important',
+            'transition-duration': '0.01ms !important',
+            'scroll-behavior': 'auto !important',
+          },
+        },
       });
     },
   ],
