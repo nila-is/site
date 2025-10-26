@@ -1,0 +1,59 @@
+---
+import Testimonial from './Testimonial.astro';
+import type { Testimonial as TestimonialType } from '../types/testimonial';
+
+interface Props {
+  testimonials: TestimonialType[];
+  initialCount?: number;
+  id: string;
+}
+
+const { testimonials, initialCount = 2, id } = Astro.props;
+---
+
+<div class="testimonial-list space-y-6" data-testimonial-list={id}>
+  {testimonials.map((testimonial, index) => (
+    <div class:list={["testimonial-item", { "hidden": index >= initialCount }]} data-index={index}>
+      <Testimonial 
+        quote={testimonial.quote}
+        author={testimonial.author}
+        role={testimonial.role}
+        company={testimonial.company}
+        url={testimonial.url}
+        projectUrl={testimonial.projectUrl}
+        projectLabel={testimonial.projectLabel}
+        favicon={testimonial.favicon}
+      />
+    </div>
+  ))}
+  
+  {testimonials.length > initialCount && (
+    <button 
+      class="show-more-btn text-blue-600 hover:text-blue-800 underline transition-colors text-sm font-medium"
+      data-list-id={id}
+    >
+      Show more testimonials ({testimonials.length - initialCount})
+    </button>
+  )}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.show-more-btn');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const btn = e.currentTarget as HTMLButtonElement;
+        const listId = btn.dataset.listId;
+        const list = document.querySelector(`[data-testimonial-list="${listId}"]`);
+        
+        if (list) {
+          const hiddenItems = list.querySelectorAll('.testimonial-item.hidden');
+          hiddenItems.forEach(item => item.classList.remove('hidden'));
+          btn.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+

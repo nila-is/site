@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
+import TestimonialList from '../components/TestimonialList.astro';
 import LabeledListItem from '../components/LabeledListItem.astro';
 import Section from '../components/Section.astro';
 import Prose from '../components/Prose.astro';
@@ -9,7 +10,7 @@ import ExternalLink from '../components/ExternalLink.astro';
 import { Image } from 'astro:assets';
 import headshot from '../assets/headshot.jpg';
 import { SITE_CONFIG } from '../config/site';
-import { testimonials } from '../data/testimonials';
+import { implementationTestimonials, advisoryTestimonials, trainingTestimonials } from '../data/testimonials';
 import { services, engagementModels } from '../data/services';
 ---
 
@@ -18,7 +19,10 @@ import { services, engagementModels } from '../data/services';
 
   <Prose>
     <p>
-      I'm {SITE_CONFIG.author.name}. I partner with technical leaders to design, build, and ship reliable AI systems to production.
+      I partner with technical leaders to design, build, and ship reliable AI systems to production.
+    </p>
+    <p>
+      I help with <strong>Automation</strong> (replacing slow or costly processes with AI), <strong>Exploration</strong> (integrating AI capabilities into your platform), and <strong>Enablement</strong> (setting up tools, guardrails, and best practices so your team ships AI reliably).
     </p>
     <p>
       I've partnered with companies in industries including enterprise SaaS, consumer social, healthcare, fintech, and crypto.
@@ -33,42 +37,44 @@ import { services, engagementModels } from '../data/services';
     </p>
   </Prose>
 
-  <Section id="testimonials" title="Testimonials">
-    <div class="space-y-6">
-      {testimonials.map((testimonial) => (
-        <Testimonial 
-          quote={testimonial.quote}
-          author={testimonial.author}
-          role={testimonial.role}
-          company={testimonial.company}
-          url={testimonial.url}
-          projectUrl={testimonial.projectUrl}
-          projectLabel={testimonial.projectLabel}
-          favicon={testimonial.favicon}
-        />
-      ))}
-    </div>
-  </Section>
-
-  <Section id="services" title="Services">
-    <dl class="space-y-4">
-      {services.map((service) => (
+  <Section id="how-we-work" title="How We Work">
+    <dl class="space-y-8">
+      <div>
         <LabeledListItem 
-          label={service.label}
-          description={service.description}
+          label={engagementModels[0].label}
+          description={engagementModels[0].description}
         />
-      ))}
-    </dl>
-  </Section>
+        <div class="mt-4 ml-6">
+          <TestimonialList testimonials={implementationTestimonials} initialCount={2} id="implementation" />
+        </div>
+      </div>
 
-  <Section id="engagement-models" title="Engagement Models">
-    <dl class="space-y-4">
-      {engagementModels.map((model) => (
+      <div>
         <LabeledListItem 
-          label={model.label}
-          description={model.description}
+          label={engagementModels[1].label}
+          description={engagementModels[1].description}
         />
-      ))}
+        <div class="mt-4 ml-6">
+          <TestimonialList testimonials={advisoryTestimonials} initialCount={2} id="advisory" />
+        </div>
+      </div>
+
+      <div>
+        <LabeledListItem 
+          label={engagementModels[2].label}
+          description={engagementModels[2].description}
+        />
+        <div class="mt-4 ml-6">
+          <Prose>
+            <p class="text-sm">
+              Learn more and join the next cohort: <ExternalLink href="https://maven.com/nila/ai-coding-accelerator" class="hover:text-blue-600 transition-colors">AI Coding Accelerator</ExternalLink>. I offer a generous discount when you send a team.
+            </p>
+          </Prose>
+          <div class="mt-4">
+            <TestimonialList testimonials={trainingTestimonials} initialCount={2} id="training" />
+          </div>
+        </div>
+      </div>
     </dl>
   </Section>
 
