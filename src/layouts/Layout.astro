@@ -30,6 +30,13 @@ const structuredData = {
   "name": title,
   "description": description,
   "url": canonicalURL.toString(),
+  ...(!article && {
+    "author": {
+      "@type": "Person",
+      "name": "Vignesh Mohankumar",
+      "url": "https://vig.xyz"
+    }
+  }),
   ...(article && publishedTime && { "datePublished": publishedTime }),
   ...(article && modifiedTime && { "dateModified": modifiedTime }),
   ...(article && { "author": {
@@ -70,9 +77,6 @@ const structuredData = {
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://s3-us-west-2.amazonaws.com" crossorigin />
     
-    <!-- Font optimization -->
-    <link rel="preload" href="/fonts/arial.woff2" as="font" type="font/woff2" crossorigin />
-    
     <!-- Open Graph / Social -->
     <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:url" content={canonicalURL} />
@@ -81,6 +85,8 @@ const structuredData = {
     <meta property="og:site_name" content="Nila" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content={`${title} - Nila`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     {article && publishedTime && <meta property="article:published_time" content={publishedTime} />}
     {article && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
     
@@ -119,32 +125,39 @@ const structuredData = {
     <!-- Analytics loaded with defer for better performance -->
     <script defer>
       !function () {
-        var reb2b = window.reb2b = window.reb2b || [];
-        if (reb2b.invoked) return;
-        reb2b.invoked = true;
-        reb2b.methods = ["identify", "collect"];
-        reb2b.factory = function (method) {
-          return function () {
-            var args = Array.prototype.slice.call(arguments);
-            args.unshift(method);
-            reb2b.push(args);
-            return reb2b;
+        try {
+          var reb2b = window.reb2b = window.reb2b || [];
+          if (reb2b.invoked) return;
+          reb2b.invoked = true;
+          reb2b.methods = ["identify", "collect"];
+          reb2b.factory = function (method) {
+            return function () {
+              var args = Array.prototype.slice.call(arguments);
+              args.unshift(method);
+              reb2b.push(args);
+              return reb2b;
+            };
           };
-        };
-        for (var i = 0; i < reb2b.methods.length; i++) {
-          var key = reb2b.methods[i];
-          reb2b[key] = reb2b.factory(key);
+          for (var i = 0; i < reb2b.methods.length; i++) {
+            var key = reb2b.methods[i];
+            reb2b[key] = reb2b.factory(key);
+          }
+          reb2b.load = function (key) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.async = true;
+            script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/0NW1GH7MZ8O4.js.gz";
+            script.onerror = function() {
+              console.warn('Analytics script failed to load');
+            };
+            var first = document.getElementsByTagName("script")[0];
+            first.parentNode.insertBefore(script, first);
+          };
+          reb2b.SNIPPET_VERSION = "1.0.1";
+          reb2b.load("0NW1GH7MZ8O4");
+        } catch (e) {
+          console.error('Analytics initialization error:', e);
         }
-        reb2b.load = function (key) {
-          var script = document.createElement("script");
-          script.type = "text/javascript";
-          script.async = true;
-          script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/0NW1GH7MZ8O4.js.gz";
-          var first = document.getElementsByTagName("script")[0];
-          first.parentNode.insertBefore(script, first);
-        };
-        reb2b.SNIPPET_VERSION = "1.0.1";
-        reb2b.load("0NW1GH7MZ8O4");
       }();
     </script>
   </body>
