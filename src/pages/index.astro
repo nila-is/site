@@ -15,20 +15,17 @@ import { services, engagementModels } from '../data/services';
 ---
 
 <Layout title="Home">
-  <h1 class="text-2xl font-bold mb-4">Ship production AI in 30 days</h1>
+  <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Ship production AI in 30 days</h1>
 
   <Prose>
     <p>
-      I partner with technical leaders to design, build, and ship reliable AI systems to production.
+      I partner with technical leaders to design, build, and ship reliable AI systems to production. My goal is to set up DRIs for AI on your engineering team who can spread AI capabilities to others.
     </p>
     <p>
       I help with <strong>Automation</strong> (replacing slow or costly processes with AI), <strong>Exploration</strong> (integrating AI capabilities into your platform), and <strong>Enablement</strong> (setting up tools, guardrails, and best practices so your team ships AI reliably).
     </p>
     <p>
       I've partnered with companies in industries including enterprise SaaS, consumer social, healthcare, fintech, and crypto.
-    </p>
-    <p>
-      Prior to consulting, I was an early engineer at two AI-driven companies that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
     </p>
     <p class="pt-1">
       <Button href="https://nila.fillout.com/t/mZZ8cxD4tNus" external>
@@ -37,14 +34,14 @@ import { services, engagementModels } from '../data/services';
     </p>
   </Prose>
 
-  <Section id="how-we-work" title="How We Work">
+  <Section id="how-i-work" title="What I Offer">
     <dl class="space-y-8">
       <div>
         <LabeledListItem 
           label={engagementModels[0].label}
           description={engagementModels[0].description}
         />
-        <div class="mt-4 ml-6">
+        <div class="mt-6">
           <TestimonialList testimonials={implementationTestimonials} initialCount={2} id="implementation" />
         </div>
       </div>
@@ -54,7 +51,7 @@ import { services, engagementModels } from '../data/services';
           label={engagementModels[1].label}
           description={engagementModels[1].description}
         />
-        <div class="mt-4 ml-6">
+        <div class="mt-6">
           <TestimonialList testimonials={advisoryTestimonials} initialCount={2} id="advisory" />
         </div>
       </div>
@@ -64,7 +61,7 @@ import { services, engagementModels } from '../data/services';
           label={engagementModels[2].label}
           description={engagementModels[2].description}
         />
-        <div class="mt-4 ml-6">
+        <div class="mt-6">
           <Prose>
             <p class="text-sm">
               Learn more and join the next cohort: <ExternalLink href="https://maven.com/nila/ai-coding-accelerator" class="hover:text-blue-600 transition-colors">AI Coding Accelerator</ExternalLink>. I offer a generous discount when you send a team.
@@ -94,10 +91,10 @@ import { services, engagementModels } from '../data/services';
           I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name).
         </p>
         <p>
-          Find me on 
-          <ExternalLink href={SITE_CONFIG.social.linkedin} class="hover:text-blue-600 transition-colors">LinkedIn</ExternalLink>,
-          <ExternalLink href={SITE_CONFIG.social.twitter} class="hover:text-blue-600 transition-colors">X</ExternalLink>
-          and my <ExternalLink href={SITE_CONFIG.social.personalBlog} class="hover:text-blue-600 transition-colors">personal blog</ExternalLink>.
+          Prior to consulting, I was an early engineer at two AI-driven companies that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
+        </p>
+        <p>
+          Find me on <ExternalLink href={SITE_CONFIG.social.linkedin} class="hover:text-blue-600 transition-colors">LinkedIn</ExternalLink>, <ExternalLink href={SITE_CONFIG.social.twitter} class="hover:text-blue-600 transition-colors">X</ExternalLink> and my <ExternalLink href={SITE_CONFIG.social.personalBlog} class="hover:text-blue-600 transition-colors">personal blog</ExternalLink>.
         </p>
       </Prose>
     </div>

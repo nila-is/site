@@ -1,8 +1,9 @@
 ---
 // Component that handles paragraph spacing and styling automatically
+const { class: className } = Astro.props;
 ---
 
-<div class="space-y-3 [&>p]:leading-relaxed [&>p]:text-gray-700 [&_a]:transition-colors [&_a:hover]:text-blue-600">
+<div class:list={["space-y-5 [&>p]:leading-relaxed [&>p]:text-gray-700 [&_a]:transition-colors [&_a:hover]:text-blue-600", className]}>
   <slot />
 </div>
 

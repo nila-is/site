@@ -1,5 +1,6 @@
 ---
 import Testimonial from './Testimonial.astro';
+import Button from './Button.astro';
 import type { Testimonial as TestimonialType } from '../types/testimonial';
 
 interface Props {
@@ -28,12 +29,17 @@ const { testimonials, initialCount = 2, id } = Astro.props;
   ))}
   
   {testimonials.length > initialCount && (
-    <button 
-      class="show-more-btn text-blue-600 hover:text-blue-800 underline transition-colors text-sm font-medium"
+    <Button 
+      variant="ghost"
+      size="small"
+      class="show-more-btn"
       data-list-id={id}
     >
-      Show more testimonials ({testimonials.length - initialCount})
-    </button>
+      <span>Show more ({testimonials.length - initialCount})</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </Button>
   )}
 </div>
 

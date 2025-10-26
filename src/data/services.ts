@@ -18,15 +18,15 @@ export const services: ServiceItem[] = [
 export const engagementModels: ServiceItem[] = [
   {
     label: "Implementation Projects",
-    description: "I partner directly with your team (typically a CTO plus 1-2 staff engineers) to ship AI that works with your existing system and architecture. I write the code and we deploy it in your environment to production within 30 days."
+    description: "I partner directly with your team (typically a CTO plus 1-2 staff engineers) to ship AI that works with your existing system and architecture. I write the code and deploy it in your environment to production within 30 days."
   },
   {
     label: "Advisory Engagements",
-    description: "Same as Implementation, but your team writes the code. I provide hands-on guidance throughout."
+    description: "Your team writes the code while I provide hands-on guidance throughout. I help with architecture decisions, evaluating results and data, and unblocking technical challenges as you ship AI features."
   },
   {
-    label: "Team Enablement",
-    description: "Hands-on, 3-day cohort for senior engineers and tech leads covering the full agentic development workflow: explore → plan → build. Live coding on real codebases, guest sessions from developer-tool teams, and a hack day to put it into practice."
+    label: "Team Trainings",
+    description: "Hands-on, 3-day cohort for engineers and tech leads covering the full agentic development workflow: explore → plan → build. Live coding on real codebases, guest sessions from developer-tool teams, and a hack day to put it into practice."
   }
 ];
 
