@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
@@ -8,37 +9,31 @@ export default {
         serif: ['Newsreader', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
       },
       colors: {
+        border: 'hsl(var(--border))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
-        link: {
-          DEFAULT: '#2563eb',
-          hover: '#1e40af',
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
-        content: {
-          DEFAULT: '#111827',
-          secondary: '#374151',
-          tertiary: '#4b5563',
-          muted: '#6b7280',
-          subtle: '#4b5563',
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
-        border: {
-          DEFAULT: '#e5e7eb',
-          hover: '#d1d5db',
+      },
+      keyframes: {
+        'theme-spin': {
+          '0%': { transform: 'rotate(0deg) scale(1)' },
+          '50%': { transform: 'rotate(180deg) scale(1.2)' },
+          '100%': { transform: 'rotate(360deg) scale(1)' },
         },
-        surface: {
-          DEFAULT: '#f9fafb',
-          secondary: '#f3f4f6',
-        },
+      },
+      animation: {
+        'theme-spin': 'theme-spin 0.6s ease-in-out',
       },
     },
   },
@@ -64,10 +59,10 @@ export default {
           "@apply leading-relaxed": {},
         },
         "blockquote": {
-          "@apply italic text-content-subtle": {},
+          "@apply italic text-muted-foreground": {},
         },
         "a": {
-          "@apply text-link no-underline hover:underline hover:text-link-hover": {},
+          "@apply text-primary no-underline hover:underline": {},
         }
       });
     },

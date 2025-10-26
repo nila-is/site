@@ -60,6 +60,14 @@ const structuredData = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#2563eb" />
     
+    <script is:inline>
+      // Initialize theme before page renders to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
+    
     <title>{title} | {SITE_CONFIG.name}</title>
     
     <link rel="canonical" href={canonicalURL} />
@@ -96,7 +104,7 @@ const structuredData = {
     
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
-  <body class="min-h-full flex flex-col text-[15px] bg-white text-content antialiased">
+  <body class="min-h-full flex flex-col text-[15px] bg-background text-foreground antialiased transition-colors duration-300">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary-600 focus:text-white focus:rounded-br">
       Skip to main content
     </a>
@@ -111,7 +119,7 @@ const structuredData = {
       </div>
     </main>
     
-    <footer role="contentinfo" class="text-center text-content-secondary text-sm py-12">
+    <footer role="contentinfo" class="text-center text-muted-foreground text-sm py-12 transition-colors">
       © 2025 {SITE_CONFIG.company}
     </footer>
 

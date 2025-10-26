@@ -2,12 +2,57 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 ---
-<header class="bg-white border-b border-border" role="banner">
+<header class="bg-background border-b border-border transition-colors duration-300" role="banner">
   <nav class="max-w-2xl mx-auto px-6 py-8" aria-label="Main navigation">
-    <a href="/" class="flex items-center justify-center text-inherit hover:text-inherit no-underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 rounded" aria-label="Nila by Vignesh Mohankumar - Home">
-      <Image src={logo} alt="" role="presentation" class="w-8 h-8 mr-3" />
+    <button 
+      id="theme-toggle"
+      type="button"
+      class="flex items-center justify-center text-foreground hover:text-foreground no-underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded transition-all cursor-pointer w-full"
+      aria-label="Toggle dark mode"
+    >
+      <Image 
+        id="logo-image"
+        src={logo} 
+        alt="" 
+        role="presentation" 
+        class="w-8 h-8 mr-3 dark:invert hover:drop-shadow-[0_0_12px_hsl(var(--primary)/0.6)]" 
+      />
       <span class="font-sans font-bold text-2xl m-0 uppercase tracking-wider">Nila</span>
-      <span class="ml-3 text-sm normal-case tracking-normal font-normal">by Vignesh Mohankumar</span>
-    </a>
+      <span class="ml-3 text-sm normal-case tracking-normal font-normal text-muted-foreground transition-colors">by Vignesh Mohankumar</span>
+    </button>
   </nav>
 </header>
+
+<script>
+  // Theme toggle functionality
+  function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const logoImage = document.getElementById('logo-image');
+    
+    if (!themeToggle || !logoImage) return;
+    
+    themeToggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      // Add animation to logo
+      logoImage.classList.add('animate-theme-spin');
+      
+      // Toggle theme
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', newTheme);
+      
+      // Remove animation class after animation completes
+      setTimeout(() => {
+        logoImage.classList.remove('animate-theme-spin');
+      }, 600);
+    });
+  }
+  
+  // Initialize on page load
+  initThemeToggle();
+  
+  // Re-initialize after navigation (for SPA-like behavior)
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>

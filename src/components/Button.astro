@@ -10,7 +10,7 @@ interface Props {
 
 const { href, variant = 'primary', size = 'default', class: className = '', external = false, type = 'button' } = Astro.props;
 
-const baseStyles = "inline-flex items-center gap-1.5 rounded-lg transition-all duration-200 font-medium !no-underline focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2";
+const baseStyles = "inline-flex items-center gap-1.5 rounded-lg transition-all duration-200 font-medium !no-underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2";
 
 const sizeStyles = {
   default: "px-5 py-2.5 text-base shadow-sm hover:shadow-lg hover:-translate-y-0.5",
@@ -18,9 +18,9 @@ const sizeStyles = {
 };
 
 const variantStyles = {
-  primary: "bg-primary-600 text-white hover:!text-white hover:bg-primary-700",
-  secondary: "bg-surface-secondary text-content hover:text-content hover:bg-border-hover",
-  ghost: "bg-surface-secondary text-content-secondary hover:text-content-secondary hover:bg-border-hover"
+  primary: "bg-primary text-primary-foreground hover:!text-primary-foreground hover:opacity-90",
+  secondary: "bg-muted text-foreground hover:text-foreground hover:bg-accent",
+  ghost: "bg-muted text-muted-foreground hover:text-muted-foreground hover:bg-accent"
 };
 
 const combinedClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
@@ -50,4 +50,3 @@ const plainTextLabel = slotContent.replace(/<[^>]*>/g, '').trim();
     <slot />
   </button>
 )}
-
