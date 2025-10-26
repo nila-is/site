@@ -40,17 +40,9 @@ import logo from '../assets/logo.svg';
       const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
-      // Add animation to logo
-      logoImage.classList.add('animate-theme-spin');
-      
       // Toggle theme
       html.classList.toggle('dark');
       localStorage.setItem('theme', newTheme);
-      
-      // Remove animation class after animation completes
-      setTimeout(() => {
-        logoImage.classList.remove('animate-theme-spin');
-      }, 600);
     });
   }
   

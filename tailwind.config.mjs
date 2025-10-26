@@ -25,16 +25,6 @@ export default {
           foreground: 'hsl(var(--accent-foreground))',
         },
       },
-      keyframes: {
-        'theme-spin': {
-          '0%': { transform: 'rotate(0deg) scale(1)' },
-          '50%': { transform: 'rotate(180deg) scale(1.2)' },
-          '100%': { transform: 'rotate(360deg) scale(1)' },
-        },
-      },
-      animation: {
-        'theme-spin': 'theme-spin 0.6s ease-in-out',
-      },
     },
   },
   plugins: [
