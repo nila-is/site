@@ -21,7 +21,7 @@ const { quote, author, role, company, url, projectUrl, projectLabel, favicon } =
   aria-label={`Testimonial from ${author}, ${role} at ${company}`}
 >
   <blockquote cite={url}>
-    <p class="italic text-muted-foreground leading-relaxed text-sm">
+    <p class="italic leading-relaxed text-sm">
       &ldquo;{quote}&rdquo;
     </p>
   </blockquote>
@@ -48,7 +48,12 @@ const { quote, author, role, company, url, projectUrl, projectLabel, favicon } =
     {
       projectUrl && projectLabel && (
         <span class="block mt-1">
-          <ExternalLink href={projectUrl}>{projectLabel} →</ExternalLink>
+          <ExternalLink
+            href={projectUrl}
+            class="text-blue-600 hover:text-blue-700"
+          >
+            {projectLabel} →
+          </ExternalLink>
         </span>
       )
     }

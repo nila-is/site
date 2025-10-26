@@ -50,7 +50,7 @@ export default {
           "@apply leading-relaxed": {},
         },
         "blockquote": {
-          "@apply italic text-muted-foreground": {},
+          "@apply italic": {},
         },
         "a": {
           "@apply text-blue-600 no-underline hover:underline": {},
