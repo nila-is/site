@@ -32,7 +32,7 @@ export const engagements: Engagement[] = [
   {
     label: 'Implementation Projects',
     description:
-      'I partner directly with your team (typically a CTO plus 1-2 staff engineers) to ship AI that works with your existing system and architecture. I write the code and deploy it in your environment to production within 30 days.',
+      'I embed with a small tactical team (typically a CTO plus 1-2 staff engineers) to ship AI that works with your existing system and architecture. I write the code and deploy it in your environment to production within 30 days.',
     pricing: 'Starting at $50k',
     duration: 'Project-based',
     testimonials: implementationTestimonials,
@@ -41,7 +41,7 @@ export const engagements: Engagement[] = [
   {
     label: 'Advisory Engagements',
     description:
-      'Your team writes the code while I provide hands-on guidance throughout. I help with architecture decisions, evaluating results and data, and unblocking technical challenges as you ship AI features. When needed, I can connect you with trusted vendors in my network.',
+      'Your engineers write the code while I provide hands-on technical guidance. I work with a small tactical team throughout—helping with architecture decisions, evaluating results and data, and unblocking challenges as you ship AI features. When needed, I can connect you with trusted vendors in my network.',
     pricing: 'Starting at $50k',
     duration: 'Typically 3 months',
     testimonials: advisoryTestimonials,
