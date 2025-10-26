@@ -1,12 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const posts = await Astro.glob('./*.md');
+const posts = Object.values(await import.meta.glob('./*.md', { eager: true }));
 ---
 
 <Layout title="Blog">
   <div>
-    <h1 class="text-xl font-bold mb-8">Blog Posts</h1>
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-xl font-bold">Blog Posts</h1>
+      <a href="/rss.xml" class="text-xs text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+        RSS Feed
+      </a>
+    </div>
     <div class="space-y-8">
       {posts.map((post) => (
         <div>
