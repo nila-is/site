@@ -10,7 +10,7 @@ export const services: ServiceItem[] = [
     description: "Integrating AI capabilities into your platform."
   },
   {
-    label: "AI Fluency",
+    label: "Team Enablement",
     description: "Building up your team's capability to ship AI independently through hands-on training and establishing practical workflows."
   }
 ];
