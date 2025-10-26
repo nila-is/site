@@ -30,11 +30,7 @@ export const engagementModels: ServiceItem[] = [
   },
   {
     label: "Team Trainings",
-    description: "I run the AI Coding Accelerator, a hands-on 3-day cohort where your engineers learn practical AI coding workflows. Live coding sessions, guest speakers from Linear, OpenAI, and Cursor, and a hackathon on your own codebase. Teams leave with working systems they can deploy immediately.",
-    link: {
-      href: "https://maven.com/nila/ai-coding-accelerator",
-      label: "Learn more about the course"
-    }
+    description: "I run the <a href=\"https://maven.com/nila/ai-coding-accelerator\" target=\"_blank\" rel=\"noopener noreferrer\">AI Coding Accelerator</a>, a hands-on 3-day cohort where your engineers learn practical AI coding workflows. Live coding sessions, guest speakers from Linear, OpenAI, and Cursor, and a hackathon on your own codebase. Teams leave with working systems they can deploy immediately."
   }
 ];
 

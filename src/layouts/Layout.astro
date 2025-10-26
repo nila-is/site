@@ -167,5 +167,87 @@ const structuredData = {
         }
       }();
     </script>
+
+    <!-- Fillout Floating Contact Button -->
+    <div 
+      data-fillout-id="mZZ8cxD4tNus" 
+      data-fillout-embed-type="popup" 
+      data-fillout-dynamic-resize 
+      data-fillout-button-float="bottom-right" 
+      data-fillout-inherit-parameters 
+      data-fillout-popup-size="medium"
+      data-fillout-button-text="Get in touch"
+    ></div>
+    <script src="https://server.fillout.com/embed/v1/"></script>
+    
+    <script is:inline>
+      // Apply custom styles to Fillout button (except color)
+      (function() {
+        const styleButton = (button) => {
+          if (!button || button.dataset.styled) return;
+          
+          button.dataset.styled = 'true';
+          
+          // Apply inline styles to match your button design (no color changes)
+          button.style.setProperty('font-family', 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', 'important');
+          button.style.setProperty('font-weight', '500', 'important');
+          button.style.setProperty('font-size', '15px', 'important');
+          button.style.setProperty('padding', '10px 20px', 'important');
+          button.style.setProperty('border-radius', '0.5rem', 'important');
+          button.style.setProperty('box-shadow', '0 1px 2px 0 rgb(0 0 0 / 0.05)', 'important');
+          button.style.setProperty('transition', 'all 0.2s ease', 'important');
+          button.style.setProperty('border', 'none', 'important');
+          
+          // Add hover effects
+          button.addEventListener('mouseenter', () => {
+            button.style.setProperty('opacity', '0.9', 'important');
+            button.style.setProperty('box-shadow', '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', 'important');
+            button.style.setProperty('transform', 'translateY(-2px)', 'important');
+          });
+          
+          button.addEventListener('mouseleave', () => {
+            button.style.setProperty('opacity', '1', 'important');
+            button.style.setProperty('box-shadow', '0 1px 2px 0 rgb(0 0 0 / 0.05)', 'important');
+            button.style.setProperty('transform', 'translateY(0)', 'important');
+          });
+        };
+        
+        const checkAndStyleButton = () => {
+          const buttons = document.querySelectorAll('button');
+          const filloutButton = Array.from(buttons).find(b => 
+            b.textContent && (
+              b.textContent.includes('Get in touch') || 
+              b.textContent.includes('Open')
+            )
+          );
+          
+          if (filloutButton) {
+            styleButton(filloutButton);
+          } else {
+            setTimeout(checkAndStyleButton, 100);
+          }
+        };
+        
+        // Use MutationObserver to catch when button is added
+        const observer = new MutationObserver(() => {
+          const buttons = document.querySelectorAll('button:not([data-styled])');
+          buttons.forEach(button => {
+            if (button.textContent && (
+              button.textContent.includes('Get in touch') || 
+              button.textContent.includes('Open')
+            )) {
+              styleButton(button);
+            }
+          });
+        });
+        
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+        
+        setTimeout(checkAndStyleButton, 500);
+      })();
+    </script>
   </body>
 </html>

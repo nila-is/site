@@ -17,7 +17,7 @@ const { label, description, pricing, duration, link } = Astro.props;
 
 <div class="mb-6">
   <dt class="text-lg font-bold mb-2">{label}</dt>
-  <dd class="leading-relaxed">{description}</dd>
+  <dd class="leading-relaxed" set:html={description} />
   {(pricing || duration) && (
     <dd class="mt-2 text-sm space-y-1">
       {pricing && <div><strong>Pricing:</strong> {pricing}</div>}

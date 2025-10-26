@@ -63,7 +63,7 @@ export default {
           "@apply italic text-muted-foreground": {},
         },
         "a": {
-          "@apply text-primary no-underline hover:underline": {},
+          "@apply text-blue-600 no-underline hover:underline": {},
         }
       });
     },
