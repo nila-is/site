@@ -14,6 +14,8 @@ import { services, engagementModels } from '../data/services';
 ---
 
 <Layout title="Home">
+  <h1 class="text-2xl font-bold mb-6">AI engineering that ships to production</h1>
+
   <Prose>
     <p>
       I'm {SITE_CONFIG.author.name}, and Nila is my independent consulting practice. I partner with technical leaders to ship production AI systems.
@@ -25,7 +27,7 @@ import { services, engagementModels } from '../data/services';
     </p>
   </Prose>
 
-  <Section title="Services">
+  <Section id="services" title="Services">
     <ul class="space-y-4 list-none pl-0">
       {services.map((service) => (
         <LabeledListItem 
@@ -36,7 +38,7 @@ import { services, engagementModels } from '../data/services';
     </ul>
   </Section>
 
-  <Section title="Engagement Models">
+  <Section id="engagement-models" title="Engagement Models">
     <ul class="space-y-4 list-none pl-0">
       {engagementModels.map((model) => (
         <LabeledListItem 
@@ -47,7 +49,7 @@ import { services, engagementModels } from '../data/services';
     </ul>
   </Section>
 
-  <Section title="Background">
+  <Section id="background" title="Background">
     <Prose>
       <p>
         I've partnered with companies in industries including enterprise SaaS,
@@ -61,7 +63,7 @@ import { services, engagementModels } from '../data/services';
     </Prose>
   </Section>
 
-  <Section title="Testimonials">
+  <Section id="testimonials" title="Testimonials">
     <div class="space-y-6">
       {testimonials.map((testimonial) => (
         <Testimonial 
@@ -78,7 +80,7 @@ import { services, engagementModels } from '../data/services';
     </div>
   </Section>
 
-  <Section title="About">
+  <Section id="about" title="About">
     <div class="flex flex-col">
       <Image 
         src={headshot} 

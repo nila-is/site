@@ -1,13 +1,14 @@
 ---
 interface Props {
   title?: string;
+  id?: string;
 }
 
-const { title } = Astro.props;
+const { title, id } = Astro.props;
 ---
 
-<div>
-  {title && <h2 class="font-serif font-normal text-xl mb-5">{title}</h2>}
+<section id={id} aria-labelledby={title && id ? `${id}-heading` : undefined} aria-label={!title && id ? id : undefined}>
+  {title && <h2 id={id ? `${id}-heading` : undefined} class="font-serif font-normal text-xl mb-5">{title}</h2>}
   <slot />
-</div>
+</section>
 
