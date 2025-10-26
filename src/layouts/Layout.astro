@@ -52,7 +52,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full bg-background">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,10 +73,10 @@ const structuredData = {
 
       // Hide text until fonts load (max 500ms wait)
       document.documentElement.style.visibility = 'hidden';
-      
+
       Promise.race([
         document.fonts.ready,
-        new Promise(resolve => setTimeout(resolve, 500))
+        new Promise((resolve) => setTimeout(resolve, 500)),
       ]).then(() => {
         document.documentElement.style.visibility = 'visible';
       });
