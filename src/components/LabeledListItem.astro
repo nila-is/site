@@ -18,17 +18,29 @@ const { label, description, pricing, duration, link } = Astro.props;
 <div class="mb-6">
   <dt class="text-lg font-bold mb-2">{label}</dt>
   <dd class="leading-relaxed" set:html={description} />
-  {(pricing || duration) && (
-    <dd class="mt-2 text-sm space-y-1">
-      {pricing && <div><strong>Pricing:</strong> {pricing}</div>}
-      {duration && <div><strong>Duration:</strong> {duration}</div>}
-    </dd>
-  )}
-  {link && (
-    <dd class="mt-4">
-      <Button href={link.href} variant="secondary" size="small" external>
-        {link.label}
-      </Button>
-    </dd>
-  )}
+  {
+    (pricing || duration) && (
+      <dd class="mt-2 text-sm space-y-1">
+        {pricing && (
+          <div>
+            <strong>Pricing:</strong> {pricing}
+          </div>
+        )}
+        {duration && (
+          <div>
+            <strong>Duration:</strong> {duration}
+          </div>
+        )}
+      </dd>
+    )
+  }
+  {
+    link && (
+      <dd class="mt-4">
+        <Button href={link.href} variant="secondary" size="small" external>
+          {link.label}
+        </Button>
+      </dd>
+    )
+  }
 </div>

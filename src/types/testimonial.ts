@@ -8,4 +8,3 @@ export interface Testimonial {
   projectLabel?: string;
   favicon: string;
 }
-

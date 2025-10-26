@@ -8,19 +8,30 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
 }
 
-const { href, variant = 'primary', size = 'default', class: className = '', external = false, type = 'button' } = Astro.props;
+const {
+  href,
+  variant = 'primary',
+  size = 'default',
+  class: className = '',
+  external = false,
+  type = 'button',
+} = Astro.props;
 
-const baseStyles = "inline-flex items-center gap-1.5 rounded-lg transition-all duration-200 font-medium !no-underline";
+const baseStyles =
+  'inline-flex items-center gap-1.5 rounded-lg transition-all duration-200 font-medium !no-underline';
 
 const sizeStyles = {
-  default: "px-5 py-2.5 text-base shadow-sm hover:shadow-lg hover:-translate-y-0.5",
-  small: "px-3 py-1.5 text-sm"
+  default:
+    'px-5 py-2.5 text-base shadow-sm hover:shadow-lg hover:-translate-y-0.5',
+  small: 'px-3 py-1.5 text-sm',
 };
 
 const variantStyles = {
-  primary: "bg-primary text-primary-foreground hover:!text-primary-foreground hover:opacity-90",
-  secondary: "bg-muted text-foreground hover:text-foreground hover:bg-accent",
-  ghost: "bg-muted text-muted-foreground hover:text-muted-foreground hover:bg-accent"
+  primary:
+    'bg-primary text-primary-foreground hover:!text-primary-foreground hover:opacity-90',
+  secondary: 'bg-muted text-foreground hover:text-foreground hover:bg-accent',
+  ghost:
+    'bg-muted text-muted-foreground hover:text-muted-foreground hover:bg-accent',
 };
 
 const combinedClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
@@ -29,24 +40,28 @@ const slotContent = external ? await Astro.slots.render('default') : '';
 const plainTextLabel = slotContent.replace(/<[^>]*>/g, '').trim();
 ---
 
-{href ? (
-  external ? (
-    <a 
-      href={href} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      class={combinedClass}
-      aria-label={plainTextLabel ? `${plainTextLabel} (opens in new window)` : undefined}
-    >
-      <slot />
-    </a>
+{
+  href ? (
+    external ? (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={combinedClass}
+        aria-label={
+          plainTextLabel ? `${plainTextLabel} (opens in new window)` : undefined
+        }
+      >
+        <slot />
+      </a>
+    ) : (
+      <a href={href} class={combinedClass}>
+        <slot />
+      </a>
+    )
   ) : (
-    <a href={href} class={combinedClass}>
+    <button type={type} class={combinedClass}>
       <slot />
-    </a>
+    </button>
   )
-) : (
-  <button type={type} class={combinedClass}>
-    <slot />
-  </button>
-)}
+}
