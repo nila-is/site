@@ -1,85 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Testimonial from '../components/Testimonial.astro';
 import TestimonialList from '../components/TestimonialList.astro';
 import LabeledListItem from '../components/LabeledListItem.astro';
 import Section from '../components/Section.astro';
 import Prose from '../components/Prose.astro';
-import Button from '../components/Button.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import { Image } from 'astro:assets';
 import headshot from '../assets/headshot.jpg';
-import { SITE_CONFIG } from '../config/site';
-import { implementationTestimonials, advisoryTestimonials, trainingTestimonials } from '../data/testimonials';
-import { services, engagementModels } from '../data/services';
+import { siteConfig } from '../config/site';
+import { engagements } from '../data/services';
 ---
 
 <Layout title="Home">
-  <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Ship production AI in 30 days</h1>
+  <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+    Ship production AI in 30 days
+  </h1>
 
   <Prose>
     <p>
-      Most AI projects fail to reach production. I help CTOs and technical leaders ship AI systems that actually work—in 30 days, not 6 months. My goal is to establish AI capability within your team that scales beyond our engagement.
+      Most AI projects fail to reach production. I help CTOs and technical
+      leaders ship AI systems that actually work—in 30 days, not 6 months. My
+      goal is to establish AI capability within your team that scales beyond our
+      engagement.
     </p>
     <p>
-      Prior to consulting, I was an early engineer at two AI-driven companies that were acquired: <strong>Drift</strong> (conversational AI, acquired by Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired by S&P Global for $550M).
+      Prior to consulting, I was an early engineer at two AI-driven companies
+      that were acquired: <strong>Drift</strong> (conversational AI, acquired by
+      Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired
+      by S&P Global for $550M).
     </p>
     <p>I help with:</p>
-    <ul role="list">
-      <li><strong>Workflow Automation</strong> — Replacing slow or costly processes with AI</li>
-      <li><strong>Product Integration</strong> — Integrating AI capabilities into your platform</li>
-      <li><strong>Team Enablement</strong> — Building up your team's capability to ship AI independently</li>
+    <ul>
+      <li>
+        <strong>Workflow Automation</strong> — Replacing slow or costly processes
+        with AI
+      </li>
+      <li>
+        <strong>Product Integration</strong> — Integrating AI capabilities into your
+        platform
+      </li>
+      <li>
+        <strong>Team Enablement</strong> — Building up your team's capability to
+        ship AI independently
+      </li>
     </ul>
   </Prose>
 
   <Section id="how-i-work" title="What I Offer">
     <dl class="space-y-8" role="list">
-      <div>
-        <LabeledListItem 
-          label={engagementModels[0].label}
-          description={engagementModels[0].description}
-          pricing={engagementModels[0].pricing}
-          duration={engagementModels[0].duration}
-        />
-        <div class="mt-6">
-          <TestimonialList testimonials={implementationTestimonials} initialCount={2} id="implementation" />
-        </div>
-      </div>
-
-      <div>
-        <LabeledListItem 
-          label={engagementModels[1].label}
-          description={engagementModels[1].description}
-          pricing={engagementModels[1].pricing}
-          duration={engagementModels[1].duration}
-        />
-        <div class="mt-6">
-          <TestimonialList testimonials={advisoryTestimonials} initialCount={2} id="advisory" />
-        </div>
-      </div>
-
-      <div id="training">
-        <LabeledListItem 
-          label={engagementModels[2].label}
-          description={engagementModels[2].description}
-          pricing={engagementModels[2].pricing}
-          duration={engagementModels[2].duration}
-          link={engagementModels[2].link}
-        />
-        <div class="mt-6">
-          <TestimonialList testimonials={trainingTestimonials} initialCount={2} id="training" />
-        </div>
-      </div>
+      {
+        engagements.map((engagement) => (
+          <div>
+            <LabeledListItem
+              label={engagement.label}
+              description={engagement.description}
+              pricing={engagement.pricing}
+              duration={engagement.duration}
+              link={engagement.link}
+            />
+            <div class="mt-6">
+              <TestimonialList
+                testimonials={engagement.testimonials}
+                id={engagement.testimonialsId}
+              />
+            </div>
+          </div>
+        ))
+      }
     </dl>
   </Section>
 
-  
-
   <Section id="about" title="About">
     <div class="flex flex-col">
-      <Image 
-        src={headshot} 
-        alt="Professional headshot of Vignesh Mohankumar" 
+      <Image
+        src={headshot}
+        alt="Professional headshot of Vignesh Mohankumar"
         class="w-2/3 sm:w-1/2 md:w-1/3 mb-6 rounded-lg"
         width={400}
         height={400}
@@ -87,10 +82,17 @@ import { services, engagementModels } from '../data/services';
       />
       <Prose>
         <p>
-          I'm based in New York, NY. I grew up in New England and was born near Chennai, India. Nila means moon in my native language Tamil (my sister suggested the name).
+          I'm based in New York, NY. I grew up in New England and was born near
+          Chennai, India. Nila means moon in my native language Tamil (my sister
+          suggested the name).
         </p>
         <p>
-          Find me on <ExternalLink href={SITE_CONFIG.social.linkedin}>LinkedIn</ExternalLink>, <ExternalLink href={SITE_CONFIG.social.twitter}>X</ExternalLink> and my <ExternalLink href={SITE_CONFIG.social.personalBlog}>personal blog</ExternalLink>.
+          Find me on <ExternalLink href={siteConfig.social.linkedin}
+            >LinkedIn</ExternalLink
+          >, <ExternalLink href={siteConfig.social.twitter}>X</ExternalLink> and
+          my <ExternalLink href={siteConfig.social.personalBlog}
+            >personal blog</ExternalLink
+          >.
         </p>
       </Prose>
     </div>

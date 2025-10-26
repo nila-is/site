@@ -4,27 +4,32 @@ import type { Testimonial as TestimonialType } from '../types/testimonial';
 
 interface Props {
   testimonials: TestimonialType[];
-  initialCount?: number;
   id: string;
 }
 
 const { testimonials, id } = Astro.props;
 ---
 
-<div class="testimonial-list space-y-6" data-testimonial-list={id} role="list" aria-label={`${id} testimonials`}>
-  {testimonials.map((testimonial, index) => (
-    <div class="testimonial-item" data-index={index} role="listitem">
-      <Testimonial 
-        quote={testimonial.quote}
-        author={testimonial.author}
-        role={testimonial.role}
-        company={testimonial.company}
-        url={testimonial.url}
-        projectUrl={testimonial.projectUrl}
-        projectLabel={testimonial.projectLabel}
-        favicon={testimonial.favicon}
-      />
-    </div>
-  ))}
+<div
+  class="testimonial-list space-y-6"
+  data-testimonial-list={id}
+  role="list"
+  aria-label={`${id} testimonials`}
+>
+  {
+    testimonials.map((testimonial, index) => (
+      <div class="testimonial-item" data-index={index} role="listitem">
+        <Testimonial
+          quote={testimonial.quote}
+          author={testimonial.author}
+          role={testimonial.role}
+          company={testimonial.company}
+          url={testimonial.url}
+          projectUrl={testimonial.projectUrl}
+          projectLabel={testimonial.projectLabel}
+          favicon={testimonial.favicon}
+        />
+      </div>
+    ))
+  }
 </div>
-
