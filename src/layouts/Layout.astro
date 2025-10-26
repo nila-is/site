@@ -78,9 +78,16 @@ const structuredData = {
     
     <link rel="preconnect" href="https://s3-us-west-2.amazonaws.com" crossorigin />
     
+    <!-- Preconnect to Google Fonts for early connection setup -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    
+    <!-- Load fonts with all variants (regular, italic, bold, bold-italic) -->
+    <!-- display=optional prevents FOUT by not swapping if fonts load slowly -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=optional" 
+      rel="stylesheet" 
+    />
     
     <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:url" content={canonicalURL} />
@@ -104,7 +111,7 @@ const structuredData = {
     
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
-  <body class="min-h-full flex flex-col text-[15px] bg-background text-foreground antialiased transition-colors duration-300">
+  <body class="min-h-full flex flex-col text-[15px] bg-background text-foreground antialiased">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary-600 focus:text-white focus:rounded-br">
       Skip to main content
     </a>
@@ -119,7 +126,7 @@ const structuredData = {
       </div>
     </main>
     
-    <footer role="contentinfo" class="text-center text-muted-foreground text-sm py-12 transition-colors">
+    <footer role="contentinfo" class="text-center text-muted-foreground text-sm py-12">
       © 2025 {SITE_CONFIG.company}
     </footer>
 
