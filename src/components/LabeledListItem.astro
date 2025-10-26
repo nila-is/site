@@ -7,8 +7,9 @@ interface Props {
 const { label, description } = Astro.props;
 ---
 
-<li class="text-gray-700 p-4 border-l-2 border-gray-200 hover:border-blue-500 hover:bg-gray-50 transition-all duration-200">
-  <div class="font-medium mb-1">{label}</div>
-  <div class="leading-relaxed" set:html={description}></div>
-</li>
+<div class="text-gray-700 p-4 border-l-2 border-gray-200 hover:border-blue-500 hover:bg-gray-50 transition-all duration-200">
+  <dt class="font-medium mb-1">{label}</dt>
+  <dd class="leading-relaxed" set:html={description}></dd>
+  
+</div>
 

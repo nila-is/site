@@ -28,25 +28,25 @@ import { services, engagementModels } from '../data/services';
   </Prose>
 
   <Section id="services" title="Services">
-    <ul class="space-y-4 list-none pl-0">
+    <dl class="space-y-4">
       {services.map((service) => (
         <LabeledListItem 
           label={service.label}
           description={service.description}
         />
       ))}
-    </ul>
+    </dl>
   </Section>
 
   <Section id="engagement-models" title="Engagement Models">
-    <ul class="space-y-4 list-none pl-0">
+    <dl class="space-y-4">
       {engagementModels.map((model) => (
         <LabeledListItem 
           label={model.label}
           description={model.description}
         />
       ))}
-    </ul>
+    </dl>
   </Section>
 
   <Section id="background" title="Background">
