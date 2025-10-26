@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Nila',
   company: 'Nila Labs LLC',
   description:
-    'Independent consultant helping companies ship production AI systems',
+    'Independent AI consultant specializing in shipping production AI systems in 30 days, not 6 months.',
   url: 'https://nila.dev',
 
   author: {

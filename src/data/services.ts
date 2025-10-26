@@ -32,7 +32,7 @@ export const engagements: Engagement[] = [
   {
     label: 'Implementation Projects',
     description:
-      'I embed with a small tactical team (typically a CTO plus 1-2 staff engineers) to ship AI that works with your existing system and architecture. I write the code and deploy it in your environment to production within 30 days.',
+      "I embed with your team (typically a CTO plus 1-2 engineers) to ship production-ready AI that integrates seamlessly with your existing architecture. I write code, handle deployment, and ensure it's running in production within 30 days. You get working software and a team that understands how to maintain and extend it.",
     pricing: 'Starting at $50k',
     duration: 'Project-based',
     testimonials: implementationTestimonials,
