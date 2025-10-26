@@ -24,7 +24,7 @@ const { frontmatter } = Astro.props;
   <article role="article" aria-labelledby="article-title">
     <header>
       <h1 id="article-title" class="text-xl font-bold mb-2">{frontmatter.title}</h1>
-      <p class="text-xs text-content-secondary mb-8">
+      <p class="text-xs text-muted-foreground mb-8">
         <time datetime={frontmatter.pubDate}>
           <FormattedDate date={frontmatter.pubDate} />
         </time>
