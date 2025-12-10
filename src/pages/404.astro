@@ -1,18 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Prose from '../components/Prose.astro';
 ---
 
 <Layout title="Page Not Found">
-  <div
-    class="flex flex-col items-center justify-center min-h-[50vh] text-center"
-  >
+  <div class="flex flex-col items-center justify-center min-h-[50vh] text-center">
     <h1 class="text-4xl font-bold mb-4">404</h1>
-    <Prose>
-      <p class="text-lg mb-6">The page you're looking for doesn't exist.</p>
-      <p>
-        <a href="/" class="font-semibold"> Return to homepage </a>
-      </p>
-    </Prose>
+    <p class="text-lg mb-6">The page you're looking for doesn't exist.</p>
+    <a href="/" class="font-semibold hover:underline">Return to homepage</a>
   </div>
 </Layout>
