@@ -59,6 +59,15 @@ export const advisoryTestimonials: Testimonial[] = [
     url: 'https://perdiem.xyz',
     favicon: '/favicons/perdiem-favicon.png',
   },
+  {
+    quote:
+      'Vignesh quickly understood our market, platform, and team, helping us clarify our Gen AI direction and prioritize the right next steps. His support meaningfully accelerated our timeline.',
+    author: 'Viki Zabala',
+    role: 'CMO',
+    company: 'First Insight',
+    url: 'https://firstinsight.com',
+    favicon: '/favicons/firstinsight-favicon.png',
+  },
 ];
 
 // Team enablement / training testimonials
