@@ -1,99 +1,136 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TestimonialList from '../components/TestimonialList.astro';
-import LabeledListItem from '../components/LabeledListItem.astro';
-import Section from '../components/Section.astro';
-import Prose from '../components/Prose.astro';
-import ExternalLink from '../components/ExternalLink.astro';
-import { Image } from 'astro:assets';
+import Testimonial from '../components/Testimonial.astro';
 import headshot from '../assets/headshot.jpg';
-import { siteConfig } from '../config/site';
-import { engagements } from '../data/services';
 ---
 
 <Layout title="Home">
-  <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-    Ship production AI in 30 days
-  </h1>
+  <div>
+    <p class="leading-relaxed mb-2">
+      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I
+      partner with technical leaders to ship production AI systems. <a
+        href="https://nila.fillout.com/t/mZZ8cxD4tNus"
+        target="_blank"
+        rel="noopener noreferrer">Have an idea? Reach out.</a
+      >
+    </p>
+  </div>
 
-  <Prose>
-    <p>
-      Most AI projects never make it to production. I help CTOs and technical
-      leaders ship AI systems that actually work in your environment. I focus on
-      practical implementations that your team can maintain and extend.
+  <div>
+    <h2 class="font-bold text-lg mb-3">Background</h2>
+    <p class="leading-relaxed mb-2">
+      I've partnered with companies in industries including enterprise SaaS,
+      consumer social, healthcare, fintech, and crypto.
     </p>
-    <p>
+    <p class="leading-relaxed mb-2">
       Prior to consulting, I was an early engineer at two AI-driven companies
-      that were acquired: <strong>Drift</strong> (conversational AI, acquired by
-      Vista for $1.2B) and <strong>Kensho</strong> (AI for financial services, acquired
-      by S&P Global for $550M).
+      that were acquired:
     </p>
-    <p>I help with:</p>
     <ul>
       <li>
-        <strong>Product Integration</strong> — Add AI features your customers will
-        actually use
+        <strong>Drift:</strong> Conversational AI for marketing and sales (acquired
+        by Vista Equity Partners for $1.2B)
       </li>
       <li>
-        <strong>Team Enablement</strong> — Build up your team's capability to ship
-        AI independently
-      </li>
-      <li>
-        <strong>Workflow Automation</strong> — Replace manual processes that take
-        hours with AI systems that deliver results in minutes
+        <strong>Kensho:</strong> AI for financial services (acquired by S&P Global
+        for $550M)
       </li>
     </ul>
-  </Prose>
+  </div>
 
-  <Section id="how-i-work" title="What I Offer">
-    <dl class="space-y-8" role="list">
-      {
-        engagements.map((engagement) => (
-          <div>
-            <LabeledListItem
-              label={engagement.label}
-              description={engagement.description}
-              pricing={engagement.pricing}
-              duration={engagement.duration}
-              link={engagement.link}
-            />
-            <div class="mt-6">
-              <TestimonialList
-                testimonials={engagement.testimonials}
-                id={engagement.testimonialsId}
-              />
-            </div>
-          </div>
-        ))
-      }
-    </dl>
-  </Section>
-
-  <Section id="about" title="About">
-    <div class="flex flex-col">
-      <Image
-        src={headshot}
-        alt="Professional headshot of Vignesh Mohankumar"
-        class="w-2/3 sm:w-1/2 md:w-1/3 mb-6 rounded-lg"
-        width={400}
-        height={400}
-        loading="eager"
+  <div>
+    <h2 class="font-bold text-lg mb-4">Testimonials</h2>
+    <div class="space-y-8">
+      <Testimonial
+        quote="Vignesh helped our staff engineers build a strong understanding of applied AI and showed them how to use AI tools to speed up development in meaningful ways. He played a key role in shaping our AI roadmap, helping the team get clear on both what to build and how to build it. He also designed the systems that let us run all our models on internal infrastructure, ensuring customer data stays private and secure. His guidance helped us move faster in the near term while laying the groundwork for long-term growth in our AI capabilities."
+        author="Paul Klicnik"
+        role="CTO"
+        company="Relay"
+        url="https://relayfi.com"
+        favicon="/favicons/relay-favicon.ico"
       />
-      <Prose>
-        <p>
+
+      <Testimonial
+        quote="Vignesh helped us get our AI system to production within a month with an architecture designed to support future product goals we had in mind. He set us up to improve our systems over time by building an evaluation system and upleveling our team on best practices in applied AI engineering."
+        author="Patrick Vatterott"
+        role="CTO"
+        company="Vitally"
+        url="https://vitally.io"
+        favicon="/favicons/vitally-favicon.png"
+      />
+
+      <Testimonial
+        quote="Vignesh helped us build our LLM infrastructure from scratch, cutting through buzzwords to implement solutions that deliver measurable improvements. His deep understanding of how LLMs work in production and ability to write high-quality code that actually works, not just demos, was invaluable. He helped us across the stack—from data pipelines to prompts to testing."
+        author="Kiran Cherukuri"
+        role="Founder"
+        company="Perdiem"
+        url="https://perdiem.xyz"
+        favicon="/favicons/perdiem-favicon.png"
+      />
+
+      <Testimonial
+        quote="Our onboarding flow needed to capture user preferences in a natural and effective way. Vignesh experimented with generative AI approaches and developed a system that turned chatbot conversations into structured insights. His work was essential to delivering the experience we envisioned."
+        author="Charles DePue"
+        role="CEO"
+        company="Sitch"
+        url="https://joinsitch.com"
+        favicon="/favicons/sitch-favicon.png"
+      />
+
+      <Testimonial
+        quote="Our team needed to build a frontend interface for a conversational AI application for a large prospective customer on a tight timeline. Vignesh stepped in and integrated our chat SDK and NLX platform into a solution that could easily be productized. The solution worked to specification and was a key part of how we showcased our capabilities to the client. His ability to deliver under pressure made all the difference."
+        author="Andrei Papancea"
+        role="CEO"
+        company="NLX"
+        url="https://nlx.ai"
+        favicon="/favicons/nlx-favicon.ico"
+      />
+
+      <Testimonial
+        quote="Vignesh quickly understood our market, platform, and team, helping us clarify our Gen AI direction and prioritize the right next steps. His support meaningfully accelerated our timeline."
+        author="Viki Zabala"
+        role="CMO"
+        company="First Insight"
+        url="https://firstinsight.com"
+        favicon="/favicons/firstinsight-favicon.png"
+      />
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-lg mb-3">About</h2>
+    <div class="flex flex-col">
+      <img
+        src={headshot.src}
+        alt="Vignesh Mohankumar"
+        class="w-1/3 mb-4"
+        loading="lazy"
+      />
+      <div>
+        <p class="leading-relaxed mb-2">
           I'm based in New York, NY. I grew up in New England and was born near
           Chennai, India. Nila means moon in my native language Tamil (my sister
           suggested the name).
         </p>
-        <p>
-          Find me on <ExternalLink href={siteConfig.social.linkedin}
-            >LinkedIn</ExternalLink
-          >, <ExternalLink href={siteConfig.social.twitter}>X</ExternalLink> and
-          my <ExternalLink href={siteConfig.social.personalBlog}
-            >personal blog</ExternalLink
+        <p class="leading-relaxed">
+          Find me on
+          <a
+            href="https://linkedin.com/in/vigxyz"
+            target="_blank"
+            rel="noopener noreferrer">LinkedIn</a
+          >,
+          <a
+            href="https://x.com/vig_xyz"
+            target="_blank"
+            rel="noopener noreferrer">X</a
+          >
+          and my <a
+            href="https://vig.xyz"
+            target="_blank"
+            rel="noopener noreferrer">personal blog</a
           >.
         </p>
-      </Prose>
+      </div>
     </div>
-  </Section>
+  </div>
 </Layout>

@@ -1,8 +1,0 @@
----
-// Component that handles paragraph spacing and styling automatically
-const { class: className } = Astro.props;
----
-
-<div class:list={['space-y-5 [&>p]:leading-relaxed', className]}>
-  <slot />
-</div>

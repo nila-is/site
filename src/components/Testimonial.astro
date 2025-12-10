@@ -1,61 +1,30 @@
 ---
-import ExternalLink from './ExternalLink.astro';
-
 interface Props {
   quote: string;
   author: string;
   role: string;
   company: string;
   url: string;
-  projectUrl?: string;
-  projectLabel?: string;
   favicon?: string;
 }
 
-const { quote, author, role, company, url, projectUrl, projectLabel, favicon } =
-  Astro.props;
+const { quote, author, role, company, url, favicon } = Astro.props;
 ---
 
-<figure
-  class="space-y-2 p-5 border border-border rounded-lg hover:border-muted hover:shadow-sm transition-all duration-200 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
-  aria-label={`Testimonial from ${author}, ${role} at ${company}`}
->
-  <blockquote cite={url}>
-    <p class="italic leading-relaxed text-sm">
-      &ldquo;{quote}&rdquo;
-    </p>
+<figure>
+  <blockquote>
+    <p class="italic mb-2">&ldquo;{quote}&rdquo;</p>
   </blockquote>
-  <figcaption class="text-xs text-muted-foreground">
-    <div>
-      <span class="font-medium">{author}</span>, {role} at <ExternalLink
-        href={url}
-        >{company}{
-          favicon && (
-            <span class="inline-flex items-center justify-center w-4 h-4 rounded bg-white dark:bg-gray-100 p-0.5 align-text-bottom ml-1">
-              <img
-                src={favicon}
-                alt=""
-                role="presentation"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-contain"
-              />
-            </span>
-          )
-        }</ExternalLink
-      >
-    </div>
-    {
-      projectUrl && projectLabel && (
-        <span class="block mt-1">
-          <ExternalLink
-            href={projectUrl}
-            class="!text-blue-600 hover:!text-blue-700 dark:!text-blue-400 dark:hover:!text-blue-300"
-          >
-            {projectLabel} →
-          </ExternalLink>
-        </span>
+  <figcaption class="font-bold">
+    — {author}, {role} at <a href={url} class="text-blue-500 hover:text-blue-700" target="_blank" rel="noopener noreferrer">{company}{
+      favicon && (
+        <img
+          src={favicon}
+          alt=""
+          class="inline-block w-4 h-4 ml-1 align-text-bottom"
+          loading="lazy"
+        />
       )
-    }
+    }</a>
   </figcaption>
 </figure>

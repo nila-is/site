@@ -2,38 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth color transitions for theme switching */
-:root {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-/* Apply color transitions only to theme-dependent properties */
-.bg-background,
-.text-foreground,
-.text-muted-foreground,
-.border-border {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-/* Optimize font rendering */
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
   }
 }

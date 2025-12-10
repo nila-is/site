@@ -1,317 +1,84 @@
 ---
 import Header from '../components/Header.astro';
 import '../styles/components.css';
-import { siteConfig } from '../config/site';
 
 interface Props {
   title: string;
   description?: string;
   article?: boolean;
-  image?: string;
-  publishedTime?: string;
-  modifiedTime?: string;
 }
 
-const {
-  title,
-  description = siteConfig.description,
-  article = false,
-  image = '/og-image.svg',
-  publishedTime,
-  modifiedTime,
+const { 
+  title, 
+  description = "Independent consultant helping companies ship production AI systems", 
+  article = false 
 } = Astro.props;
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(image, Astro.site);
-
-const authorData = {
-  '@type': 'Person',
-  name: siteConfig.author.name,
-  url: siteConfig.author.website,
-};
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': article ? 'Article' : 'WebSite',
-  name: title,
-  description: description,
-  url: canonicalURL.toString(),
-  ...(!article && { author: authorData }),
-  ...(article && publishedTime && { datePublished: publishedTime }),
-  ...(article && modifiedTime && { dateModified: modifiedTime }),
-  ...(article && { author: authorData }),
-  publisher: {
-    '@type': 'Organization',
-    name: siteConfig.name,
-    logo: {
-      '@type': 'ImageObject',
-      url: new URL(siteConfig.logo, Astro.site).toString(),
-    },
-  },
-};
 ---
 
-<!doctype html>
-<html lang="en" class="h-full bg-background">
+<!DOCTYPE html>
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#2563eb" />
-
-    <script is:inline>
-      // Initialize theme before page renders to prevent flash
-      (function () {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)'
-        ).matches;
-        const theme = stored || (prefersDark ? 'dark' : 'light');
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      })();
-
-      // Hide text until fonts load (max 500ms wait)
-      document.documentElement.style.visibility = 'hidden';
-
-      Promise.race([
-        document.fonts.ready,
-        new Promise((resolve) => setTimeout(resolve, 500)),
-      ]).then(() => {
-        document.documentElement.style.visibility = 'visible';
-      });
-    </script>
-
-    <title>{title} | {siteConfig.name}</title>
-
-    <link rel="canonical" href={canonicalURL} />
-
+    
+    <title>{title} | Nila</title>
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-
-    <link
-      rel="preconnect"
-      href="https://s3-us-west-2.amazonaws.com"
-      crossorigin
-    />
-
-    <!-- Preconnect to Google Fonts for early connection setup -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Load fonts with all variants (regular, italic, bold, bold-italic) -->
-    <!-- display=optional prevents FOUT by not swapping if fonts load slowly -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=optional"
-      rel="stylesheet"
-    />
-
+    
+    <!-- Open Graph / Social -->
     <meta property="og:type" content={article ? 'article' : 'website'} />
-    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content={siteConfig.name} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content={`${title} - ${siteConfig.name}`} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    {
-      article && publishedTime && (
-        <meta property="article:published_time" content={publishedTime} />
-      )
-    }
-    {
-      article && modifiedTime && (
-        <meta property="article:modified_time" content={modifiedTime} />
-      )
-    }
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Nila" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={`${title} - ${siteConfig.name}`} />
-    <meta name="twitter:creator" content={siteConfig.author.twitter.handle} />
-
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(structuredData)}
-    />
   </head>
-  <body
-    class="min-h-full flex flex-col text-[15px] bg-background text-foreground antialiased"
-  >
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary focus:text-white focus:rounded-br"
-    >
-      Skip to main content
-    </a>
-
+  <body class="min-h-full flex flex-col font-['Arial',sans-serif] text-sm">
     <Header />
-
-    <main id="main-content" class="flex-grow flex justify-center py-12 px-6">
-      <div class="text-left w-full max-w-2xl">
-        <div class="space-y-12">
+    <main class="flex-grow flex justify-center pb-16">
+      <div class="text-left w-full max-w-3xl px-4 sm:px-8">
+        <div class="space-y-8">
           <slot />
         </div>
       </div>
     </main>
-
-    <footer
-      role="contentinfo"
-      class="text-center text-muted-foreground text-sm py-12"
-    >
-      © 2025 {siteConfig.company}
+    <footer class="text-center text-gray-500 text-xs pb-8">
+      © 2025 Nila Labs LLC
     </footer>
 
-    <script defer>
-      /* eslint-disable */
-      !(function () {
-        try {
-          var reb2b = (window.reb2b = window.reb2b || []);
-          if (reb2b.invoked) return;
-          reb2b.invoked = true;
-          reb2b.methods = ['identify', 'collect'];
-          reb2b.factory = function (method) {
-            return function () {
-              var args = Array.prototype.slice.call(arguments);
-              args.unshift(method);
-              reb2b.push(args);
-              return reb2b;
-            };
+    <script>
+      !function () {
+        var reb2b = window.reb2b = window.reb2b || [];
+        if (reb2b.invoked) return;
+        reb2b.invoked = true;
+        reb2b.methods = ["identify", "collect"];
+        reb2b.factory = function (method) {
+          return function () {
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift(method);
+            reb2b.push(args);
+            return reb2b;
           };
-          for (var i = 0; i < reb2b.methods.length; i++) {
-            var key = reb2b.methods[i];
-            reb2b[key] = reb2b.factory(key);
-          }
-          reb2b.load = function (key) {
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.async = true;
-            script.src =
-              'https://s3-us-west-2.amazonaws.com/b2bjsstore/b/' +
-              key +
-              '/0NW1GH7MZ8O4.js.gz';
-            script.onerror = function () {
-              console.warn('Analytics script failed to load');
-            };
-            var first = document.getElementsByTagName('script')[0];
-            first.parentNode.insertBefore(script, first);
-          };
-          reb2b.SNIPPET_VERSION = '1.0.1';
-          reb2b.load('0NW1GH7MZ8O4');
-        } catch (e) {
-          console.error('Analytics initialization error:', e);
+        };
+        for (var i = 0; i < reb2b.methods.length; i++) {
+          var key = reb2b.methods[i];
+          reb2b[key] = reb2b.factory(key);
         }
-      })();
-      /* eslint-enable */
-    </script>
-
-    <!-- Fillout Floating Contact Button -->
-    <div
-      data-fillout-id="mZZ8cxD4tNus"
-      data-fillout-embed-type="popup"
-      data-fillout-dynamic-resize
-      data-fillout-button-float="bottom-right"
-      data-fillout-inherit-parameters
-      data-fillout-popup-size="medium"
-      data-fillout-button-text="Get in touch"
-    >
-    </div>
-    <script src="https://server.fillout.com/embed/v1/"></script>
-
-    <script is:inline>
-      // Apply custom styles to Fillout button (except color)
-      (function () {
-        const styleButton = (button) => {
-          if (!button || button.dataset.styled) return;
-
-          button.dataset.styled = 'true';
-
-          // Apply inline styles to match your button design (no color changes)
-          button.style.setProperty(
-            'font-family',
-            'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-            'important'
-          );
-          button.style.setProperty('font-weight', '500', 'important');
-          button.style.setProperty('font-size', '15px', 'important');
-          button.style.setProperty('padding', '10px 20px', 'important');
-          button.style.setProperty('border-radius', '0.5rem', 'important');
-          button.style.setProperty(
-            'box-shadow',
-            '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-            'important'
-          );
-          button.style.setProperty('transition', 'all 0.2s ease', 'important');
-          button.style.setProperty('border', 'none', 'important');
-
-          // Add hover effects
-          button.addEventListener('mouseenter', () => {
-            button.style.setProperty('opacity', '0.9', 'important');
-            button.style.setProperty(
-              'box-shadow',
-              '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-              'important'
-            );
-            button.style.setProperty(
-              'transform',
-              'translateY(-2px)',
-              'important'
-            );
-          });
-
-          button.addEventListener('mouseleave', () => {
-            button.style.setProperty('opacity', '1', 'important');
-            button.style.setProperty(
-              'box-shadow',
-              '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-              'important'
-            );
-            button.style.setProperty('transform', 'translateY(0)', 'important');
-          });
+        reb2b.load = function (key) {
+          var script = document.createElement("script");
+          script.type = "text/javascript";
+          script.async = true;
+          script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/0NW1GH7MZ8O4.js.gz";
+          var first = document.getElementsByTagName("script")[0];
+          first.parentNode.insertBefore(script, first);
         };
-
-        const checkAndStyleButton = () => {
-          const buttons = document.querySelectorAll('button');
-          const filloutButton = Array.from(buttons).find(
-            (b) =>
-              b.textContent &&
-              (b.textContent.includes('Get in touch') ||
-                b.textContent.includes('Open'))
-          );
-
-          if (filloutButton) {
-            styleButton(filloutButton);
-          } else {
-            setTimeout(checkAndStyleButton, 100);
-          }
-        };
-
-        // Use MutationObserver to catch when button is added
-        const observer = new MutationObserver(() => {
-          const buttons = document.querySelectorAll(
-            'button:not([data-styled])'
-          );
-          buttons.forEach((button) => {
-            if (
-              button.textContent &&
-              (button.textContent.includes('Get in touch') ||
-                button.textContent.includes('Open'))
-            ) {
-              styleButton(button);
-            }
-          });
-        });
-
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-        });
-
-        setTimeout(checkAndStyleButton, 500);
-      })();
+        reb2b.SNIPPET_VERSION = "1.0.1";
+        reb2b.load("0NW1GH7MZ8O4");
+      }();
     </script>
   </body>
 </html>

@@ -2,59 +2,11 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 ---
-
-<header class="bg-background border-b border-border" role="banner">
-  <nav class="max-w-2xl mx-auto px-6 py-8" aria-label="Main navigation">
-    <div class="flex items-center justify-center text-foreground">
-      <button
-        id="theme-toggle"
-        type="button"
-        class="cursor-pointer rounded-full p-1 -ml-1 transition-all duration-300 hover:scale-110 hover:[filter:drop-shadow(0_0_24px_rgba(60,100,180,0.4))_drop-shadow(0_0_12px_rgba(80,120,200,0.3))_drop-shadow(0_0_4px_rgba(100,140,220,0.5))] dark:hover:[filter:drop-shadow(0_0_24px_rgba(200,220,240,0.6))_drop-shadow(0_0_12px_rgba(220,230,245,0.4))_drop-shadow(0_0_4px_rgba(240,245,250,0.8))] active:scale-100"
-        aria-label="Toggle dark mode"
-        style="will-change: transform, filter;"
-      >
-        <Image
-          id="logo-image"
-          src={logo}
-          alt=""
-          role="presentation"
-          class="w-8 h-8 mr-3 dark:invert transition-all duration-300"
-          style="will-change: transform;"
-        />
-      </button>
-      <span class="font-sans font-bold text-2xl m-0 uppercase tracking-wider"
-        >Nila</span
-      >
-      <span
-        class="ml-3 text-sm normal-case tracking-normal font-normal text-muted-foreground"
-        >by Vignesh Mohankumar</span
-      >
-    </div>
-  </nav>
+<header class="bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-4">
+    <a href="/" class="flex items-center text-inherit hover:text-inherit">
+      <Image src={logo} alt="Nila Logo" class="w-6 h-6 mr-2" />
+      <h1 class="font-bold font-mono uppercase text-xl m-0">Nila</h1>
+    </a>
+  </div>
 </header>
-
-<script>
-  // Theme toggle functionality
-  function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const logoImage = document.getElementById('logo-image');
-
-    if (!themeToggle || !logoImage) return;
-
-    themeToggle.addEventListener('click', () => {
-      const html = document.documentElement;
-      const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-      // Toggle theme
-      html.classList.toggle('dark');
-      localStorage.setItem('theme', newTheme);
-    });
-  }
-
-  // Initialize on page load
-  initThemeToggle();
-
-  // Re-initialize after navigation (for SPA-like behavior)
-  document.addEventListener('astro:after-swap', initThemeToggle);
-</script>
