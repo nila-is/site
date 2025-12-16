@@ -20,10 +20,10 @@ When adding a testimonial, follow these steps:
    curl -sL https://{company-url} | grep -i "rel=\"icon\""
 
    # Download the favicon (try PNG first, then ICO)
-   curl -sL {favicon-url} -o public/favicons/{company}-favicon.{ext}
+   curl -sL {favicon-url} -o public/testimonial-logos/{company}-favicon.{ext}
 
    # Verify it's a valid image
-   file public/favicons/{company}-favicon.{ext}
+   file public/testimonial-logos/{company}-favicon.{ext}
    ```
 
 3. **Add to Testimonials**
@@ -38,7 +38,7 @@ When adding a testimonial, follow these steps:
 4. **Commit & Deploy**
    ```bash
    cd /Users/vigneshmohankumar/Projects/nila-homepage
-   git add src/pages/index.astro public/favicons/*-favicon.*
+   git add src/pages/index.astro public/testimonial-logos/*-favicon.*
    git commit -m "Add {Company} testimonial"
    git push
    ```
@@ -52,7 +52,7 @@ When adding a testimonial, follow these steps:
   role="Title"
   company="Company Name"
   url="https://company.com"
-  favicon="/favicons/company-favicon.png"
+  favicon="/testimonial-logos/company-favicon.png"
 />
 ```
 

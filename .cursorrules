@@ -15,7 +15,7 @@ When the user says "add testimonial" or provides testimonial content, follow thi
 2. **Download Favicon:**
    - Visit the company website
    - Find and download the favicon (check `<link rel="icon">` or `<link rel="shortcut icon">`)
-   - Save to `public/favicons/{company-name}-favicon.{ext}`
+   - Save to `public/testimonial-logos/{company-name}-favicon.{ext}`
    - Prefer PNG format when available
 
 3. **Add Testimonial:**
@@ -26,7 +26,7 @@ When the user says "add testimonial" or provides testimonial content, follow thi
      - End with strategic/timeline testimonials
 
 4. **Commit and Push:**
-   - Stage changes: `git add src/pages/index.astro public/favicons/*-favicon.*`
+   - Stage changes: `git add src/pages/index.astro public/testimonial-logos/*-favicon.*`
    - Commit: `git commit -m "Add {Company} testimonial"`
    - Push: `git push`
 
