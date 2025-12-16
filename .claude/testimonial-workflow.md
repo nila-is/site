@@ -3,6 +3,7 @@
 ## Command: `add testimonial`
 
 ### Process
+
 When adding a testimonial, follow these steps:
 
 1. **Gather Information**
@@ -13,13 +14,14 @@ When adding a testimonial, follow these steps:
    - Company website URL
 
 2. **Download Company Favicon**
+
    ```bash
    # First, check the website's HTML for favicon
    curl -sL https://{company-url} | grep -i "rel=\"icon\""
-   
+
    # Download the favicon (try PNG first, then ICO)
    curl -sL {favicon-url} -o public/favicons/{company}-favicon.{ext}
-   
+
    # Verify it's a valid image
    file public/favicons/{company}-favicon.{ext}
    ```
@@ -42,6 +44,7 @@ When adding a testimonial, follow these steps:
    ```
 
 ## Testimonial Template
+
 ```astro
 <Testimonial
   quote="..."
@@ -54,10 +57,11 @@ When adding a testimonial, follow these steps:
 ```
 
 ## Ordering Criteria
+
 Rank testimonials by:
+
 1. **Scope** - How many areas of impact (roadmap, team, infrastructure, etc.)
 2. **Depth** - Technical specificity and detail
 3. **Results** - Measurable outcomes mentioned
 4. **Role** - CTOs/Founders > VPs > Others
 5. **Length** - More substantial testimonials first
-
