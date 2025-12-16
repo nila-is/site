@@ -2,13 +2,13 @@
 interface Props {
   quote: string;
   author: string;
-  role: string;
+  title: string;
   company: string;
   url: string;
   favicon?: string;
 }
 
-const { quote, author, role, company, url, favicon } = Astro.props;
+const { quote, author, title, company, url, favicon } = Astro.props;
 ---
 
 <figure>
@@ -16,7 +16,7 @@ const { quote, author, role, company, url, favicon } = Astro.props;
     <p class="mb-2 italic">&ldquo;{quote}&rdquo;</p>
   </blockquote>
   <figcaption class="font-bold">
-    — {author}, {role} at <a
+    — {author}, {title} at <a
       href={url}
       class="text-blue-500 hover:text-blue-700"
       target="_blank"

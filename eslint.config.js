@@ -19,26 +19,6 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/triple-slash-reference': 'off',
       'jsx-a11y/no-redundant-roles': 'warn',
-      // Astro components commonly have a `role` prop; avoid treating those as ARIA roles.
-      'jsx-a11y/aria-role': ['error', { ignoreNonDOM: true }],
-    },
-  },
-  {
-    files: ['**/*.astro'],
-    rules: {
-      // Relax rules for inline scripts in Astro files
-      '@typescript-eslint/no-unused-expressions': 'off',
-      'no-var': 'off',
-      'prefer-rest-params': 'off',
-    },
-  },
-  {
-    // Inline scripts inside .astro get virtual filenames like `Component.astro/*.js`
-    files: ['**/*.astro/*.js', '**/*.astro/*.ts'],
-    rules: {
-      '@typescript-eslint/no-unused-expressions': 'off',
-      'no-var': 'off',
-      'prefer-rest-params': 'off',
     },
   },
   {
