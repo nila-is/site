@@ -1,0 +1,35 @@
+# Nila Homepage - Cursor Rules
+
+## Custom Commands
+
+### Add Testimonial
+When the user says "add testimonial" or provides testimonial content, follow this workflow:
+
+1. **Extract Information:**
+   - Quote text
+   - Author name
+   - Author role/title
+   - Company name
+   - Company website URL
+
+2. **Download Favicon:**
+   - Visit the company website
+   - Find and download the favicon (check `<link rel="icon">` or `<link rel="shortcut icon">`)
+   - Save to `public/favicons/{company-name}-favicon.{ext}`
+   - Prefer PNG format when available
+
+3. **Add Testimonial:**
+   - Add the new testimonial to `src/pages/index.astro`
+   - Place it in the testimonials section based on strength/impact:
+     - Lead with comprehensive technical endorsements from CTOs/technical leaders
+     - Follow with specific product successes
+     - End with strategic/timeline testimonials
+
+4. **Commit and Push:**
+   - Stage changes: `git add src/pages/index.astro public/favicons/*-favicon.*`
+   - Commit: `git commit -m "Add {Company} testimonial"`
+   - Push: `git push`
+
+### Usage
+Just say: `add testimonial from [person] at [company]` and provide the quote.
+
