@@ -7,29 +7,99 @@ const logos = [
   { name: 'Relay', file: 'relay.svg' },
   { name: 'Foxen', file: 'foxen.svg' },
   { name: 'Perdiem', file: 'perdiem.svg' },
-  { name: 'Sitch', file: 'sitch.png' },
+  { name: 'Sitch', file: 'sitch.png', invert: true },
   { name: 'First Insight', file: 'firstinsight.png' },
 ];
 ---
 
-<div class="overflow-hidden py-8">
-  <div class="brand-scroll flex gap-16">
-    {
-      [...logos, ...logos].map((logo) => (
-        <img
-          src={`/brand-logos/${logo.file}`}
-          alt={logo.name}
-          class="h-8 w-auto shrink-0 opacity-60 grayscale transition-opacity hover:opacity-100"
-          loading="lazy"
-        />
-      ))
-    }
+<div class="brand-wall-container">
+  <div class="brand-scroll-track">
+    <div class="brand-scroll-content">
+      {
+        logos.map((logo) => (
+          <img
+            src={`/brand-logos/${logo.file}`}
+            alt={logo.name}
+            class:list={['brand-logo', { 'brand-logo--invert': logo.invert }]}
+            loading="lazy"
+          />
+        ))
+      }
+    </div>
+    <div class="brand-scroll-content" aria-hidden="true">
+      {
+        logos.map((logo) => (
+          <img
+            src={`/brand-logos/${logo.file}`}
+            alt={logo.name}
+            class:list={['brand-logo', { 'brand-logo--invert': logo.invert }]}
+            loading="lazy"
+          />
+        ))
+      }
+    </div>
   </div>
 </div>
 
 <style>
-  .brand-scroll {
-    animation: scroll 30s linear infinite;
+  .brand-wall-container {
+    overflow: hidden;
+    padding: 2rem 0;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+  }
+
+  .brand-scroll-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 60s linear infinite;
+  }
+
+  .brand-scroll-track:hover {
+    animation-play-state: paused;
+  }
+
+  .brand-scroll-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding-inline-end: 4rem;
+  }
+
+  .brand-logo {
+    height: 2rem;
+    width: auto;
+    flex-shrink: 0;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition:
+      opacity 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  .brand-logo--invert {
+    filter: grayscale(100%) invert(1);
+  }
+
+  .brand-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  .brand-logo--invert:hover {
+    filter: invert(1);
   }
 
   @keyframes scroll {
