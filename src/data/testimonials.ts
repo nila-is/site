@@ -81,4 +81,3 @@ export const testimonials: Testimonial[] = [
     favicon: '/testimonial-logos/firstinsight-favicon.png',
   },
 ];
-
