@@ -7,15 +7,12 @@ interface Props {
 const { href, favicon } = Astro.props;
 ---
 
-<a href={href} target="_blank" rel="noopener noreferrer"
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center"
   ><slot />{
-    favicon && (
-      <img
-        src={favicon}
-        alt=""
-        class="ml-1 inline-block h-4 w-4 align-text-bottom"
-        loading="lazy"
-      />
-    )
+    favicon && <img src={favicon} alt="" class="ml-1 h-4 w-4" loading="lazy" />
   }</a
 >
