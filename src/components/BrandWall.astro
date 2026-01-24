@@ -1,0 +1,43 @@
+---
+// Infinite scrolling brand wall with B&W logos
+const logos = [
+  { name: 'Vitally', file: 'vitally.png' },
+  { name: 'NLX', file: 'nlx.png' },
+  { name: 'Furnished Finder', file: 'furnishedfinder.png' },
+  { name: 'Relay', file: 'relay.svg' },
+  { name: 'Foxen', file: 'foxen.svg' },
+  { name: 'Perdiem', file: 'perdiem.svg' },
+  { name: 'Sitch', file: 'sitch.png' },
+  { name: 'First Insight', file: 'firstinsight.png' },
+];
+---
+
+<div class="overflow-hidden py-8">
+  <div class="brand-scroll flex gap-16">
+    {
+      [...logos, ...logos].map((logo) => (
+        <img
+          src={`/brand-logos/${logo.file}`}
+          alt={logo.name}
+          class="h-8 w-auto shrink-0 opacity-60 grayscale transition-opacity hover:opacity-100"
+          loading="lazy"
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .brand-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

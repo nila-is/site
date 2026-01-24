@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Testimonial from '../components/Testimonial.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ExternalLink from '../components/ExternalLink.astro';
+import BrandWall from '../components/BrandWall.astro';
 import { Image } from 'astro:assets';
 import headshot from '../assets/headshot.jpg';
 import { testimonials } from '../data/testimonials';
@@ -37,6 +38,8 @@ import { testimonials } from '../data/testimonials';
     </p>
   </div>
 
+  <BrandWall />
+
   <div>
     <SectionHeading title="Background" />
     <p class="mb-2 leading-relaxed">
@@ -67,7 +70,6 @@ import { testimonials } from '../data/testimonials';
             title={t.title}
             company={t.company}
             url={t.url}
-            favicon={t.favicon}
           />
         ))
       }

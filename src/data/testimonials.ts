@@ -4,7 +4,6 @@ export interface Testimonial {
   title: string;
   company: string;
   url: string;
-  favicon: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -15,7 +14,6 @@ export const testimonials: Testimonial[] = [
     title: 'CTO',
     company: 'Furnished Finder',
     url: 'https://furnishedfinder.com',
-    favicon: '/testimonial-logos/furnishedfinder-favicon.png',
   },
   {
     quote:
@@ -24,7 +22,6 @@ export const testimonials: Testimonial[] = [
     title: 'CTO',
     company: 'Relay',
     url: 'https://relayfi.com',
-    favicon: '/testimonial-logos/relay-favicon.ico',
   },
   {
     quote:
@@ -33,7 +30,6 @@ export const testimonials: Testimonial[] = [
     title: 'CTO',
     company: 'Foxen',
     url: 'https://foxen.com',
-    favicon: '/testimonial-logos/foxen-favicon.png',
   },
   {
     quote:
@@ -42,7 +38,6 @@ export const testimonials: Testimonial[] = [
     title: 'CEO',
     company: 'Perdiem',
     url: 'https://perdiem.xyz',
-    favicon: '/testimonial-logos/perdiem-favicon.png',
   },
   {
     quote:
@@ -51,7 +46,6 @@ export const testimonials: Testimonial[] = [
     title: 'CTO',
     company: 'Vitally',
     url: 'https://vitally.io',
-    favicon: '/testimonial-logos/vitally-favicon.png',
   },
   {
     quote:
@@ -60,7 +54,6 @@ export const testimonials: Testimonial[] = [
     title: 'CEO',
     company: 'Sitch',
     url: 'https://joinsitch.com',
-    favicon: '/testimonial-logos/sitch-favicon.png',
   },
   {
     quote:
@@ -69,7 +62,6 @@ export const testimonials: Testimonial[] = [
     title: 'CEO',
     company: 'NLX',
     url: 'https://nlx.ai',
-    favicon: '/testimonial-logos/nlx-favicon.ico',
   },
   {
     quote:
@@ -78,6 +70,5 @@ export const testimonials: Testimonial[] = [
     title: 'CMO',
     company: 'First Insight',
     url: 'https://firstinsight.com',
-    favicon: '/testimonial-logos/firstinsight-favicon.png',
   },
 ];

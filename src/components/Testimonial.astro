@@ -7,10 +7,9 @@ interface Props {
   title: string;
   company: string;
   url: string;
-  favicon?: string;
 }
 
-const { quote, author, title, company, url, favicon } = Astro.props;
+const { quote, author, title, company, url } = Astro.props;
 ---
 
 <figure>
@@ -18,8 +17,6 @@ const { quote, author, title, company, url, favicon } = Astro.props;
     <p class="mb-2 italic">&ldquo;{quote}&rdquo;</p>
   </blockquote>
   <figcaption class="font-bold">
-    — {author}, {title} at <ExternalLink href={url} favicon={favicon}
-      >{company}</ExternalLink
-    >
+    — {author}, {title} at <ExternalLink href={url}>{company}</ExternalLink>
   </figcaption>
 </figure>
