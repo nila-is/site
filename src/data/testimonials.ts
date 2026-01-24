@@ -39,7 +39,7 @@ export const testimonials: Testimonial[] = [
     quote:
       'Vignesh helped us build our LLM infrastructure from scratch, cutting through buzzwords to implement solutions that deliver measurable improvements. His deep understanding of how LLMs work in production and ability to write high-quality code that actually works, not just demos, was invaluable. He helped us across the stack—from data pipelines to prompts to testing.',
     author: 'Kiran Cherukuri',
-    title: 'Founder',
+    title: 'CEO',
     company: 'Perdiem',
     url: 'https://perdiem.xyz',
     favicon: '/testimonial-logos/perdiem-favicon.png',
