@@ -19,7 +19,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Vignesh helped our staff engineers build a strong understanding of applied AI and showed them how to use AI tools to speed up development in meaningful ways. He played a key role in shaping our AI roadmap, helping the team get clear on both what to build and how to build it. He also designed the systems that let us run all our models on internal infrastructure, ensuring customer data stays private and secure. His guidance helped us move faster in the near term while laying the groundwork for long-term growth in our AI capabilities.",
+      'Vignesh helped our staff engineers build a strong understanding of applied AI and showed them how to use AI tools to speed up development in meaningful ways. He played a key role in shaping our AI roadmap, helping the team get clear on both what to build and how to build it. He also designed the systems that let us run all our models on internal infrastructure, ensuring customer data stays private and secure. His guidance helped us move faster in the near term while laying the groundwork for long-term growth in our AI capabilities.',
     author: 'Paul Klicnik',
     title: 'CTO',
     company: 'Relay',
@@ -28,7 +28,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Vignesh quickly understood our team and existing processes, then architected a solution that will serve as the foundation to save significant hours every month on manual work while improving accuracy. He has a strong understanding of where to apply AI. He worked well with the engineers on our team, taking their perspectives into account and working alongside them to develop their understanding of AI and its deployment.",
+      'Vignesh quickly understood our team and existing processes, then architected a solution that will serve as the foundation to save significant hours every month on manual work while improving accuracy. He has a strong understanding of where to apply AI. He worked well with the engineers on our team, taking their perspectives into account and working alongside them to develop their understanding of AI and its deployment.',
     author: 'Sean Scott',
     title: 'CTO',
     company: 'Foxen',
@@ -37,7 +37,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Vignesh helped us build our LLM infrastructure from scratch, cutting through buzzwords to implement solutions that deliver measurable improvements. His deep understanding of how LLMs work in production and ability to write high-quality code that actually works, not just demos, was invaluable. He helped us across the stack—from data pipelines to prompts to testing.",
+      'Vignesh helped us build our LLM infrastructure from scratch, cutting through buzzwords to implement solutions that deliver measurable improvements. His deep understanding of how LLMs work in production and ability to write high-quality code that actually works, not just demos, was invaluable. He helped us across the stack—from data pipelines to prompts to testing.',
     author: 'Kiran Cherukuri',
     title: 'Founder',
     company: 'Perdiem',
