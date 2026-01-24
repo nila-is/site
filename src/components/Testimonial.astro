@@ -1,4 +1,6 @@
 ---
+import ExternalLink from './ExternalLink.astro';
+
 interface Props {
   quote: string;
   author: string;
@@ -16,21 +18,8 @@ const { quote, author, title, company, url, favicon } = Astro.props;
     <p class="mb-2 italic">&ldquo;{quote}&rdquo;</p>
   </blockquote>
   <figcaption class="font-bold">
-    — {author}, {title} at <a
-      href={url}
-      class="text-blue-500 hover:text-blue-700"
-      target="_blank"
-      rel="noopener noreferrer"
-      >{company}{
-        favicon && (
-          <img
-            src={favicon}
-            alt=""
-            class="ml-1 inline-block h-4 w-4 align-text-bottom"
-            loading="lazy"
-          />
-        )
-      }</a
+    — {author}, {title} at <ExternalLink href={url} favicon={favicon}
+      >{company}</ExternalLink
     >
   </figcaption>
 </figure>
