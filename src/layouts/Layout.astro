@@ -30,6 +30,41 @@ const socialImageUrl = new URL('/favicon.png', Astro.site).toString();
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=block"
+      as="style"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        opacity: 0;
+      }
+      body.fonts-loaded {
+        opacity: 1;
+        transition: opacity 0.1s ease-in;
+      }
+    </style>
+    <script>
+      (function () {
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () {
+            document.body.classList.add('fonts-loaded');
+          });
+        } else {
+          document.body.classList.add('fonts-loaded');
+        }
+        // Fallback: show page after 1s even if font fails
+        setTimeout(function () {
+          document.body.classList.add('fonts-loaded');
+        }, 1000);
+      })();
+    </script>
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content={article ? 'article' : 'website'} />
@@ -46,7 +81,9 @@ const socialImageUrl = new URL('/favicon.png', Astro.site).toString();
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
   </head>
-  <body class="flex min-h-full flex-col font-['Arial',sans-serif] text-sm">
+  <body
+    class="flex min-h-full flex-col font-['Bricolage_Grotesque',Arial,sans-serif] text-base"
+  >
     <Header />
     <main class="flex flex-grow justify-center pb-16 pt-2">
       <div class="w-full max-w-3xl px-4 text-left sm:px-8">
