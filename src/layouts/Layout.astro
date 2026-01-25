@@ -53,8 +53,22 @@ const socialImageUrl = new URL('/favicon.png', Astro.site).toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
+
+    <script is:inline>
+      // Initialize theme before page renders to prevent flash
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)'
+        ).matches;
+        const theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
   </head>
-  <body class="flex min-h-full flex-col bg-white text-[15px] antialiased">
+  <body
+    class="flex min-h-full flex-col bg-background text-[15px] text-foreground antialiased"
+  >
     <Header />
     <main class="flex flex-grow justify-center px-6 pb-16">
       <div class="w-full max-w-2xl">
@@ -63,7 +77,7 @@ const socialImageUrl = new URL('/favicon.png', Astro.site).toString();
         </div>
       </div>
     </main>
-    <footer class="py-10 text-center text-sm text-gray-400">
+    <footer class="py-10 text-center text-sm text-muted-foreground">
       © {new Date().getFullYear()} Nila Labs LLC
     </footer>
 

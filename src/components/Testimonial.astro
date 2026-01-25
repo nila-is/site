@@ -14,7 +14,7 @@ const { quote, author, title, company, url } = Astro.props;
 
 <figure class="mb-6">
   <blockquote>
-    <p class="mb-2 italic text-gray-700">&ldquo;{quote}&rdquo;</p>
+    <p class="mb-2 italic text-foreground/70">&ldquo;{quote}&rdquo;</p>
   </blockquote>
   <figcaption class="text-sm">
     — <strong>{author}</strong>, {title} at <ExternalLink href={url}
