@@ -94,14 +94,13 @@ const logos = [
     filter: grayscale(100%) invert(1);
   }
 
-  .brand-logo:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-    transform: scale(1.1);
+  /* Dark mode: invert all logos to white */
+  :global(.dark) .brand-logo {
+    filter: grayscale(100%) invert(1);
   }
 
-  .brand-logo--invert:hover {
-    filter: invert(1);
+  :global(.dark) .brand-logo--invert {
+    filter: grayscale(100%) invert(0);
   }
 
   @keyframes scroll {
