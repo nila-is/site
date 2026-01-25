@@ -12,11 +12,13 @@ interface Props {
 const { quote, author, title, company, url } = Astro.props;
 ---
 
-<figure>
+<figure class="mb-6">
   <blockquote>
-    <p class="mb-2 italic">&ldquo;{quote}&rdquo;</p>
+    <p class="mb-2 italic text-gray-700">&ldquo;{quote}&rdquo;</p>
   </blockquote>
-  <figcaption class="font-bold">
-    — {author}, {title} at <ExternalLink href={url}>{company}</ExternalLink>
+  <figcaption class="text-sm">
+    — <strong>{author}</strong>, {title} at <ExternalLink href={url}
+      >{company}</ExternalLink
+    >
   </figcaption>
 </figure>

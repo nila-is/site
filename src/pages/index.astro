@@ -10,12 +10,14 @@ import { testimonials } from '../data/testimonials';
 ---
 
 <Layout title="Home">
-  <div>
-    <p class="mb-4 leading-relaxed">
-      I'm Vignesh Mohankumar, and Nila is my independent consulting practice. I
-      help engineering teams ship production-ready AI—fast.
+  <div class="space-y-5">
+    <p class="text-lg text-gray-800">
+      I'm <strong>Vignesh Mohankumar</strong>, and Nila is my independent
+      consulting practice. I help engineering teams ship production-ready
+      AI—fast.
     </p>
-    <ul class="mb-4 space-y-1">
+
+    <ul class="text-gray-700">
       <li>
         <strong>Advisory</strong> — AI roadmap, architecture, and coaching that accelerates
         delivery
@@ -31,18 +33,13 @@ import { testimonials } from '../data/testimonials';
         >, proven workflows your team can use immediately
       </li>
     </ul>
-    <p class="leading-relaxed">
-      <ExternalLink href="https://nila.fillout.com/t/mZZ8cxD4tNus"
-        >Ready to ship AI that works? Let's talk.</ExternalLink
-      >
-    </p>
   </div>
 
   <BrandWall />
 
   <div>
     <SectionHeading title="Background" />
-    <p class="mb-2 leading-relaxed">
+    <p>
       I've spent years building AI systems that scale. As an early engineer at
       two acquired AI companies, I learned what works (and what doesn't) when
       shipping AI to production:
@@ -82,24 +79,21 @@ import { testimonials } from '../data/testimonials';
       <Image
         src={headshot}
         alt="Vignesh Mohankumar"
-        class="mb-6 w-1/3"
+        class="mb-6 w-2/3 rounded-lg sm:w-1/2 md:w-1/3"
         widths={[256, 512, 768]}
         sizes="(min-width: 640px) 33vw, 50vw"
         loading="lazy"
       />
       <div>
-        <p class="mb-2 leading-relaxed">
+        <p>
           I'm based in New York, NY. I grew up in New England and was born near
           Chennai, India. Nila means moon in Tamil—my sister suggested the name.
         </p>
-        <p class="leading-relaxed">
-          Find me on
-          <ExternalLink href="https://linkedin.com/in/vigxyz"
+        <p>
+          Find me on <ExternalLink href="https://linkedin.com/in/vigxyz"
             >LinkedIn</ExternalLink
-          >,
-          <ExternalLink href="https://x.com/vig_xyz">X</ExternalLink>
-          and my <ExternalLink href="https://vig.xyz"
-            >personal blog</ExternalLink
+          >, <ExternalLink href="https://x.com/vig_xyz">X</ExternalLink> and my <ExternalLink
+            href="https://vig.xyz">personal blog</ExternalLink
           >.
         </p>
       </div>

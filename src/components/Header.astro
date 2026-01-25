@@ -3,11 +3,18 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-3xl px-4 pb-6 pt-8 sm:px-8">
-    <a href="/" class="flex items-center text-inherit hover:text-inherit">
-      <Image src={logo} alt="Nila Logo" class="mr-2 h-6 w-6" />
-      <h1 class="m-0 text-2xl font-bold uppercase tracking-wide">Nila</h1>
+<header>
+  <div class="mx-auto max-w-2xl px-6 pb-8 pt-12">
+    <a
+      href="/"
+      class="group inline-flex items-center gap-2.5 text-inherit no-underline hover:text-inherit hover:no-underline"
+    >
+      <Image
+        src={logo}
+        alt="Nila Logo"
+        class="h-8 w-8 transition-transform group-hover:scale-105"
+      />
+      <span class="font-serif text-2xl tracking-tight">Nila</span>
     </a>
   </div>
 </header>

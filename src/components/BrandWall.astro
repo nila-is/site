@@ -79,14 +79,15 @@ const logos = [
   }
 
   .brand-logo {
-    height: 2rem;
+    height: 2.25rem;
     width: auto;
     flex-shrink: 0;
-    opacity: 0.6;
+    opacity: 0.5;
     filter: grayscale(100%);
     transition:
       opacity 0.3s ease,
-      filter 0.3s ease;
+      filter 0.3s ease,
+      transform 0.3s ease;
   }
 
   .brand-logo--invert {
@@ -96,6 +97,7 @@ const logos = [
   .brand-logo:hover {
     opacity: 1;
     filter: grayscale(0%);
+    transform: scale(1.1);
   }
 
   .brand-logo--invert:hover {
