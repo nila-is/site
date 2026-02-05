@@ -19,7 +19,7 @@ export const testimonials: Testimonial[] = [
     quote:
       'Vig came highly recommended from former teammates and execs I trusted and I learned why. Vig understood the balance between building with Agentic AI and helping product teams embed AI in their existing products and teams. He gave an accurate view of what was possible and tradeoffs of time vs. complexity (without AI hype).',
     author: "Jim O'Neill",
-    title: 'CTO & Co-Founder',
+    title: 'CTO',
     company: 'FinQore',
     url: 'https://finqore.com',
   },
