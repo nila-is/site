@@ -17,6 +17,14 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
+      'Vig came highly recommended from former teammates and execs I trusted and I learned why. Vig understood the balance between building with Agentic AI and helping product teams embed AI in their existing products and teams. He gave an accurate view of what was possible and tradeoffs of time vs. complexity (without AI hype).',
+    author: "Jim O'Neill",
+    title: 'CTO & Co-Founder',
+    company: 'FinQore',
+    url: 'https://finqore.com',
+  },
+  {
+    quote:
       'Vignesh helped our staff engineers build a strong understanding of applied AI and showed them how to use AI tools to speed up development in meaningful ways. He played a key role in shaping our AI roadmap, helping the team get clear on both what to build and how to build it. He also designed the systems that let us run all our models on internal infrastructure, ensuring customer data stays private and secure. His guidance helped us move faster in the near term while laying the groundwork for long-term growth in our AI capabilities.',
     author: 'Paul Klicnik',
     title: 'CTO',
